@@ -39,8 +39,9 @@ export default function PostCardList({ accountname }) {
       }
     };
     fetchPostData();
-
   }, [accountname, checkDelete, checkProfileChange]);
+
+  console.log(userPostList);
 
   return (
     <>

@@ -9,7 +9,7 @@ import { checkProfile } from "../../recoil/checkChange";
 
 // api
 import { profileAPI } from "../../api/profile";
-import { PostImageAPI } from "../../api/uploadImage";
+import { PostImageAPI } from "../../api/UploadImage";
 import { updateProfile } from "../../api/profile";
 
 // 컴포넌트
@@ -21,23 +21,16 @@ import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
 import checkImageUrl from "../common/checkImageUrl";
 
-export default function UpdateProfile({
-  profileData,
-  setIsEditing,
-  setProfileData,
-}) {
+export default function UpdateProfile({ profileData, setIsEditing, setProfileData }) {
   // 리코일
   const token = useRecoilValue(loginToken);
 
   // 수정 관련 state
-  const [changeImageURL, setChangeImageURL] = useState(
-    profileData.profile.image
-  );
+  const [changeImageURL, setChangeImageURL] = useState(profileData.profile.image);
   const [isImageUpload, setIsImageUpload] = useState(false);
   const [userName, setUserName] = useState(profileData.profile.username);
   const [intro, setIntro] = useState(profileData.profile.intro);
-  const [checkProfileChange, setCheckProfileChange] =
-    useRecoilState(checkProfile);
+  const [checkProfileChange, setCheckProfileChange] = useRecoilState(checkProfile);
   const [postChangeImg, setPostChangeImg] = useState({
     user: {
       image: changeImageURL,
@@ -102,68 +95,25 @@ export default function UpdateProfile({
   return (
     <>
       <ProfileDiv>
-        <input
-          id="fileInput"
-          type="file"
-          style={{ display: "none" }}
-          accept="image/jpeg, image/png, image/svg"
-          onChange={handleImageChange}
-        />
+        <input id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} />
         <label htmlFor="fileInput">
           <ProfileImgWrap>
             <img src={checkImageUrl(changeImageURL, "profile")} alt="Upload" />
           </ProfileImgWrap>
-          <img
-            className="add_button_img"
-            src={PlusBtnImg}
-            alt="Upload"
-            style={{ cursor: "pointer" }}
-          />
+          <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
         </label>
       </ProfileDiv>
       <Form onSubmit={handleSaveClick}>
         <div>
           <Label>닉네임</Label>
-          <InputBox
-            required
-            width="100%"
-            height="48px"
-            padding="15px"
-            name="username"
-            value={userName}
-            onChange={handleInputChange}
-            placeholder="변경할 닉네임을 입력해주세요"
-          />
+          <InputBox required width="100%" height="48px" padding="15px" name="username" value={userName} onChange={handleInputChange} placeholder="변경할 닉네임을 입력해주세요" />
         </div>
         <div>
           <Label>소개 메세지</Label>
-          <textarea
-            placeholder="소개 글을 입력해주세요"
-            name="intro"
-            value={intro}
-            onChange={handleInputChange}
-          ></textarea>
+          <textarea placeholder="소개 글을 입력해주세요" name="intro" value={intro} onChange={handleInputChange}></textarea>
         </div>
-        <Button
-          text="수정 취소"
-          type="button"
-          bg="white"
-          color="black"
-          width="100%"
-          padding="14px 0"
-          fontSize="16px"
-          onClick={handleCancelClick}
-        />
-        <Button
-          text="수정 완료"
-          type="submit"
-          bg="black"
-          width="100%"
-          padding="14px 0"
-          fontSize="16px"
-          br="none"
-          disabled={isImageUpload}
-        />
+        <Button text="수정 취소" type="button" bg="white" color="black" width="100%" padding="14px 0" fontSize="16px" onClick={handleCancelClick} />
+        <Button text="수정 완료" type="submit" bg="black" width="100%" padding="14px 0" fontSize="16px" br="none" disabled={isImageUpload} />
       </Form>
     </>
   );

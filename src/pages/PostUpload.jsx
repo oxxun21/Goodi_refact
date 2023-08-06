@@ -9,8 +9,8 @@ import UploadTotalUI from "../components/PostProductWriting/UploadTotalUI";
 //이미지
 import postUproad from "../assets/post_upload.svg";
 
-//API
-import { postUploadAPI } from "../api/post"
+// api
+import { postUploadAPI } from "../api/post";
 
 //recoil
 import loginToken from "../recoil/loginToken";
@@ -42,13 +42,11 @@ export default function PostUpload() {
   useEffect(() => {
     if (postData) {
       handlePost(postData, token);
-      console.log("포스트 정보",postData)
     }
   }, [postData]);
 
   const handlePost = async (PostData, token) => {
-
-    const response = await postingAPI(PostData, token);
+    const response = await postUploadAPI(PostData, token);
 
     if (response && response.hasOwnProperty("post")) navigate(myProfile);
   };

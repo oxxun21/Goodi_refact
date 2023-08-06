@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 
-// import PostList from "../components/common/PostList";
-
 import commonBanner from "../assets/common-banner.svg";
 import arrowPrimaryIcon from "../assets/icon_arrow_primary.svg";
 import pointEdge from "../assets/point-edge.svg";
@@ -13,8 +11,11 @@ import popularAuthor from "../assets/popular-author.svg";
 import PopularAuthorView from "../components/PopularAuthorView";
 import Layout from "../layout/Layout";
 import MainSkeleton from "../style/skeletonUI/skeletonPage/MainSkeleton";
-import CarouselMain from "../components/CarouselMain";
 import MainRightCard from "./../components/MainRightCard";
+
+import CarouselImg22 from "../assets/sample-img/sample-image-22.png";
+import CarouselImg25 from "../assets/sample-img/sample-image-25.jpg";
+import CarouselImg26 from "../assets/sample-img/sample-image-26.png";
 
 export default function Main() {
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,10 @@ export default function Main() {
             </article>
             <section>
               <h2 className="a11y-hidden">팔로워 인기 TOP 3 작가 작품</h2>
-              <CarouselMain />
+              <img src={CarouselImg22} alt="" />
+              <img src={CarouselImg25} alt="" />
+              <img src={CarouselImg26} alt="" />
+              {/* 의미있게 변경 */}
             </section>
           </MainLeft>
 

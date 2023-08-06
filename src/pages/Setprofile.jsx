@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { singUpAPI } from "../api/user";
-import UploadImage from "../api/uploadImage";
 
 import { InputBox } from "../components/common/Input";
 import { LeftDiv } from "../components/Carousel";
@@ -51,8 +50,7 @@ export default function Setprofile() {
 
     if (response && response.hasOwnProperty("user")) navigate("/");
     else {
-      const errorMessage =
-        response && response.message ? response.message : handleError();
+      const errorMessage = response && response.message ? response.message : handleError();
       setErrorMessage(errorMessage);
     }
   };
@@ -105,32 +103,13 @@ export default function Setprofile() {
         <div className="right-inner">
           <H1 className="a11y-hidden">초기 프로필 설정 페이지</H1>
           <ProfileDiv>
-            <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              accept="image/jpeg, image/png, image/svg"
-              onChange={handleImageChange}
-            />
+            <input id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} />
             <label htmlFor="fileInput">
               <ProfileImgWrap>
-                <img
-                  src={
-                    profileSelectedImage
-                      ? BASE_URL + profileSelectedImage
-                      : ProfileImgDef
-                  }
-                  alt="Upload"
-                  style={profileSelectedImage ? { width: "100px" } : null}
-                />
+                <img src={profileSelectedImage ? BASE_URL + profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : null} />
               </ProfileImgWrap>
 
-              <img
-                className="add_button_img"
-                src={PlusBtnImg}
-                alt="Upload"
-                style={{ cursor: "pointer" }}
-              />
+              <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
             </label>
           </ProfileDiv>
           <form onSubmit={handleSubmit}>
@@ -147,28 +126,14 @@ export default function Setprofile() {
                 hasError={userErrorMessage.includes("닉네임을 입력해주세요")}
               />
               {/* email을 입력하지 않은 경우 */}
-              {userErrorMessage.includes("닉네임을 입력해주세요") && (
-                <ErrorMassage>{userErrorMessage}</ErrorMassage>
-              )}
+              {userErrorMessage.includes("닉네임을 입력해주세요") && <ErrorMassage>{userErrorMessage}</ErrorMassage>}
             </InputDiv>
             <InputDiv>
               <Label>소개 메세지</Label>
-              <textarea
-                placeholder="나를 소개해보세요"
-                name="intro"
-                onChange={handleInputChange}
-                value={signUpData.user.intro}
-              ></textarea>
+              <textarea placeholder="나를 소개해보세요" name="intro" onChange={handleInputChange} value={signUpData.user.intro}></textarea>
             </InputDiv>
             <ButtonDiv>
-              <Button
-                text="Goodi 시작하기"
-                type="submit"
-                bg="black"
-                width="432px"
-                br="none"
-                onClick={handleError}
-              />
+              <Button text="Goodi 시작하기" type="submit" bg="black" width="432px" br="none" onClick={handleError} />
             </ButtonDiv>
           </form>
         </div>

@@ -110,7 +110,7 @@ export default function PostCard({ username, profileImage, email, content, image
         <div className="p_box">
           <p>{content}</p>
         </div>
-        <img src={image} alt="게시글 이미지" />
+        <img src={image ? image : "https://api.mandarin.weniv.co.kr/1687455865316.jpg"} alt="게시글 이미지" />
         <div>
           <span>{elapsedTimeString}</span>
           <div className="like_wrap">
