@@ -88,7 +88,7 @@ export default function ProductUpdate() {
 
     await productPutAPI(product_id, token, updatedProductData);
 
-    navigate(`/products/${product_id}`);
+    navigate(`/productDetail/${product_id}`);
   };
 
   return (

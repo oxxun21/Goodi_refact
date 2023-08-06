@@ -87,8 +87,8 @@ export default function Navigation() {
         <LocalNav
           setIsHidden={setIsHidden}
           lists={[
-            { name: "상품 등록", nav: "/postproduct" },
-            { name: "게시물 작성", nav: "/postposting" },
+            { name: "상품 등록", nav: "/productUpload" },
+            { name: "게시물 작성", nav: "/postUpload" },
           ]}
           navibar="true"
         />
@@ -106,13 +106,7 @@ export default function Navigation() {
           showCloseButton={false}
         />
       )}
-      {showSearch && (
-        <Search
-          setShowSearch={setShowSearch}
-          showModal={showModal}
-          handleSearch={handleSearch}
-        />
-      )}
+      {showSearch && <Search setShowSearch={setShowSearch} showModal={showModal} handleSearch={handleSearch} />}
     </NavigationLayout>
   );
 }

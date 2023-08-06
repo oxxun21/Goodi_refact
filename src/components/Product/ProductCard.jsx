@@ -10,16 +10,7 @@ import LocalNav from "../common/LocalNav";
 import { useState } from "react";
 import Modal from "../common/Modal";
 
-export default function ProductCard({
-  profile,
-  name,
-  email,
-  img,
-  title,
-  description,
-  price,
-  id,
-}) {
+export default function ProductCard({ profile, name, email, img, title, description, price, id }) {
   const handleClick = useRef();
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
@@ -36,12 +27,7 @@ export default function ProductCard({
     const handleClickOutside = (event) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (
-        handleClick &&
-        localNavElement &&
-        !localNavElement.contains(event.target) &&
-        !handleClick.current.contains(event.target)
-      ) {
+      if (handleClick && localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
         setIsHidden(false);
       }
     };
@@ -58,13 +44,7 @@ export default function ProductCard({
   return (
     <CardWrap>
       <CardTop>
-        <ProfileUI
-          user_profile={profile}
-          user_name={name}
-          card="true"
-          account_name={email}
-          id={id}
-        />
+        <ProfileUI user_profile={profile} user_name={name} card="true" account_name={email} id={id} />
         {account_name === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="메뉴 아이콘" ref={handleClick} />
@@ -87,14 +67,12 @@ export default function ProductCard({
           )}
         </LocalNavWrap>
       </CardTop>
-      <CardLink to={`/products/${id}`}>
+      <CardLink to={`/productDetail/${id}`}>
         <CardContent>
           <img alt="상품 이미지" src={img} />
           <h3>{title}</h3>
           <p>{description}</p>
-          <strong>
-            {price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
-          </strong>
+          <strong>{price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</strong>
           <span>원</span>
         </CardContent>
       </CardLink>

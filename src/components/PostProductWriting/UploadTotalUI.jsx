@@ -93,32 +93,13 @@ export default function UploadTotalUI(props) {
         <p>{subtext}</p>
 
         <T.UploadWrap onSubmit={joinData}>
-          <ImageSection
-            handleInputChange={handleInputChange}
-            loading={loading}
-            imageWrap={imageWrap}
-            userErrorMessage={userErrorMessage}
-          />
+          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} userErrorMessage={userErrorMessage} />
 
           <T.Line />
 
-          {location.pathname === "/postposting" && (
-            <PostWriting
-              handleInputChange={handleInputChange}
-              description={description}
-              userErrorMessage={userErrorMessage}
-              handleError={handleError}
-            />
-          )}
+          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} userErrorMessage={userErrorMessage} handleError={handleError} />}
 
-          {location.pathname === "/postproduct" && (
-            <ProductWriting
-              data={data}
-              handleInputChange={handleInputChange}
-              userErrorMessage={userErrorMessage}
-              handleError={handleError}
-            />
-          )}
+          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} handleError={handleError} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

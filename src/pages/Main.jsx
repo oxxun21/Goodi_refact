@@ -27,10 +27,7 @@ export default function Main() {
         <MainWrap>
           <MainLeft>
             <article>
-              <img
-                src={commonBanner}
-                alt="팔로워 인기 TOP 3위 작가님들 지금 바로 상품구경"
-              />
+              <img src={commonBanner} alt="팔로워 인기 TOP 3위 작가님들 지금 바로 상품구경" />
             </article>
             <section>
               <h2 className="a11y-hidden">팔로워 인기 TOP 3 작가 작품</h2>
@@ -45,7 +42,7 @@ export default function Main() {
               <img src={popularProducts} alt="popular products" />
             </Title>
             <MainRightCard />
-            <ProductLink to="/postproduct">나도 굿즈 판매하기</ProductLink>
+            <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
           </MainRight>
 
           <MainBottom>

@@ -41,17 +41,7 @@ const getElapsedTime = (createdAt) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({
-  username,
-  profileImage,
-  email,
-  content,
-  image,
-  createdAt,
-  postId,
-  hearted,
-  heartCount,
-}) {
+export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }) {
   const handleClick = useRef();
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
@@ -77,11 +67,7 @@ export default function PostCard({
     const handleClickOutside = (event) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (
-        localNavElement &&
-        !localNavElement.contains(event.target) &&
-        !handleClick.current.contains(event.target)
-      ) {
+      if (localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
         setIsHidden(false);
       }
     };
@@ -98,21 +84,10 @@ export default function PostCard({
   return (
     <PostOuter>
       <PostTop>
-        <ProfileUI
-          user_profile={checkImageUrl(profileImage, "profile")}
-          user_name={username}
-          user_email={email}
-          mainprofile={false}
-          card={true}
-          account_name={account_name}
-        />
+        <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile={false} card={true} account_name={account_name} />
         {account_name === myaccount_name && (
           <button onClick={handleLocalNav}>
-            <img
-              src={postMenu}
-              alt="게시글 삭제 및 신고 메뉴"
-              ref={handleClick}
-            />
+            <img src={postMenu} alt="게시글 삭제 및 신고 메뉴" ref={handleClick} />
           </button>
         )}
         <LocalNavWrap>
@@ -122,7 +97,7 @@ export default function PostCard({
               width="120px"
               fontSize="14px"
               lists={[
-                { name: "게시글 수정", nav: `/uploadPosting/${postId}` },
+                { name: "게시글 수정", nav: `/post/${postId}` },
                 { name: "게시글 삭제", nav: "" },
               ]}
             />
@@ -140,12 +115,7 @@ export default function PostCard({
           <span>{elapsedTimeString}</span>
           <div className="like_wrap">
             <span>{heartValue}</span>
-            <ButtonPostLike
-              postId={postId}
-              getHeartData={getHeartData}
-              cancleHeartData={cancleHeartData}
-              liked={hearted}
-            />
+            <ButtonPostLike postId={postId} getHeartData={getHeartData} cancleHeartData={cancleHeartData} liked={hearted} />
           </div>
         </div>
       </PostContent>

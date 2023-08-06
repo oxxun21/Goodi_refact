@@ -48,7 +48,7 @@ export default function ProductUpload() {
   const handlePost = async (ProductData, token) => {
     const response = await productUploadAPI(ProductData, token);
 
-    if (response.hasOwnProperty("product")) navigate(`/products/${response.product.id}`);
+    if (response.hasOwnProperty("product")) navigate(`/productDetail/${response.product.id}`);
   };
 
   const handleError = () => {

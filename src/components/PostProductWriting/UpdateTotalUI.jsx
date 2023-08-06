@@ -10,19 +10,7 @@ import ProductWriting from "./UIcomponents/ProductWriting";
 import { handlePostUpdateForm } from "../common/imageOptimization";
 
 export default function UpdateTotalUI(props) {
-  const {
-    src,
-    subtext,
-    data,
-    imageWrap,
-    userErrorMessage,
-    joinData,
-    loading,
-    description,
-    setLoading,
-    setImageWrap,
-    setData,
-  } = props;
+  const { src, subtext, data, imageWrap, userErrorMessage, joinData, loading, description, setLoading, setImageWrap, setData } = props;
 
   const location = useLocation();
   const locationID = useParams();
@@ -61,30 +49,14 @@ export default function UpdateTotalUI(props) {
         <p>{subtext}</p>
 
         <T.UploadWrap onSubmit={joinData}>
-          <ImageSection
-            handleInputChange={handleInputChange}
-            loading={loading}
-            imageWrap={imageWrap}
-            userErrorMessage={userErrorMessage}
-          />
+          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} userErrorMessage={userErrorMessage} />
 
           <T.Line />
 
-          {location.pathname === `/uploadPosting/${locationID.posting_id}` && (
-            <PostWriting
-              handleInputChange={handleInputChange}
-              userErrorMessage={userErrorMessage}
-              description={description}
-            />
-          )}
+          {location.pathname === `/post/${locationID.posting_id}` && <PostWriting handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} description={description} />}
 
           {location.pathname === `/product/${locationID.product_id}` && (
-            <ProductWriting
-              data={data}
-              handleInputChange={handleInputChange}
-              userErrorMessage={userErrorMessage}
-              description={description}
-            />
+            <ProductWriting data={data} handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} description={description} />
           )}
         </T.UploadWrap>
       </T.PostUiWrap>
