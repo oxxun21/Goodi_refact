@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 
 // 이미지
@@ -10,7 +9,6 @@ import CloseIcon from "../../assets/icon_close.svg";
 import { recentSearch } from "../../recoil/recentSearch";
 
 export default function SearchHistory() {
-  const [showClose, setShowClose] = useState(true);
   const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);
 
   const handleDelete = (e) => {

@@ -4,27 +4,10 @@ import { Link } from "react-router-dom";
 import defaultImage from "../assets/profile_img_def.svg";
 
 function ProfileUI(props) {
-  const {
-    user_profile,
-    user_name,
-    mainprofile,
-    card,
-    follow,
-    account_name,
-    isfollow,
-    children,
-  } = props;
+  const { user_profile, user_name, mainprofile, card, follow, account_name, children } = props;
 
   return (
-    <UserProfile
-      mainprofile={mainprofile}
-      card={card}
-      follow={follow}
-      to={`/profile/${account_name}`}
-    // onClick={(e) => {
-    //   console.log(e.target);
-    // }}
-    >
+    <UserProfile mainprofile={mainprofile} card={card} follow={follow} to={`/profile/${account_name}`}>
       <img src={user_profile || defaultImage} alt="유저 프로필 이미지" />
       <div>
         <strong>{user_name}</strong>

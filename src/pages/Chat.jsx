@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/Layout";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 
 // 이미지
@@ -24,6 +24,7 @@ import accountname from "../recoil/accountname";
 
 // Mock Data
 import chatDummy from "../mock/chatDummy";
+
 import checkImageUrl from "../utils/checkImageUrl";
 
 export default function Chat(reduceTop) {

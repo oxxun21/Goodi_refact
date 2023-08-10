@@ -15,7 +15,6 @@ import iconClose from "../assets/icon_close.svg";
 export default function Cart() {
   const [cartItem, setCartItem] = useRecoilState(cartItemsState);
   const navigate = useNavigate();
-  const BASE_URL = "https://api.mandarin.weniv.co.kr/";
 
   const handleButtonClick = () => {
     if (cartItem.length !== 0) {

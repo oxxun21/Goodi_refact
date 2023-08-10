@@ -9,7 +9,6 @@ import DetailImage from "./../components/DetailImage";
 import Count from "../components/Count";
 import ProfileUI from "../components/ProfileUI";
 import Button from "../components/common/Button/Button";
-import ButtonLike from "../components/common/Button/ButtonLike";
 import Toast from "../components/common/Toast";
 
 //image
@@ -149,8 +148,6 @@ export default function Detail() {
               </ProductPrice>
 
               <ButtonWrap>
-                <ButtonLike />
-
                 <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
 
                 <Button text="구매하고 싶어요" className="purchase_button" type="button" bg="black" br="none" onClick={() => navigate("/chat")} />
@@ -276,10 +273,5 @@ const ButtonWrap = styled.div`
   & button {
     cursor: pointer;
     font-family: var(--font--Medium);
-  }
-
-  .purchase_button,
-  .cart_button {
-    width: 44%;
   }
 `;

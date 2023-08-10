@@ -16,11 +16,10 @@ import { searchAPI } from "../../api/user";
 
 // Recoil
 import loginToken from "../../recoil/loginToken";
-import accountname from "../../recoil/accountname";
 import { recentSearch } from "../../recoil/recentSearch";
 
 //! 팔로우버튼 기능
-export default function Search({ setShowSearch, showModal, handleSearch }) {
+export default function Search({ handleSearch }) {
   const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState("");
@@ -75,11 +74,7 @@ export default function Search({ setShowSearch, showModal, handleSearch }) {
     <SearchbgDark onClick={handleSearch}>
       <SearchModal onClick={handleModalClick}>
         <h2>작가 검색</h2>
-        <SearchInput
-          keyword={keyword}
-          setKeyword={setKeyword}
-          handleClick={handleClick}
-        />
+        <SearchInput keyword={keyword} setKeyword={setKeyword} handleClick={handleClick} />
         <SearchHistory />
         {isLoading ? (
           <>
