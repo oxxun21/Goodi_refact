@@ -18,12 +18,9 @@ import { useRecoilState } from "recoil";
 import { loginCheck } from "../recoil/loginCheck";
 import loginToken from "../recoil/loginToken";
 import accountname from "../recoil/accountname";
-import { useRecoilValue } from "recoil";
 
 export default function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const isLogin = useRecoilValue(loginCheck);
   const [errorMessage, setErrorMessage] = useState([]);
   const [userErrorMessage, setUserErrorMessage] = useState([]);
   const [toast, setToast] = useState(false);
@@ -33,7 +30,6 @@ export default function Login() {
   const [isAccountname, setIsAccountname] = useRecoilState(accountname);
   const { state } = useLocation();
   const [errorMSG, setErrorMSG] = useState("");
-
 
   useEffect(() => {
     console.log("리코일토큰", token);
@@ -86,8 +82,7 @@ export default function Login() {
 
       navigate("/main");
     } else {
-      const errorMessage =
-        response && response.message ? response.message : handleError();
+      const errorMessage = response && response.message ? response.message : handleError();
       setErrorMessage(errorMessage);
     }
   };
@@ -139,9 +134,7 @@ export default function Login() {
                 hasError={userErrorMessage.includes("아이디를 입력해주세요")}
               />
               {/* email을 입력하지 않은 경우 */}
-              {userErrorMessage.includes("아이디를 입력해주세요") && (
-                <ErrorMassage>아이디를 입력해주세요</ErrorMassage>
-              )}
+              {userErrorMessage.includes("아이디를 입력해주세요") && <ErrorMassage>아이디를 입력해주세요</ErrorMassage>}
             </InputDiv>
             <InputDiv>
               <Label>비밀번호</Label>
@@ -156,25 +149,11 @@ export default function Login() {
                 hasError={userErrorMessage.includes("비밀번호를 입력해주세요")}
               />
               {/* password을 입력하지 않은 경우 */}
-              {userErrorMessage.includes("비밀번호를 입력해주세요") && (
-                <ErrorMassage>비밀번호를 입력해주세요</ErrorMassage>
-              )}
+              {userErrorMessage.includes("비밀번호를 입력해주세요") && <ErrorMassage>비밀번호를 입력해주세요</ErrorMassage>}
             </InputDiv>
-            {errorMessage &&
-              loginData.user.email &&
-              loginData.user.password && (
-                <ErrorMassage>{errorMessage}</ErrorMassage>
-              )}
+            {errorMessage && loginData.user.email && loginData.user.password && <ErrorMassage>{errorMessage}</ErrorMassage>}
             <ButtonDiv>
-              <Button
-                type="submit"
-                bg="black"
-                width="432px"
-                height="56px"
-                br="4px"
-                text="로그인"
-                onClick={handleError}
-              />
+              <Button type="submit" bg="black" width="432px" height="56px" br="4px" text="로그인" onClick={handleError} />
             </ButtonDiv>
           </form>
           <Span>SNS 로그인</Span>

@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import productNull from "../assets/product_null.svg"
+import React from "react";
+import styled from "styled-components";
+import productNull from "../assets/product_null.svg";
 
 export default function NoPostsUI() {
   return (
     <PostNull>
-      <img src={productNull} alt="" />
+      <img src={productNull} alt="글 없음 아이콘" />
       <p>현재 업로드된 글이 없습니다</p>
     </PostNull>
-  )
+  );
 }
 
 const PostNull = styled.div`
@@ -21,4 +21,4 @@ const PostNull = styled.div`
     display: block;
     margin: 210px auto 20px;
   }
-`
+`;

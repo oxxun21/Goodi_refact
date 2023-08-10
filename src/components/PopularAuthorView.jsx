@@ -8,7 +8,6 @@ import loginToken from "../recoil/loginToken";
 import accountname from "../recoil/accountname";
 import { useRecoilValue } from "recoil";
 import NoPostsUI from "../components/NoPostsUI";
-import PostListSkeleton from "../style/skeletonUI/SkeletonItem";
 import { useNavigate, useParams } from "react-router-dom";
 import { checkDeletePost } from "../recoil/checkChange";
 import { checkProfile } from "../recoil/checkChange";
@@ -22,21 +21,10 @@ export default function PopularAuthorview({ account, heartCount }) {
   const myaccount_name = useRecoilValue(accountname);
   const checkDelete = useRecoilValue(checkDeletePost);
   const checkProfileChange = useRecoilValue(checkProfile);
-  const [heartValue, setHeartValue] = useState(heartCount);
   const temp = useParams();
-  const account_name = account
-    ? account
-    : temp.account_name
-      ? temp.account_name
-      : myaccount_name;
+  const account_name = account ? account : temp.account_name ? temp.account_name : myaccount_name;
 
   const BASE_URL = "https://api.mandarin.weniv.co.kr/";
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  const handleNavigate = () => {
-    navigate();
-    console.log("sdf");
-  };
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -87,17 +75,11 @@ export default function PopularAuthorview({ account, heartCount }) {
   }, [account_name, checkDelete, checkProfileChange]);
 
   const handleMouseEnter = (postId) => {
-    setUserPostList((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId ? { ...post, isHovered: true } : post
-      )
-    );
+    setUserPostList((prevPosts) => prevPosts.map((post) => (post.id === postId ? { ...post, isHovered: true } : post)));
   };
 
   const handleMouseLeave = () => {
-    setUserPostList((prevPosts) =>
-      prevPosts.map((post) => ({ ...post, isHovered: false }))
-    );
+    setUserPostList((prevPosts) => prevPosts.map((post) => ({ ...post, isHovered: false })));
   };
 
   return (
@@ -125,18 +107,8 @@ export default function PopularAuthorview({ account, heartCount }) {
                 .reverse()
                 .map((post) => (
                   <li>
-                    <BottomImgDiv
-                      onMouseEnter={() => handleMouseEnter(post.id)}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={() =>
-                        navigate(`/profile/${post.author?.accountname}`)
-                      }
-                    >
-                      <BottomImg
-                        src={BASE_URL + (post.image.split(",")[0] || "")}
-                        alt=""
-                        key={post.id}
-                      />
+                    <BottomImgDiv onMouseEnter={() => handleMouseEnter(post.id)} onMouseLeave={handleMouseLeave} onClick={() => navigate(`/profile/${post.author?.accountname}`)}>
+                      <BottomImg src={BASE_URL + (post.image.split(",")[0] || "")} alt="" key={post.id} />
                       {/* 좋아요 개수와 게시글 내용을 보여주는 요소 */}
                       {post.isHovered && (
                         <>

@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-export default function LocalNav({
-  lists,
-  handleModal,
-  setIsHidden,
-  ...props
-}) {
+export default function LocalNav({ lists, handleModal, setIsHidden, ...props }) {
   const navigate = useNavigate();
 
   return (
@@ -48,11 +43,13 @@ const LocalNavBar = styled.ul`
     padding-top: 4px;
   }
 
-  ${(props) => props.navibar && css`
-    position: absolute;
-    bottom: 177px;
-    right: 90px;
-  `}
+  ${(props) =>
+    props.navibar &&
+    css`
+      position: absolute;
+      bottom: 177px;
+      right: 90px;
+    `}
 `;
 
 const LocalList = styled.li``;

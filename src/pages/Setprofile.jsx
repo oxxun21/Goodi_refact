@@ -72,7 +72,6 @@ export default function Setprofile() {
   };
 
   const handleImageChange = async (e) => {
-    const { name, value } = e.target;
     if ("file") {
       const file = e.target.files[0];
 

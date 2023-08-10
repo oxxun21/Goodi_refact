@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import LikeBtn from "../common/Button/ButtonLike";
 import ProfileUI from "../ProfileUI";
 import { Link, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -67,7 +66,7 @@ export default function ProductCard({ profile, name, email, img, title, descript
           )}
         </LocalNavWrap>
       </CardTop>
-      <CardLink to={`/productDetail/${id}`}>
+      <Link to={`/productDetail/${id}`}>
         <CardContent>
           <img alt="상품 이미지" src={img} />
           <h3>{title}</h3>
@@ -75,8 +74,7 @@ export default function ProductCard({ profile, name, email, img, title, descript
           <strong>{price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</strong>
           <span>원</span>
         </CardContent>
-      </CardLink>
-      <LikeBtn />
+      </Link>
       {showModal && (
         <Modal
           postId={id}
@@ -124,8 +122,6 @@ const LocalNavWrap = styled.div`
   top: 43px;
   right: 0;
 `;
-
-const CardLink = styled(Link)``;
 
 const CardContent = styled.div`
   transition: all 0.3s;

@@ -5,14 +5,13 @@ import Logo from "../assets/logo_black.svg";
 import accountname from "../recoil/accountname";
 import loginToken from "../recoil/loginToken";
 import { followingAPI } from "../api/follow";
-import { useRecoilState } from "recoil";
 import { checkFollow } from "../recoil/checkChange";
 import { useRecoilValue } from "recoil";
 import checkImageUrl from "../utils/checkImageUrl";
 
 export default function Header() {
-  const [token, setToken] = useRecoilState(loginToken);
-  const [accountName, setAccountName] = useRecoilState(accountname);
+  const token = useRecoilValue(loginToken);
+  const accountName = useRecoilValue(accountname);
   const [followingData, setFollowingData] = useState(null);
   const checkFollowChange = useRecoilValue(checkFollow);
 

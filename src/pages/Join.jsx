@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,6 @@ import JoinTo from "../assets/Join to.svg";
 
 export default function Join() {
   const navigate = useNavigate();
-
-  const [errorMessage, setErrorMessage] = useState([]);
   const [userErrorMessage, setUserErrorMessage] = useState([]);
 
   const [joinData, setJoinData] = useState({
@@ -71,14 +69,10 @@ export default function Join() {
               onChange={handleInputChange}
               value={joinData.user.email}
               placeholder="유효한 이메일을 입력해주세요"
-              hasError={userErrorMessage.includes(
-                "유효한 이메일을 입력해주세요"
-              )}
+              hasError={userErrorMessage.includes("유효한 이메일을 입력해주세요")}
             />
             {/* email을 입력하지 않은 경우 */}
-            {userErrorMessage.includes("유효한 이메일을 입력해주세요") && (
-              <ErrorMassage>{userErrorMessage}</ErrorMassage>
-            )}
+            {userErrorMessage.includes("유효한 이메일을 입력해주세요") && <ErrorMassage>{userErrorMessage}</ErrorMassage>}
           </InputDiv>
           <InputDiv>
             <Label>비밀번호</Label>
@@ -90,26 +84,13 @@ export default function Join() {
               onChange={handleInputChange}
               value={joinData.user.password}
               placeholder="비밀번호를 입력하세요"
-              hasError={userErrorMessage.includes(
-                "비밀번호를 6자리 이상 입력해주세요"
-              )}
+              hasError={userErrorMessage.includes("비밀번호를 6자리 이상 입력해주세요")}
             />
             {/* 비밀번호가 6글자 미만인 경우 */}
-            {userErrorMessage.includes(
-              "비밀번호를 6자리 이상 입력해주세요"
-            ) && (
-                <ErrorMassage>비밀번호를 6자리 이상 입력해주세요</ErrorMassage>
-              )}
+            {userErrorMessage.includes("비밀번호를 6자리 이상 입력해주세요") && <ErrorMassage>비밀번호를 6자리 이상 입력해주세요</ErrorMassage>}
           </InputDiv>
           <ButtonDiv>
-            <Button
-              text="다음"
-              type="submit"
-              bg="black"
-              width="432px"
-              br="none"
-              onClick={handleError}
-            />
+            <Button text="다음" type="submit" bg="black" width="432px" br="none" onClick={handleError} />
           </ButtonDiv>
         </div>
       </RightDiv>
