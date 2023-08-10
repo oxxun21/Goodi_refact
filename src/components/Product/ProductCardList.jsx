@@ -15,7 +15,7 @@ import ProductCard from "./ProductCard";
 import NoPostsUI from "../NoPostsUI";
 
 // 이미지 검사
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function ProductCardList({ accountname, profile }) {
   const token = useRecoilValue(loginToken);
@@ -52,10 +52,7 @@ export default function ProductCardList({ accountname, profile }) {
                 profile={checkImageUrl(productInfo.author.image, "profile")}
                 name={productInfo.author.username}
                 email={productInfo.author.accountname}
-                img={checkImageUrl(
-                  BASE_URL + productInfo.itemImage.split(",")[0],
-                  "post"
-                )}
+                img={checkImageUrl(BASE_URL + productInfo.itemImage.split(",")[0], "post")}
                 title={productInfo.itemName}
                 description={productInfo.link}
                 price={productInfo.price}
@@ -71,8 +68,7 @@ export default function ProductCardList({ accountname, profile }) {
 const CardList = styled.div`
   margin: ${({ profile }) => (profile ? "30px 0 70px" : "80px 0")};
   display: grid;
-  grid-template-columns: ${({ profile }) =>
-    profile ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
+  grid-template-columns: ${({ profile }) => (profile ? "repeat(3, 1fr)" : "repeat(2, 1fr)")};
   grid-template-rows: auto;
   gap: ${({ profile }) => (profile ? "60px 30px" : "60px")};
 `;

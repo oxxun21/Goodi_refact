@@ -7,8 +7,7 @@ import ButtonFollow from "../common/Button/ButtonFollow";
 
 // 이미지
 import followSymbol from "../../assets/follow_symbol.svg";
-import DefProfileImg from "../../assets/profile_img_def.svg";
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function SearchResult({ searchResult, isFollowing }) {
   return (
@@ -21,17 +20,8 @@ export default function SearchResult({ searchResult, isFollowing }) {
         {searchResult?.length > 0 ? (
           searchResult.map((el) => (
             <User>
-              <ProfileUI
-                key={el._id}
-                user_profile={checkImageUrl(el.image, 'profile')}
-                user_name={el.username}
-                user_email={el.accountname}
-                account_name={el.accountname}
-              />
-              <ButtonFollow
-                isFollow={el.isfollow}
-                accountName={el.accountname}
-              />
+              <ProfileUI key={el._id} user_profile={checkImageUrl(el.image, "profile")} user_name={el.username} user_email={el.accountname} account_name={el.accountname} />
+              <ButtonFollow isFollow={el.isfollow} accountName={el.accountname} />
             </User>
           ))
         ) : (

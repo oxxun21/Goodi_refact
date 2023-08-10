@@ -19,7 +19,7 @@ import Button from "../common/Button/Button";
 // 이미지
 import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function UpdateProfile({ profileData, setIsEditing, setProfileData }) {
   // 리코일

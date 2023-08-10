@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import accountname from "../../recoil/accountname";
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 import LocalNav from "../common/LocalNav";
 import Modal from "../common/Modal";

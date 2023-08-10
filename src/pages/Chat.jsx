@@ -24,7 +24,7 @@ import accountname from "../recoil/accountname";
 
 // Mock Data
 import chatDummy from "../mock/chatDummy";
-import checkImageUrl from "../components/common/checkImageUrl";
+import checkImageUrl from "../utils/checkImageUrl";
 
 export default function Chat(reduceTop) {
   const token = useRecoilValue(loginToken);
@@ -119,18 +119,8 @@ export default function Chat(reduceTop) {
                     console.log(chatDummy[i]?.text);
                   }
                   return (
-                    <ChatUser
-                      className={isActive === el._id ? "active" : ""}
-                      key={el._id}
-                      onClick={handleChat}
-                      data-dummy-chat={chatDummy[i]?.text}
-                      data-id={el._id}
-                      data-image={el.image}
-                    >
-                      <img
-                        src={checkImageUrl(el.image, 'profile')}
-                        alt="유저 이미지"
-                      />
+                    <ChatUser className={isActive === el._id ? "active" : ""} key={el._id} onClick={handleChat} data-dummy-chat={chatDummy[i]?.text} data-id={el._id} data-image={el.image}>
+                      <img src={checkImageUrl(el.image, "profile")} alt="유저 이미지" />
                       <ChatText>
                         <div>
                           <strong>{el.username}</strong>
@@ -151,22 +141,13 @@ export default function Chat(reduceTop) {
               <strong>{profileData.username}</strong>
               <p>{profileData.accountname}</p>
             </ProileTextWrap>
-            {isChat && (
-              <ExitButton onClick={handleExit}>채팅 나가기</ExitButton>
-            )}
+            {isChat && <ExitButton onClick={handleExit}>채팅 나가기</ExitButton>}
           </ChatProfile>
 
           {isChat ? (
             <ChatContents>
               <DefaultChat>
-                {chatContnet && (
-                  <img
-                    src={
-                      checkImageUrl(userImage, 'profile')
-                    }
-                    alt="채팅 상대 이미지"
-                  />
-                )}
+                {chatContnet && <img src={checkImageUrl(userImage, "profile")} alt="채팅 상대 이미지" />}
                 {chatContnet && <div>{chatContnet}</div>}
               </DefaultChat>
               {submitChat &&
@@ -186,11 +167,7 @@ export default function Chat(reduceTop) {
           )}
 
           <Chatting>
-            <Form
-              hasInput={hasInput}
-              setHasInput={setHasInput}
-              handleSubmit={handleSubmit}
-            />
+            <Form hasInput={hasInput} setHasInput={setHasInput} handleSubmit={handleSubmit} />
           </Chatting>
         </ChatWrapRight>
       </ChatWrap>
