@@ -24,7 +24,7 @@ import loginToken from "../recoil/loginToken";
 import accountname from "../recoil/accountname";
 import DetailSkeleton from "../style/skeletonUI/skeletonPage/DetailSkeleton";
 import { cartItemsState } from "../recoil/cartItemState";
-import checkImageUrl from "../components/common/checkImageUrl";
+import checkImageUrl from "../utils/checkImageUrl";
 
 export default function Detail() {
   const { id } = useParams();

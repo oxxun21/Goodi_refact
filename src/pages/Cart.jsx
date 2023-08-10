@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { cartItemsState } from "../recoil/cartItemState";
-import checkImageUrl from "../components/common/checkImageUrl";
+import checkImageUrl from "../utils/checkImageUrl";
 
 import Button from "../components/common/Button/Button";
 import Layout from "../layout/Layout";
 
 import cartNullIcon from "../assets/cart_null_icon.svg";
 import iconClose from "../assets/icon_close.svg";
-
 
 export default function Cart() {
   const [cartItem, setCartItem] = useRecoilState(cartItemsState);
@@ -21,7 +20,7 @@ export default function Cart() {
   const handleButtonClick = () => {
     if (cartItem.length !== 0) {
       navigate("/chat");
-      console.log()
+      console.log();
     }
   };
 
@@ -35,10 +34,7 @@ export default function Cart() {
   };
 
   const calculateTotalPrice = () => {
-    const priceComma = cartItem.reduce(
-      (total, item) => total + item.productPrice * item.productCount,
-      0
-    );
+    const priceComma = cartItem.reduce((total, item) => total + item.productPrice * item.productCount, 0);
     return priceDivide(priceComma);
   };
 
@@ -67,29 +63,20 @@ export default function Cart() {
               {cartItem.map((item) => (
                 <CartProductItem key={item.id}>
                   <CartUserInfo>
-                    <img
-                      src={checkImageUrl(item.userImage, "profile")}
-                      alt="판매자 프로필 이미지"
-                    />
+                    <img src={checkImageUrl(item.userImage, "profile")} alt="판매자 프로필 이미지" />
                     <strong>{item.userName}</strong>
                     <button onClick={() => removeItem(item.id)}>
                       <img src={iconClose} alt="상품 삭제 버튼" />
                     </button>
                   </CartUserInfo>
                   <CartProductInfo>
-                    <img
-                      src={checkImageUrl(item.productImage, "post")}
-                      alt=""
-                    />
+                    <img src={checkImageUrl(item.productImage, "post")} alt="" />
                     <CartProductDesc>
                       <p>No. {item.id}</p>
                       <strong>{item.productName}</strong>
                       <p>{priceDivide(item.productPrice)} 원</p>
                       <CartProductTotal>
-                        <strong>
-                          {priceDivide(item.productPrice * item.productCount)}{" "}
-                          원
-                        </strong>
+                        <strong>{priceDivide(item.productPrice * item.productCount)} 원</strong>
                         <span>수량 {item.productCount}개</span>
                       </CartProductTotal>
                     </CartProductDesc>
@@ -122,21 +109,8 @@ export default function Cart() {
                 </li>
               </ul>
             </OrderInfo>
-            <Button
-              disabled={cartItem.length === 0}
-              text="구매하고 싶어요"
-              onClick={handleButtonClick}
-              padding="16px 0"
-            />
-            <Button
-              disabled={cartItem.length === 0}
-              text="상품 전체 삭제"
-              onClick={cartResetButton}
-              bg="white"
-              color="black"
-              br="1px solid black"
-              padding="16px 0"
-            />
+            <Button disabled={cartItem.length === 0} text="구매하고 싶어요" onClick={handleButtonClick} padding="16px 0" />
+            <Button disabled={cartItem.length === 0} text="상품 전체 삭제" onClick={cartResetButton} bg="white" color="black" br="1px solid black" padding="16px 0" />
           </CartRightSticky>
         </CartRight>
       </CartWrap>

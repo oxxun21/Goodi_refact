@@ -10,7 +10,7 @@ import followers from "../../assets/Followers.svg";
 import following from "../../assets/Following.svg";
 import followSymbol from "../../assets/follow_symbol.svg";
 // 이미지 검사
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function Follow(props) {
   const { followerData, followingData, activeFollow } = props;
@@ -31,17 +31,8 @@ export default function Follow(props) {
         <ul>
           {followerData.map((follow) => (
             <FollowLi key={follow._id}>
-              <ProfileUI
-                user_profile={checkImageUrl(follow.image, 'profile')}
-                user_name={follow.username}
-                user_email={follow.accountname}
-                account_name={follow.accountname}
-                follow="true"
-              />
-              <ButtonFollow
-                isFollow={follow.isfollow}
-                accountName={follow.accountname}
-              />
+              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow="true" />
+              <ButtonFollow isFollow={follow.isfollow} accountName={follow.accountname} />
             </FollowLi>
           ))}
         </ul>
@@ -49,17 +40,8 @@ export default function Follow(props) {
         <ul>
           {followingData.map((follow) => (
             <FollowLi key={follow._id}>
-              <ProfileUI
-                user_profile={checkImageUrl(follow.image, 'profile')}
-                user_name={follow.username}
-                user_email={follow.accountname}
-                account_name={follow.accountname}
-                follow={true}
-              />
-              <ButtonFollow
-                isFollow={follow.isfollow}
-                accountName={follow.accountname}
-              />
+              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow={true} />
+              <ButtonFollow isFollow={follow.isfollow} accountName={follow.accountname} />
             </FollowLi>
           ))}
         </ul>

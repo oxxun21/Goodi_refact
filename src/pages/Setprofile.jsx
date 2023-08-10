@@ -13,7 +13,7 @@ import Button from "../components/common/Button/Button";
 import ProfileImgDef from "../assets/profile_img_def.svg";
 import PlusBtnImg from "../assets/add_button.svg";
 
-import { handleDataForm } from "../components/common/imageOptimization";
+import { handleDataForm } from "../utils/imageOptimization";
 
 export default function Setprofile() {
   const [profileSelectedImage, setProfileSelectedImage] = useState(null);

@@ -15,7 +15,7 @@ import PostCard from "./PostCard";
 import NoPostsUI from "../NoPostsUI";
 
 // 이미지 검사
-import checkImageUrl from "../common/checkImageUrl";
+import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function PostCardList({ accountname }) {
   const [userPostList, setUserPostList] = useState(null);

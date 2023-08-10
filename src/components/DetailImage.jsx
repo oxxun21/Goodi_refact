@@ -6,7 +6,7 @@ import { useState } from "react";
 import ProductBanner from "../assets/product_banner.svg";
 import LeftArrow from "../assets/icon_arrow_left.svg";
 import RightArrow from "../assets/icon_arrow_right.svg";
-import checkImageUrl from "./common/checkImageUrl";
+import checkImageUrl from "../utils/checkImageUrl";
 
 export default function DetailImage({ img }) {
   //이미지 index 관리
@@ -14,16 +14,12 @@ export default function DetailImage({ img }) {
 
   //다음 버튼을 index + 1
   const handlerNext = () => {
-    setCurrentIndex((nextIndex) =>
-      nextIndex === img.length - 1 ? 0 : nextIndex + 1
-    );
+    setCurrentIndex((nextIndex) => (nextIndex === img.length - 1 ? 0 : nextIndex + 1));
   };
 
   //이전 버튼을 index - 1
   const handlerRight = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? img.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? img.length - 1 : prevIndex - 1));
   };
 
   //타겟 이미지를 눌렀을때 해당 이미지 인덱스로 변경
@@ -35,16 +31,8 @@ export default function DetailImage({ img }) {
     <ProductDetailImg>
       <h3 className="a11y-hidden">제품 상세이미지</h3>
       <div className="top_img_wrap">
-        <img
-          className="common_banner"
-          src={ProductBanner}
-          alt="상품 상세 공통 배너"
-        />
-        <img
-          className="top_detail_img"
-          src={checkImageUrl(img[currentIndex], "post")}
-          alt="상세 이미지"
-        />
+        <img className="common_banner" src={ProductBanner} alt="상품 상세 공통 배너" />
+        <img className="top_detail_img" src={checkImageUrl(img[currentIndex], "post")} alt="상세 이미지" />
 
         <LeftButton type="button" onClick={handlerRight}></LeftButton>
         <RightButton type="button" onClick={handlerNext}></RightButton>
