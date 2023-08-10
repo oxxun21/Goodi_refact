@@ -1,11 +1,5 @@
 <h1><img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" />Goodi<img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" /> (리팩토링 중!) </h1>
 
-<p align="center">
-<img width=85%" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/98699927/ebc03634-f201-497d-bfef-ec995af7ea51" alt="Goodi" />
-</p>
-
-## new Ten
-
 > 🦁멋쟁이사자처럼 프론트엔드스쿨 5기 프로젝트 10팀
 >
 > 🔗 <strong>배포 링크</strong> [https://frontendschool5.github.io/final-10-Goodi](https://frontendschool5.github.io/final-10-Goodi)  <br />
@@ -14,30 +8,19 @@
 > 
 > 프로젝트 기간 : 2023.06.01 ~ 2023.06.28
 
-<div align="center">
-  <br />
-  <img height="100px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/a8750e4a-6020-4b40-a6f6-ff841e56d1df" alt="Goodi logo" />
 
-  <h3>개인 굿즈도 이제 편리하게 판매하세요!</h3>
-  <br />
-</div>
-
-<div align="center">
-  
-|노태희|최나경|오가은|
-| :---: | :---: | :---: |
-| <img width="180" alt="taehee_profile_img" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/4d471a45-8f6e-47f8-a3b5-4c11be1ce14b"> | <img width="180"  alt="nkEllaaa_profile_img" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/97887376/6d878e7b-091a-4ac6-a8a6-6bf71dcc2b20"> | <img width="180" alt="oxxun21_profile_img" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/961eeff8-86df-4c7c-aba5-20fb9c33c140"> |
-| [taehee.rho](https://github.com/dananote) | [nkEllaaa](https://github.com/nkEllaaa) | [oxxun21](https://github.com/oxxun21) |
-| 팀장 | 팀원 | 팀원 |
-  
- </div>
+<img width="1202" alt="스크린샷 2023-08-08 오후 3 17 25" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/124513796/5735c26f-e5ba-4125-aabb-d47d03dbd121">
  
  <br/>
+ <br />
+  <br/>
 
 ## ⭐️ 프로젝트 설명
 
+<img width="1198" alt="스크린샷 2023-08-08 오후 3 17 37" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/124513796/f04f4d4a-41ea-4502-bca8-6a9a23f5ca0a">
+
 <details>
- <summary><h3>기능 미리보기</h3></summary>
+ <summary><h3>🕹️ 기능 미리보기</h3></summary>
     <details>
     <summary><strong>회원가입/로그인</strong></summary>
       <br />
@@ -114,11 +97,9 @@
   <br />
 </details>
 
-- "Goodi" 는 <strong>개인 굿즈 판매를 위한 플랫폼</strong> 입니다.
-- 누구나 자신의 굿즈를 판매할 수 있고, 구매할 수 있습니다.
-- 간편한 상품 등록과 판매자 연결, 마케팅 지원 서비스를 제공합니다.
-
 <br />
+<br />
+
 
 ## 🛠️ 기술 스택
 
@@ -160,6 +141,10 @@
     <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white"/>&nbsp
 </tr>
 </table>
+
+<img width="950px" alt="259002718-45feed91-8ce7-44c1-befc-84fc12a2ab4a" src="https://github.com/oxxun21/Goodi/assets/98699927/3d2e58dd-7bb6-457c-9d44-4d459470771e">
+
+<br />
 
 ### ✏️ Commit Convention
 
