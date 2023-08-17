@@ -26,10 +26,10 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
   const token = useRecoilValue(loginToken);
 
   // 수정 관련 state
-  const [changeImageURL, setChangeImageURL] = useState(profileData.profile.image);
+  const [changeImageURL, setChangeImageURL] = useState(profileData.image);
   const [isImageUpload, setIsImageUpload] = useState(false);
-  const [userName, setUserName] = useState(profileData.profile.username);
-  const [intro, setIntro] = useState(profileData.profile.intro);
+  const [userName, setUserName] = useState(profileData.username);
+  const [intro, setIntro] = useState(profileData.intro);
   const [checkProfileChange, setCheckProfileChange] = useRecoilState(checkProfile);
   const [postChangeImg, setPostChangeImg] = useState({
     user: {
@@ -53,16 +53,17 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
 
     const updatedProfileData = {
       ...profileData,
-      user: {
-        ...profileData.user,
-        image: changeImageURL,
-        username: userName,
-        intro: intro,
-      },
+      username: userName,
+      intro: intro,
+      image: changeImageURL,
     };
 
     setProfileData(updatedProfileData);
-    updateProfile(updatedProfileData, token);
+    updateProfile({
+      username: userName,
+      intro: intro,
+      image: changeImageURL,
+    });
     setIsEditing(false);
     setCheckProfileChange((prev) => !prev);
   };
@@ -82,15 +83,15 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
     }
   };
 
-  useEffect(() => {
-    const postImage = async (token) => {
-      const response = await profileAPI(token);
-    };
+  // useEffect(() => {
+  //   const postImage = async () => {
+  //     const response = await profileAPI();
+  //   };
 
-    if (postChangeImg) {
-      postImage(postChangeImg, token);
-    }
-  }, [postChangeImg]);
+  //   if (postChangeImg) {
+  //     postImage(postChangeImg, token);
+  //   }
+  // }, [postChangeImg]);
 
   return (
     <>

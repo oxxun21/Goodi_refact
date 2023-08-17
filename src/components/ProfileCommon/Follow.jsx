@@ -9,12 +9,13 @@ import ButtonFollow from "../common/Button/ButtonFollow";
 import followers from "../../assets/Followers.svg";
 import following from "../../assets/Following.svg";
 import followSymbol from "../../assets/follow_symbol.svg";
+
 // 이미지 검사
 import checkImageUrl from "../../utils/checkImageUrl";
 
 export default function Follow(props) {
   const { followerData, followingData, activeFollow } = props;
-
+  console.log(followerData, followingData, activeFollow);
   return (
     <FollowWrap>
       {activeFollow === 1 ? (

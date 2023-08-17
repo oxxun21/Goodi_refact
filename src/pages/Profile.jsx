@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import loginToken from "../recoil/loginToken";
-import account_name from '../recoil/accountname'
+import account_name from "../recoil/accountname";
 
 // api
 import { accountProfileAPI } from "../api/profile";
@@ -14,27 +13,26 @@ import { accountProfileAPI } from "../api/profile";
 import Layout from "../layout/Layout";
 import ProfileLeftUI from "../layout/profileLayout/ProfileLeftUI";
 import ProfileRightUI from "../layout/profileLayout/ProfileRightUI";
-import ProfileSkeleton from './../style/skeletonUI/skeletonPage/ProfileSkeleton';
+import ProfileSkeleton from "./../style/skeletonUI/skeletonPage/ProfileSkeleton";
+import { checkFollow } from "../recoil/checkChange";
 
 export default function Profile() {
   const { accountname } = useParams();
   const [loading, setLoading] = useState(true);
   const [myProfile, setMyProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
-  const token = useRecoilValue(loginToken);
   const myAccount = useRecoilValue(account_name);
-  const [fetchProfile, setFetchProfile] = useState(true);
+  const checkFollowChange = useRecoilValue(checkFollow);
 
   useEffect(() => {
     setMyProfile(myAccount === accountname);
     const getProfileData = async () => {
-      const res = await accountProfileAPI(accountname, token);
+      const res = await accountProfileAPI(accountname);
       setProfileData(res);
       setLoading(false);
-      setFetchProfile(false);
-    }
+    };
     getProfileData();
-  }, [accountname, fetchProfile])
+  }, [accountname, checkFollowChange]);
 
   return (
     <Layout reduceTop="true">
@@ -43,16 +41,8 @@ export default function Profile() {
           <ProfileSkeleton />
         ) : (
           <>
-            <ProfileLeftUI
-              setProfileData={setProfileData}
-              setFetchProfile={setFetchProfile}
-              myProfile={myProfile}
-              accountname={accountname}
-              profileData={profileData}
-            />
-            <ProfileRightUI
-              accountname={accountname}
-            />
+            <ProfileLeftUI setProfileData={setProfileData} myProfile={myProfile} accountname={accountname} profileData={profileData} />
+            <ProfileRightUI accountname={accountname} />
           </>
         )}
       </ProfileWrap>

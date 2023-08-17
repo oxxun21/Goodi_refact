@@ -18,6 +18,7 @@ import { useRecoilState } from "recoil";
 import { loginCheck } from "../recoil/loginCheck";
 import loginToken from "../recoil/loginToken";
 import accountname from "../recoil/accountname";
+import { useRef } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -31,10 +32,7 @@ export default function Login() {
   const { state } = useLocation();
   const [errorMSG, setErrorMSG] = useState("");
 
-  useEffect(() => {
-    console.log("리코일토큰", token);
-  }, [token]); //리코일에 토큰이 잘 들어가고 있는지 확인하는 용도
-
+  const formRef = useRef();
   useEffect(() => {
     if (isloginCheck) {
       navigate("/main");
@@ -69,8 +67,11 @@ export default function Login() {
     }));
   };
 
-  const handleLogin = async (loginData) => {
-    const response = await loginAPI(loginData);
+  const handleLogin = async () => {
+    const { email, password } = formRef.current.elements;
+    const response = await loginAPI({ email: email.value, password: password.value });
+
+    console.log(response);
 
     if (response && response.hasOwnProperty("user")) {
       const newToken = response.user.token;
@@ -89,8 +90,9 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = formRef.current.elements;
     handleError();
-    await handleLogin(loginData);
+    await handleLogin({ email: email.value, password: password.value });
   };
 
   const handleError = () => {
