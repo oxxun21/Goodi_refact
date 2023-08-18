@@ -3,19 +3,17 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import { checkDeletePost } from "../../recoil/checkChange";
-import { checkProfile } from "../../recoil/checkChange";
-import loginToken from "../../recoil/loginToken";
+import { checkDeletePost, checkProfile, loginToken } from "../../recoil";
 
 // api
-import { postListAPI } from "../../api/post";
+import { postListAPI } from "../../api";
 
 // 컴포넌트
 import PostCard from "./PostCard";
 import NoPostsUI from "../NoPostsUI";
 
 // 이미지 검사
-import checkImageUrl from "../../utils/checkImageUrl";
+import { checkImageUrl } from "../../utils";
 
 export default function PostCardList({ accountname }) {
   const [userPostList, setUserPostList] = useState(null);

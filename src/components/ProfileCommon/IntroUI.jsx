@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // 컴포넌트
-import ButtonLineIcon from "../common/Button/ButtonLineIcon";
-import ButtonFollow from "../common/Button/ButtonFollow";
+import { ButtonLineIcon, ButtonFollow } from "../common";
 
 // 이미지 검사
-import checkImageUrl from "../../utils/checkImageUrl";
+import { checkImageUrl } from "../../utils";
 
 export default function IntroUI({ profileData, myProfile, handleEditClick }) {
   const navigate = useNavigate();

@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import imageCompression from "browser-image-compression";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { singUpAPI } from "../api/user";
+import { singUpAPI } from "../api";
 
-import { InputBox } from "../components/common/Input";
+import { Input, Button } from "../components/common";
 import { LeftDiv } from "../components/Carousel";
-import Button from "../components/common/Button/Button";
 
 import ProfileImgDef from "../assets/profile_img_def.svg";
 import PlusBtnImg from "../assets/add_button.svg";
 
-import { handleDataForm } from "../utils/imageOptimization";
+import { BASE_URL, handleDataForm } from "../utils";
 
 export default function Setprofile() {
   const [profileSelectedImage, setProfileSelectedImage] = useState(null);
@@ -22,7 +19,6 @@ export default function Setprofile() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const BASE_URL = "https://api.mandarin.weniv.co.kr/";
   const { email, password } = location.state || { email: "", password: "" };
   const [signUpData, setSignUpData] = useState({
     user: {
@@ -114,7 +110,7 @@ export default function Setprofile() {
           <form onSubmit={handleSubmit}>
             <InputDiv>
               <Label>닉네임</Label>
-              <InputBox
+              <Input
                 width="432px"
                 height="48px"
                 padding="15px"

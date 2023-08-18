@@ -1,5 +1,4 @@
-import { unauthInstance } from "./instance";
-import { authInstance } from "./instance";
+import { authInstance, unauthInstance } from "./instance";
 
 export const singUpAPI = async ({ username, email, password, accountname, intro, image }) => {
   try {

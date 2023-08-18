@@ -6,7 +6,7 @@ import { useState } from "react";
 import ProductBanner from "../assets/product_banner.svg";
 import LeftArrow from "../assets/icon_arrow_left.svg";
 import RightArrow from "../assets/icon_arrow_right.svg";
-import checkImageUrl from "../utils/checkImageUrl";
+import { checkImageUrl } from "../utils";
 
 export default function DetailImage({ img }) {
   //이미지 index 관리

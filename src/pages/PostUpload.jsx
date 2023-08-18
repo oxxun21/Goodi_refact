@@ -10,11 +10,10 @@ import UploadTotalUI from "../components/PostProductWriting/UploadTotalUI";
 import postUproad from "../assets/post_upload.svg";
 
 // api
-import { postUploadAPI } from "../api/post";
+import { postUploadAPI } from "../api";
 
 //recoil
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
+import { loginToken, accountname } from "../recoil";
 
 export default function PostUpload() {
   const navigate = useNavigate();

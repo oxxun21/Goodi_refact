@@ -2,24 +2,19 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // 리코일
-import { useRecoilValue } from "recoil";
-import { useRecoilState } from "recoil";
-import loginToken from "../../recoil/loginToken";
-import { checkProfile } from "../../recoil/checkChange";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { loginToken, checkProfile } from "../../recoil";
 
 // api
-import { profileAPI } from "../../api/profile";
-import { PostImageAPI } from "../../api/UploadImage";
-import { updateProfile } from "../../api/profile";
+import { profileAPI, PostImageAPI, updateProfile } from "../../api";
 
 // 컴포넌트
-import { InputBox } from "../common/Input";
-import Button from "../common/Button/Button";
+import { Input, Button } from "../common";
 
 // 이미지
 import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
-import checkImageUrl from "../../utils/checkImageUrl";
+import { checkImageUrl } from "../../utils";
 
 export default function UpdateProfile({ profileData, setIsEditing, setProfileData }) {
   // 리코일
@@ -107,7 +102,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
       <Form onSubmit={handleSaveClick}>
         <div>
           <Label>닉네임</Label>
-          <InputBox required width="100%" height="48px" padding="15px" name="username" value={userName} onChange={handleInputChange} placeholder="변경할 닉네임을 입력해주세요" />
+          <Input required width="100%" height="48px" padding="15px" name="username" value={userName} onChange={handleInputChange} placeholder="변경할 닉네임을 입력해주세요" />
         </div>
         <div>
           <Label>소개 메세지</Label>

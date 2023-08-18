@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Logo from "../assets/logo_black.svg";
-import accountname from "../recoil/accountname";
-import { followingAPI } from "../api/follow";
 import { useRecoilValue } from "recoil";
-import checkImageUrl from "../utils/checkImageUrl";
+import { accountname } from "../recoil";
+import { followingAPI } from "../api";
+import Logo from "../assets/logo_black.svg";
+import { checkImageUrl } from "../utils";
 
 export default function Header() {
   const accountName = useRecoilValue(accountname);

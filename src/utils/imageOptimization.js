@@ -1,5 +1,3 @@
-// 코드 정리 필요!
-
 import { PostImageAPI } from "../api/UploadImage";
 
 export const handleDataForm = async (dataURI, name, setImageWrap, setLoading) => {

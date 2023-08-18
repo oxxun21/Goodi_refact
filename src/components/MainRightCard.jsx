@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ProductCard from "./Product/ProductCard";
 
-import checkImageUrl from "../utils/checkImageUrl";
+import { checkImageUrl } from "../utils";
 
 export default function MainRightCard({ profile }) {
   return (

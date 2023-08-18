@@ -7,7 +7,7 @@ import ImageSection from "./UIcomponents/ImageSection";
 import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
-import { handlePostUpdateForm } from "../../utils/imageOptimization";
+import { handlePostUpdateForm } from "../../utils";
 
 export default function UpdateTotalUI(props) {
   const { src, subtext, data, imageWrap, userErrorMessage, joinData, loading, description, setLoading, setImageWrap, setData } = props;

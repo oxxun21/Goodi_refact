@@ -6,12 +6,11 @@ import styled from "styled-components";
 import cssSprites from "../assets/css_sprites.png";
 
 // 컴포넌트
-import LocalNav from "../components/common/LocalNav";
-import Modal from "../components/common/Modal";
+import { LocalNav, Modal } from "../components/common";
 import Search from "./../components/Search/Search";
+
 import { useRecoilValue } from "recoil";
-import { cartItemsState } from "../recoil/cartItemState";
-import accountname from "../recoil/accountname";
+import { accountname, cartItemsState } from "../recoil";
 
 export default function Navigation() {
   const cartItem = useRecoilValue(cartItemsState);

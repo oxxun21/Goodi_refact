@@ -1,6 +1,5 @@
-import axios from "axios"; 
-
-const BASE_URL = "https://api.mandarin.weniv.co.kr";
+import axios from "axios";
+import { BASE_URL } from "../utils";
 
 export const unauthInstance = axios.create({
   baseURL: BASE_URL,
@@ -27,7 +26,8 @@ authInstance.interceptors.request.use(
       config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
-  }, (error) => {
+  },
+  (error) => {
     throw error;
   }
 );

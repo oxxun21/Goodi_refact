@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-
-import { loginCheck } from "../recoil/loginCheck";
-import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
+
+import { loginCheck } from "../recoil";
+import { useRecoilValue } from "recoil";
 
 export default function ProtectRoute({ children }) {
   const isLogin = useRecoilValue(loginCheck);

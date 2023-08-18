@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { likeAPI, cancelLikeAPI } from "../../../api";
 import { useRecoilState } from "recoil";
-import { likeAPI } from "../../../api/like";
-import { cancelLikeAPI } from "../../../api/like"
-import loginToken from "../../../recoil/loginToken";
+import { loginToken } from "../../../recoil";
 
 import nonLikeIcon from "../../../assets/empty_likeBtn.svg";
 import likeIcon from "../../../assets/post_fullLikeBtn.svg";
@@ -34,7 +33,6 @@ function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
           sethearted(response.post.hearted);
           cancleHeartData();
           localStorage.removeItem(`hearted_${postId}`);
-
         }
       } else {
         // 하트를 누르지 않은 경우, 좋아요
@@ -45,7 +43,6 @@ function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
           sethearted(response.post.hearted);
           localStorage.setItem(`hearted_${postId}`, response.post.hearted);
           getHeartData();
-
         }
       }
     } catch (error) {
@@ -62,10 +59,7 @@ function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
     sethearted(initialHearted);
   }, [initialHearted]);
 
-  return (
-    <Button liked={IsLiked} onClick={handleLike} disabled={isButtonDisabled}>
-    </Button>
-  );
+  return <Button liked={IsLiked} onClick={handleLike} disabled={isButtonDisabled}></Button>;
 }
 export default ButtonPostLike;
 
@@ -76,6 +70,5 @@ const Button = styled.button`
   border-radius: 4px;
   transition: all 0.2s;
   cursor: pointer;
-  background: ${(props) =>
-    props.liked ? `url(${likeIcon})` : `url(${nonLikeIcon})`};
-`; 
+  background: ${(props) => (props.liked ? `url(${likeIcon})` : `url(${nonLikeIcon})`)};
+`;

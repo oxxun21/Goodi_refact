@@ -9,7 +9,7 @@ import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
 // 이미지 최적화
-import { handleDataForm } from "../../utils/imageOptimization";
+import { handleDataForm } from "../../utils";
 
 export default function UploadTotalUI(props) {
   const { src, subtext, getData, data, setData, setImageWrap, imageWrap, userErrorMessage, handleError } = props;

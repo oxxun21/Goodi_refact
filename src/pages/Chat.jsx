@@ -10,22 +10,19 @@ import chatDefImage from "../assets/profile_img_def.svg";
 import userDefImage from "../assets/caht-img-def.svg";
 
 // 컴포넌트
-import Form from "../components/common/Form";
+import { Form, Toast } from "../components/common";
 import ChatSkeleton from "../style/skeletonUI/skeletonPage/ChatSkeleton";
-import Toast from "../components/common/Toast";
 
 // API
-import { profileAPI } from "../api/profile";
-import { followingAPI } from "../api/follow";
+import { profileAPI, followingAPI } from "../api";
 
 // Recoil
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
+import { loginToken, accountname } from "../recoil";
 
 // Mock Data
 import chatDummy from "../mock/chatDummy";
 
-import checkImageUrl from "../utils/checkImageUrl";
+import { checkImageUrl } from "../utils";
 
 export default function Chat(reduceTop) {
   const token = useRecoilValue(loginToken);

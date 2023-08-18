@@ -10,10 +10,10 @@ import UploadTotalUI from "../components/PostProductWriting/UploadTotalUI";
 import productUpload from "../assets/Prodcut_upload.svg";
 
 //API
-import { productUploadAPI } from "../api/product";
+import { productUploadAPI } from "../api";
 
 //recoil
-import loginToken from "../recoil/loginToken";
+import { loginToken } from "../recoil";
 
 export default function ProductUpload() {
   const navigate = useNavigate();

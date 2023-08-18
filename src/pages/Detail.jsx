@@ -8,22 +8,20 @@ import Layout from "../layout/Layout";
 import DetailImage from "./../components/DetailImage";
 import Count from "../components/Count";
 import ProfileUI from "../components/ProfileUI";
-import Button from "../components/common/Button/Button";
-import Toast from "../components/common/Toast";
+import { Button, Toast } from "../components/common";
+import DetailSkeleton from "../style/skeletonUI/skeletonPage/DetailSkeleton";
 
 //image
 import MoneyIcon from "../assets/icon_money_black.svg";
 import DeliveryIcon from "../assets/icon_delivery_dark.svg";
 
 //API
-import { productGetUpdateAPI } from "../api/product";
+import { productGetUpdateAPI } from "../api";
 
 //recoil
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
-import DetailSkeleton from "../style/skeletonUI/skeletonPage/DetailSkeleton";
-import { cartItemsState } from "../recoil/cartItemState";
-import checkImageUrl from "../utils/checkImageUrl";
+import { loginToken, accountname, cartItemsState } from "../recoil";
+
+import { checkImageUrl } from "../utils";
 
 export default function Detail() {
   const { id } = useParams();

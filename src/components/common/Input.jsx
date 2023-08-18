@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Input() {
-  return;
+export default function Input(props) {
+  return <InputBox {...props} />;
 }
 
 export const InputBox = styled.input`
@@ -12,8 +12,7 @@ export const InputBox = styled.input`
   padding: 15px;
   box-sizing: border-box;
   background-color: ${(props) => props.backgroundColor};
-  border-radius: ${(props) =>
-    props.borderRadius ? props.borderRadius : "4px"};
+  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : "4px")};
   &::placeholder {
     color: var(--gray300-color);
   }

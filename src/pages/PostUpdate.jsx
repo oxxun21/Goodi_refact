@@ -11,12 +11,10 @@ import UpdateTotalUI from "../components/PostProductWriting/UpdateTotalUI";
 import PostingUpload from "../assets/post_uproad.svg";
 
 // API
-import { postGetUpdateAPI } from "../api/post";
-import { postPutAPI } from "../api/post";
+import { postGetUpdateAPI, postPutAPI } from "../api";
 
 // Recoil
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
+import { loginToken, accountname } from "../recoil";
 
 export default function PostUpdate() {
   const token = useRecoilValue(loginToken);
@@ -24,7 +22,7 @@ export default function PostUpdate() {
   const navigate = useNavigate();
 
   const account_name = useRecoilValue(accountname);
-  const myProfile = `/profile/${account_name}`
+  const myProfile = `/profile/${account_name}`;
 
   const [loading, setLoading] = useState(false);
   const [userErrorMessage, setUserErrorMessage] = useState([]);
@@ -34,7 +32,7 @@ export default function PostUpdate() {
   const [data, setData] = useState({
     id: "",
     content: "",
-    image: ""
+    image: "",
   });
 
   useEffect(() => {
@@ -45,8 +43,8 @@ export default function PostUpdate() {
         setData({
           id: response.post.id,
           content: response.post.content,
-          image: response.post.image
-        })
+          image: response.post.image,
+        });
         setImageWrap(response.post.image.split(","));
       } catch (error) {
         console.error("게시글 정보 호출 실패", error);

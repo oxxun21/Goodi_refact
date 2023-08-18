@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import loginToken from "../recoil/loginToken";
+import { loginToken } from "../recoil";
 
 //component
 import Layout from "../layout/Layout";
@@ -12,9 +13,7 @@ import UpdateTotalUI from "../components/PostProductWriting/UpdateTotalUI";
 import ProductUpload from "../assets/Prodcut_upload.svg";
 
 // API
-import { useNavigate, useParams } from "react-router-dom";
-import { productGetUpdateAPI } from "../api/product";
-import { productPutAPI } from "../api/product";
+import { productGetUpdateAPI, productPutAPI } from "../api";
 
 export default function ProductUpdate() {
   const token = useRecoilValue(loginToken);
