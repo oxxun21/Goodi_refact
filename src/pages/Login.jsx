@@ -67,11 +67,8 @@ export default function Login() {
     }));
   };
 
-  const handleLogin = async () => {
-    const { email, password } = formRef.current.elements;
-    const response = await loginAPI({ email: email.value, password: password.value });
-
-    console.log(response);
+  const handleLogin = async (loginData) => {
+    const response = await loginAPI(loginData);
 
     if (response && response.hasOwnProperty("user")) {
       const newToken = response.user.token;
@@ -89,10 +86,13 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
+    // e.preventDefault();
+    // const { email, password } = formRef.current.elements;
+    // handleError();
+    // await handleLogin({ email: email.value, password: password.value });
     e.preventDefault();
-    const { email, password } = formRef.current.elements;
     handleError();
-    await handleLogin({ email: email.value, password: password.value });
+    await handleLogin(loginData);
   };
 
   const handleError = () => {
