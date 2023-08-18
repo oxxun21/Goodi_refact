@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import Setprofile from "./pages/Setprofile";
 import NotFound from "./pages/NotFound";
-import ScrollToTop from "./components/common/ScrollToTop";
+import { ScrollToTop } from "./components/common";
 import ProtectRoute from "./pages/ProtectRoute";
 
 function App() {

@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
-import accountname from "../../recoil/accountname";
-import checkImageUrl from "../../utils/checkImageUrl";
 
-import LocalNav from "../common/LocalNav";
-import Modal from "../common/Modal";
+import { useRecoilValue } from "recoil";
+import { accountname } from "../../recoil";
+
+import { checkImageUrl } from "../../utils";
+
+import { LocalNav, Modal, ButtonPostLike } from "../common";
 import ProfileUI from "../ProfileUI";
-import ButtonPostLike from "../common/Button/ButtonPostLike";
 
 import postMenu from "../../assets/post_menu.svg";
 

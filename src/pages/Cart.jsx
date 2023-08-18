@@ -3,10 +3,10 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { cartItemsState } from "../recoil/cartItemState";
-import checkImageUrl from "../utils/checkImageUrl";
+import { cartItemsState } from "../recoil";
+import { checkImageUrl } from "../utils";
 
-import Button from "../components/common/Button/Button";
+import { Button } from "../components/common";
 import Layout from "../layout/Layout";
 
 import cartNullIcon from "../assets/cart_null_icon.svg";

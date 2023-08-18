@@ -1,33 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Logo from "../assets/logo_black.svg";
-import accountname from "../recoil/accountname";
-import loginToken from "../recoil/loginToken";
-import { followingAPI } from "../api/follow";
-import { checkFollow } from "../recoil/checkChange";
 import { useRecoilValue } from "recoil";
-import checkImageUrl from "../utils/checkImageUrl";
+import { accountname } from "../recoil";
+import { followingAPI } from "../api";
+import Logo from "../assets/logo_black.svg";
+import { checkImageUrl } from "../utils";
 
 export default function Header() {
-  const token = useRecoilValue(loginToken);
   const accountName = useRecoilValue(accountname);
   const [followingData, setFollowingData] = useState(null);
-  const checkFollowChange = useRecoilValue(checkFollow);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFollowingData = async () => {
-      try {
-        const response = await followingAPI(accountName, token);
-        setFollowingData(response);
-      } catch (error) {
-        console.error("Account API 에러가 발생했습니다", error);
-      }
+      const response = await followingAPI(accountName);
+      setFollowingData(response.data);
     };
     fetchFollowingData();
-  }, [checkFollowChange]);
+  }, []);
 
   return (
     <HeaderLayout>
@@ -41,7 +33,7 @@ export default function Header() {
           <div></div>
         ) : (
           followingData
-            ?.map((data) => {
+            .map((data) => {
               return (
                 <FollowingIcon
                   key={data._id}
@@ -50,7 +42,7 @@ export default function Header() {
                   }}
                   type="button"
                 >
-                  <img src={checkImageUrl(data.image, "profile")} alt="" />
+                  <img src={checkImageUrl(data.image, "profile")} alt="팔로우한 사람 프로필 이미지" />
                 </FollowingIcon>
               );
             })

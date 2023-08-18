@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { InputBox } from "../components/common/Input";
-import Button from "../components/common/Button/Button";
+import { Input, Button } from "../components/common";
 import { LeftDiv } from "../components/Carousel";
 
 import JoinTo from "../assets/Join to.svg";
@@ -60,7 +59,7 @@ export default function Join() {
           </H2>
           <InputDiv>
             <Label>이메일</Label>
-            <InputBox
+            <Input
               type="email"
               width="432px"
               height="48px"
@@ -76,7 +75,7 @@ export default function Join() {
           </InputDiv>
           <InputDiv>
             <Label>비밀번호</Label>
-            <InputBox
+            <Input
               type="password"
               width="432px"
               height="48px"

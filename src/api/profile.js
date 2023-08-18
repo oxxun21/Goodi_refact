@@ -1,34 +1,34 @@
-import { authInstance } from './instance';
+import { authInstance } from "./instance";
 
 //내 프로필 정보
-export const profileAPI = async (token) => {
+export const profileAPI = async () => {
   try {
-    const response = await authInstance.get(`/user/myinfo`)
-    return response.data;
+    const response = await authInstance.get(`/user/myinfo`);
+    return response;
   } catch (error) {
-    console.error('프로필 겟 에러가 발생했습니다', error);
+    console.error(error);
     throw error;
   }
 };
 
 //프로필 정보
-export const accountProfileAPI = async (accountname, token) => {
+export const accountProfileAPI = async (accountname) => {
   try {
-    const response = await authInstance.get(`/profile/${accountname}`)
-      return response.data;
+    const response = await authInstance.get(`/profile/${accountname}`);
+    return response.data.profile;
   } catch (error) {
-    console.error('어카운트프로필 에러가 발생했습니다', error);
+    console.error(error);
     throw error;
   }
 };
 
 //프로필 수정
-export const updateProfile = async (profileData, token) => {
-  const UPDATE_PROFILE_URL = "https://api.mandarin.weniv.co.kr/user";
+export const updateProfile = async ({ username, accountname, intro, image }) => {
   try {
-    const response = await authInstance.put(`/user`, profileData)
+    const response = await authInstance.put(`/user`, { user: { username, accountname, intro, image } });
+    return response;
   } catch (error) {
-    console.error('프로필 수정 오류:', error);
+    console.error(error);
     throw error;
   }
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 // 컴포넌트
 import SearchInput from "./SearchInput";
@@ -12,11 +11,10 @@ import SearchResult from "./SearchResult";
 import SearchSkeleton from "../../style/skeletonUI/skeletonPage/SearchSkeleton";
 
 // API
-import { searchAPI } from "../../api/user";
+import { searchAPI } from "../../api";
 
 // Recoil
-import loginToken from "../../recoil/loginToken";
-import { recentSearch } from "../../recoil/recentSearch";
+import { loginToken, recentSearch } from "../../recoil";
 
 //! 팔로우버튼 기능
 export default function Search({ handleSearch }) {

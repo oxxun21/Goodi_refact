@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useRecoilValue, useRecoilState } from "recoil";
 
 // 컴포넌트
 import Toast from "../Toast";
 
 // API
-import { followAPI } from "../../../api/follow";
-import { unfollowAPI } from "../../../api/follow";
+import { followAPI, unfollowAPI } from "../../../api";
 
 // Recoil
-import loginToken from "../../../recoil/loginToken";
-import accountname from "../../../recoil/accountname";
-import { checkFollow } from "../../../recoil/checkChange";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { loginToken, accountname, checkFollow } from "../../../recoil";
 
 export default function ButtonFollow({ isFollow, accountName, padding }) {
   const token = useRecoilValue(loginToken);
@@ -58,25 +55,16 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
 
   return (
     <>
-      {toast && isFollowing && (
-        <Toast setToast={setToast} text="팔로우 되었습니다." />
-      )}
+      {toast && isFollowing && <Toast setToast={setToast} text="팔로우 되었습니다." />}
 
-      {toast && !isFollowing && (
-        <Toast setToast={setToast} text="팔로우가 취소되었습니다." />
-      )}
+      {toast && !isFollowing && <Toast setToast={setToast} text="팔로우가 취소되었습니다." />}
 
       {isFollowing ? (
         <FollowDelete padding={padding} type="button" onClick={handleUnFollow}>
           삭제
         </FollowDelete>
       ) : (
-        <Follow
-          padding={padding}
-          type="button"
-          onClick={handleFollow}
-          className={myAccountName === accountName ? "a11y-hidden" : ""}
-        >
+        <Follow padding={padding} type="button" onClick={handleFollow} className={myAccountName === accountName ? "a11y-hidden" : ""}>
           팔로우
         </Follow>
       )}

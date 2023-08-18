@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 // 컴포넌트
 import ProfileUI from "../ProfileUI";
-import ButtonFollow from "../common/Button/ButtonFollow";
+import { ButtonFollow } from "../common";
 
 // 이미지
 import followSymbol from "../../assets/follow_symbol.svg";
-import checkImageUrl from "../../utils/checkImageUrl";
+import { checkImageUrl } from "../../utils";
 
 export default function SearchResult({ searchResult, isFollowing }) {
   return (

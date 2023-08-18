@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { postListAPI } from "../api/post";
-import ProfileUI from "./ProfileUI";
+import { postListAPI } from "../api";
 
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
-import { useRecoilValue } from "recoil";
+import ProfileUI from "./ProfileUI";
 import NoPostsUI from "../components/NoPostsUI";
-import { useNavigate, useParams } from "react-router-dom";
-import { checkDeletePost } from "../recoil/checkChange";
-import { checkProfile } from "../recoil/checkChange";
+
+import { useRecoilValue } from "recoil";
+import { loginToken, accountname, checkDeletePost, checkProfile } from "../recoil";
+
 import iconHeartWhite from "../assets/icon_heart_line_white.svg";
+
+import { BASE_URL } from "../utils";
 
 export default function PopularAuthorview({ account, heartCount }) {
   const navigate = useNavigate();
@@ -23,8 +24,6 @@ export default function PopularAuthorview({ account, heartCount }) {
   const checkProfileChange = useRecoilValue(checkProfile);
   const temp = useParams();
   const account_name = account ? account : temp.account_name ? temp.account_name : myaccount_name;
-
-  const BASE_URL = "https://api.mandarin.weniv.co.kr/";
 
   useEffect(() => {
     const fetchPostData = async () => {

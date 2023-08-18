@@ -3,19 +3,16 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import loginToken from "../../recoil/loginToken";
-import { checkProfile } from "../../recoil/checkChange";
-import { checkDeletePost } from "../../recoil/checkChange";
+import { loginToken, checkProfile, checkDeletePost } from "../../recoil";
 
 // api
-import { productListAPI } from "../../api/product";
+import { productListAPI } from "../../api";
 
 // 컴포넌트
 import ProductCard from "./ProductCard";
 import NoPostsUI from "../NoPostsUI";
 
-// 이미지 검사
-import checkImageUrl from "../../utils/checkImageUrl";
+import { BASE_URL, checkImageUrl } from "../../utils";
 
 export default function ProductCardList({ accountname, profile }) {
   const token = useRecoilValue(loginToken);
@@ -23,8 +20,6 @@ export default function ProductCardList({ accountname, profile }) {
   const checkDelete = useRecoilValue(checkDeletePost);
 
   const [productGetData, setproductGetData] = useState(null);
-
-  const BASE_URL = "https://api.mandarin.weniv.co.kr/";
 
   useEffect(() => {
     const productGet = async () => {

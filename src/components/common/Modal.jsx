@@ -3,24 +3,11 @@ import Button from "./Button/Button";
 import CloseButton from "../../assets/close-button.svg";
 import { useState, useEffect } from "react";
 import LogoutHandler from "../Logout";
-import { useRecoilState } from "recoil";
-import { useRecoilValue } from "recoil";
-import loginToken from "../../recoil/loginToken";
-import { productDeleteAPI } from "../../api/product";
-import { postDeleteAPI } from "../../api/post";
-import { checkDeletePost } from "../../recoil/checkChange";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { productDeleteAPI, postDeleteAPI } from "../../api";
+import { loginToken, checkDeletePost } from "../../recoil";
 
-export default function Modal({
-  text,
-  buttonText1,
-  buttonText2,
-  showCloseButton,
-  showModal,
-  setShowModal,
-  handleModal,
-  postId,
-  ...props
-}) {
+export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }) {
   // const handleLogout = LogoutHandler().handleLogout;
   const token = useRecoilValue(loginToken);
   const { handleLogout } = LogoutHandler();
@@ -66,13 +53,7 @@ export default function Modal({
             <span>{text}</span>
             <div>
               <Button width="100%" text={buttonText1} onClick={handleClick} />
-              <Button
-                width="100%"
-                bg="white"
-                color="black"
-                onClick={handleModal}
-                text={buttonText2}
-              />
+              <Button width="100%" bg="white" color="black" onClick={handleModal} text={buttonText2} />
             </div>
           </ModalInner>
           {showCloseButton && (

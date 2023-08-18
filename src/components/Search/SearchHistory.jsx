@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import CloseIcon from "../../assets/icon_close.svg";
 
 // recoil
-import { recentSearch } from "../../recoil/recentSearch";
+import { recentSearch } from "../../recoil";
 
 export default function SearchHistory() {
   const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);

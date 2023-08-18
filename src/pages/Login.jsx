@@ -1,23 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
 
-import { InputBox } from "../components/common/Input";
-import Button from "../components/common/Button/Button";
+import { Input, Button, Toast } from "../components/common";
 import { LeftDiv } from "../components/Carousel";
-import Toast from "../components/common/Toast";
 
 import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook.svg";
 import KakaoIcon from "../assets/kakao.svg";
 import WelcomTo from "../assets/Welcome to.svg";
 
-import { loginAPI } from "../api/user";
+import { loginAPI } from "../api";
+
 import { useRecoilState } from "recoil";
-import { loginCheck } from "../recoil/loginCheck";
-import loginToken from "../recoil/loginToken";
-import accountname from "../recoil/accountname";
+import { loginCheck, loginToken, accountname } from "../recoil";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -31,10 +27,7 @@ export default function Login() {
   const { state } = useLocation();
   const [errorMSG, setErrorMSG] = useState("");
 
-  useEffect(() => {
-    console.log("리코일토큰", token);
-  }, [token]); //리코일에 토큰이 잘 들어가고 있는지 확인하는 용도
-
+  const formRef = useRef();
   useEffect(() => {
     if (isloginCheck) {
       navigate("/main");
@@ -88,6 +81,10 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
+    // e.preventDefault();
+    // const { email, password } = formRef.current.elements;
+    // handleError();
+    // await handleLogin({ email: email.value, password: password.value });
     e.preventDefault();
     handleError();
     await handleLogin(loginData);
@@ -122,7 +119,7 @@ export default function Login() {
           <form onSubmit={handleSubmit}>
             <InputDiv>
               <Label>이메일</Label>
-              <InputBox
+              <Input
                 type="email"
                 width="432px"
                 height="48px"
@@ -138,7 +135,7 @@ export default function Login() {
             </InputDiv>
             <InputDiv>
               <Label>비밀번호</Label>
-              <InputBox
+              <Input
                 width="432px"
                 height="48px"
                 onChange={handleInputChange}

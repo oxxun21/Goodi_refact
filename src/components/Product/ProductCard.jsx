@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import ProfileUI from "../ProfileUI";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import styled from "styled-components";
+
+import ProfileUI from "../ProfileUI";
+import { LocalNav, Modal } from "../common";
+
 import { useRecoilValue } from "recoil";
-import accountname from "../../recoil/accountname";
+import { accountname } from "../../recoil";
+
 import postMenu from "../../assets/post_menu.svg";
-import LocalNav from "../common/LocalNav";
-import { useState } from "react";
-import Modal from "../common/Modal";
 
 export default function ProductCard({ profile, name, email, img, title, description, price, id }) {
   const handleClick = useRef();
