@@ -9,19 +9,11 @@ export const singUpAPI = async ({ username, email, password, accountname, intro,
   }
 };
 
-// export const loginAPI = async ({ email, password }) => {
-//   try {
-//     const response = await unauthInstance.post("/user/login", { user: { email, password } });
-//     return response;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-export const loginAPI = async (loginData) => {
+export const loginAPI = async ({ email, password }) => {
   try {
-    const response = await unauthInstance.post("/user/login", loginData);
-    return response.data;
+    const response = await unauthInstance.post("/user/login", { user: { email, password } });
+    console.log(response);
+    return response;
   } catch (error) {
     throw error;
   }

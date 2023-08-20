@@ -1,4 +1,4 @@
-import { PostImageAPI } from "../api/UploadImage";
+import { PostImageAPI } from "../api";
 
 export const handleDataForm = async (dataURI, name, setImageWrap, setLoading) => {
   const byteString = atob(dataURI.split(",")[1]);

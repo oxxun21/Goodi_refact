@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { Input, Button, Toast } from "../components/common";
+import { Input, Button } from "../components/common";
 import { LeftDiv } from "../components/Carousel";
 
 import GoogleIcon from "../assets/google.svg";
@@ -11,146 +11,55 @@ import KakaoIcon from "../assets/kakao.svg";
 import WelcomTo from "../assets/Welcome to.svg";
 
 import { loginAPI } from "../api";
+import { setLoginCookie } from "../utils";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { loginCheck, loginToken, accountname } from "../recoil";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState([]);
-  const [userErrorMessage, setUserErrorMessage] = useState([]);
-  const [toast, setToast] = useState(false);
-
-  const [isloginCheck, setIsLoginCheck] = useRecoilState(loginCheck);
-  const [token, setToken] = useRecoilState(loginToken);
-  const [isAccountname, setIsAccountname] = useRecoilState(accountname);
-  const { state } = useLocation();
-  const [errorMSG, setErrorMSG] = useState("");
-
   const formRef = useRef();
-  useEffect(() => {
-    if (isloginCheck) {
-      navigate("/main");
-    }
-  }, []);
 
-  useEffect(() => {
-    if (state) {
-      setToast(true);
-      setErrorMSG(state);
-      setTimeout(() => {
-        setErrorMSG("");
-      }, 3000);
-    }
-  }, []);
+  const [token, setToken] = useRecoilState(loginToken);
+  const setIsAccountname = useSetRecoilState(accountname);
+  const [errorMSG, setErrorMSG] = useState("");
+  const setIsLoginCheck = useSetRecoilState(loginCheck);
 
-  const [loginData, setLoginData] = useState({
-    user: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData((prevState) => ({
-      ...prevState,
-      user: {
-        ...prevState.user,
-        [name]: value,
-      },
-    }));
-  };
-
-  const handleLogin = async (loginData) => {
-    const response = await loginAPI(loginData);
-
-    if (response && response.hasOwnProperty("user")) {
-      const newToken = response.user.token;
-      const newAccountname = response.user.accountname;
-      setIsLoginCheck(true);
-      setToken(newToken);
-      localStorage.setItem("userToken", newToken);
-      setIsAccountname(newAccountname);
-
-      navigate("/main");
-    } else {
-      const errorMessage = response && response.message ? response.message : handleError();
-      setErrorMessage(errorMessage);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // const { email, password } = formRef.current.elements;
-    // handleError();
-    // await handleLogin({ email: email.value, password: password.value });
+  const handleLogin = async (e) => {
     e.preventDefault();
-    handleError();
-    await handleLogin(loginData);
-  };
+    const { email, password } = formRef.current.elements;
 
-  const handleError = () => {
-    const errors = [];
-    if (loginData.user.email === "") {
-      errors.push("아이디를 입력해주세요");
-    } else if (loginData.user.password === "") {
-      errors.push("비밀번호를 입력해주세요");
+    const response = await loginAPI({ email: email.value, password: password.value });
+    if (response.data.status === 422) {
+      setErrorMSG(response.data.message);
     } else {
-      errors.push("");
+      setToken(response.data.user.token);
+      setIsAccountname(response.data.user.accountname);
+      setIsLoginCheck(true);
+      setLoginCookie(token, { path: "/main" });
+      navigate("/main");
     }
-    setUserErrorMessage(errors);
-  };
-
-  const gotoJoin = () => {
-    navigate("/join");
   };
 
   return (
     <OuterDiv>
       <LeftDiv />
       <RightDiv>
-        {errorMSG && <Toast setToast={setToast} text={state} />}
         <div className="right-inner">
-          <H1 className="a11y-hidden">로그인 페이지</H1>
-          <H2>
-            <img src={WelcomTo} alt="welcome to" />
-          </H2>
-          <form onSubmit={handleSubmit}>
+          <h1>
+            <img src={WelcomTo} alt="로그인 페이지" />
+          </h1>
+          <form ref={formRef} onSubmit={handleLogin}>
             <InputDiv>
-              <Label>이메일</Label>
-              <Input
-                type="email"
-                width="432px"
-                height="48px"
-                padding="15px"
-                name="email"
-                onChange={handleInputChange}
-                value={loginData.user.email}
-                placeholder="이메일을 입력해주세요"
-                hasError={userErrorMessage.includes("아이디를 입력해주세요")}
-              />
-              {/* email을 입력하지 않은 경우 */}
-              {userErrorMessage.includes("아이디를 입력해주세요") && <ErrorMassage>아이디를 입력해주세요</ErrorMassage>}
+              <label>이메일</label>
+              <Input type="email" name="email" placeholder="이메일을 입력해주세요" required={true} />
             </InputDiv>
             <InputDiv>
-              <Label>비밀번호</Label>
-              <Input
-                width="432px"
-                height="48px"
-                onChange={handleInputChange}
-                value={loginData.user.password}
-                name="password"
-                type="password"
-                placeholder="비밀번호를 입력하세요"
-                hasError={userErrorMessage.includes("비밀번호를 입력해주세요")}
-              />
-              {/* password을 입력하지 않은 경우 */}
-              {userErrorMessage.includes("비밀번호를 입력해주세요") && <ErrorMassage>비밀번호를 입력해주세요</ErrorMassage>}
+              <label>비밀번호</label>
+              <Input name="password" type="password" placeholder="비밀번호를 입력하세요" required={true} />
             </InputDiv>
-            {errorMessage && loginData.user.email && loginData.user.password && <ErrorMassage>{errorMessage}</ErrorMassage>}
             <ButtonDiv>
-              <Button type="submit" bg="black" width="432px" height="56px" br="4px" text="로그인" onClick={handleError} />
+              <Button type="submit" height="56px" text="로그인" />
             </ButtonDiv>
           </form>
           <Span>SNS 로그인</Span>
@@ -167,9 +76,7 @@ export default function Login() {
           </SnsDiv>
           <div>
             <p>아직 구디 회원이 아니세요?</p>
-            <button type="button" className="join_button" onClick={gotoJoin}>
-              회원가입 하기
-            </button>
+            <Link to="/join">회원가입 하기</Link>
           </div>
         </div>
       </RightDiv>
@@ -196,20 +103,23 @@ export const RightDiv = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    & > img {
+      height: 76px;
+    }
   }
+
   p {
     font-size: 16px;
     color: var(--gray500-color);
     display: inline;
     margin-right: 17px;
   }
-  button {
+
+  a {
     border-bottom: 2px solid black;
-  }
-  .join_button {
     font-size: 20px;
     font-family: var(--font--Bold);
-    cursor: pointer;
   }
 `;
 
@@ -217,37 +127,13 @@ const InputDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 24px;
-`;
 
-const H1 = styled.h1`
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-`;
-
-const H2 = styled.div`
-  /* font-size: 40px;
-  font-family: "Montserrat";
-  font-weight: 900;
-  display: inline;
-  margin-bottom: 30px;
-  img {
-    vertical-align: text-bottom;
-  } */
-
-  img {
-    height: 76px;
+  label {
+    font-family: var(--font--Bold);
+    margin-bottom: 8px;
   }
 `;
-const Label = styled.label`
-  font-family: var(--font--Bold);
-  margin-bottom: 8px;
-`;
+
 const ButtonDiv = styled.div`
   padding: 40px 0;
   position: relative;
@@ -262,6 +148,7 @@ const ButtonDiv = styled.div`
     left: 0;
   }
 `;
+
 const Span = styled.span`
   margin-bottom: 20px;
   background-color: white;
@@ -269,11 +156,13 @@ const Span = styled.span`
   color: var(--gray200-color);
   z-index: 1;
 `;
+
 const SnsDiv = styled.div`
   display: flex;
   gap: 24px;
   padding: 4px 0 81px;
 `;
+
 const SnsBg = styled.div`
   background-color: ${(props) => props.bg};
   width: 56px;
@@ -288,6 +177,7 @@ const SnsBg = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+
 const ErrorMassage = styled.div`
   margin-top: 10px;
   color: red;

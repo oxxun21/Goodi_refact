@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
+// 여기 고치기
 const IMAGE_URL = "https://api.mandarin.weniv.co.kr/image/uploadfile";
 export const PostImageAPI = async (file) => {
   try {
