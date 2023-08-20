@@ -45,69 +45,54 @@ export default function Login() {
     <OuterDiv>
       <LeftDiv />
       <RightDiv>
-        <div className="right-inner">
-          <h1>
-            <img src={WelcomTo} alt="로그인 페이지" />
-          </h1>
-          <form ref={formRef} onSubmit={handleLogin}>
-            <InputDiv>
-              <label>이메일</label>
-              <Input type="email" name="email" placeholder="이메일을 입력해주세요" required={true} />
-            </InputDiv>
-            <InputDiv>
-              <label>비밀번호</label>
-              <Input name="password" type="password" placeholder="비밀번호를 입력하세요" required={true} />
-            </InputDiv>
-            <ErrorMassage>{errorMSG}</ErrorMassage>
-            <ButtonDiv>
-              <Button type="submit" height="56px" text="로그인" />
-            </ButtonDiv>
-          </form>
-          <Span>SNS 로그인</Span>
-          <SnsDiv>
-            <SnsBg bg="#FAE64D">
-              <img src={KakaoIcon} alt="카카오로 로그인하기" />
-            </SnsBg>
-            <SnsBg bg="var(--gray100-color)">
-              <img src={GoogleIcon} alt="구글로 로그인하기" />
-            </SnsBg>
-            <SnsBg bg="#5693FF">
-              <img src={FacebookIcon} alt="페이스북으로 로그인하기" />
-            </SnsBg>
-          </SnsDiv>
-          <div>
-            <p>아직 구디 회원이 아니세요?</p>
-            <Link to="/join">회원가입 하기</Link>
-          </div>
+        <h1>
+          <img src={WelcomTo} alt="로그인 페이지" />
+        </h1>
+        <Form ref={formRef} onSubmit={handleLogin}>
+          <label>이메일</label>
+          <Input type="email" name="email" placeholder="이메일을 입력해주세요" required={true} />
+
+          <label>비밀번호</label>
+          <Input name="password" type="password" placeholder="비밀번호를 입력하세요" required={true} />
+
+          <ErrorMassage>{errorMSG}</ErrorMassage>
+
+          <Button type="submit" height="56px" text="로그인" />
+        </Form>
+        <Span>SNS 로그인</Span>
+        <SnsDiv>
+          <SnsBg bg="#FAE64D">
+            <img src={KakaoIcon} alt="카카오로 로그인하기" />
+          </SnsBg>
+          <SnsBg bg="var(--gray100-color)">
+            <img src={GoogleIcon} alt="구글로 로그인하기" />
+          </SnsBg>
+          <SnsBg bg="#5693FF">
+            <img src={FacebookIcon} alt="페이스북으로 로그인하기" />
+          </SnsBg>
+        </SnsDiv>
+        <div>
+          <p>아직 구디 회원이 아니세요?</p>
+          <Link to="/join">회원가입 하기</Link>
         </div>
       </RightDiv>
     </OuterDiv>
   );
 }
 
-export const OuterDiv = styled.div`
+const OuterDiv = styled.div`
   display: flex;
 `;
 
-export const RightDiv = styled.div`
-  width: 57%;
-  height: 100vh;
+const RightDiv = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
-  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
 
-  .right-inner {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    & > img {
-      height: 76px;
-    }
+  h1 {
+    margin-bottom: 30px;
   }
 
   p {
@@ -124,34 +109,34 @@ export const RightDiv = styled.div`
   }
 `;
 
-const InputDiv = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
+  justify-content: center;
+  position: relative;
 
   label {
     font-family: var(--font--Bold);
     margin-bottom: 8px;
   }
-`;
 
-const ButtonDiv = styled.div`
-  padding: 40px 0;
-  position: relative;
+  input {
+    margin-bottom: 20px;
+  }
 
   &::after {
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--gray200-color);
+    background-color: var(--gray100-color);
     position: absolute;
-    bottom: -19px;
+    bottom: -38px;
     left: 0;
   }
 `;
 
 const Span = styled.span`
-  margin-bottom: 20px;
+  margin: 20px 0;
   background-color: white;
   padding: 10px;
   color: var(--gray200-color);
@@ -161,7 +146,7 @@ const Span = styled.span`
 const SnsDiv = styled.div`
   display: flex;
   gap: 24px;
-  padding: 4px 0 81px;
+  padding: 4px 0 60px;
 `;
 
 const SnsBg = styled.div`
