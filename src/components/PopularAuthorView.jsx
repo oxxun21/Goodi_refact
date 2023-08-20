@@ -149,23 +149,6 @@ const BottomWrap = styled.div`
   display: flex;
   align-items: center;
 `;
-const PopularProfile = styled.div`
-  width: 100%;
-  height: 100px;
-  background-color: red;
-  & > img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-top: 10px;
-  }
-`;
-const LikeDiv = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-`;
 const Post = styled.ul`
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);

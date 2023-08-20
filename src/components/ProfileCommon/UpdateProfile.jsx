@@ -6,7 +6,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { loginToken, checkProfile } from "../../recoil";
 
 // api
-import { profileAPI, PostImageAPI, updateProfile } from "../../api";
+import { profileAPI, uploadImage, updateProfile } from "../../api";
 
 // 컴포넌트
 import { Input, Button } from "../common";
@@ -36,7 +36,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
   const handleImageChange = async (e) => {
     setIsImageUpload(true);
     const file = e.target.files[0];
-    const imgSrc = await PostImageAPI(file);
+    const imgSrc = await uploadImage(file);
 
     setChangeImageURL(imgSrc);
     setIsImageUpload(false);

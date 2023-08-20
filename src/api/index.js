@@ -4,7 +4,7 @@ import { likeAPI, cancelLikeAPI } from "./like";
 import { postUploadAPI, postListAPI, postPutAPI, postGetUpdateAPI, postDeleteAPI } from "./post";
 import { productUploadAPI, productListAPI, productPutAPI, productDeleteAPI, productGetUpdateAPI } from "./product";
 import { profileAPI, accountProfileAPI, updateProfile } from "./profile";
-import { PostImageAPI } from "./UploadImage";
+import { uploadImage } from "./UploadImage";
 import { singUpAPI, loginAPI, searchAPI } from "./user";
 
 export {
@@ -29,7 +29,7 @@ export {
   profileAPI,
   accountProfileAPI,
   updateProfile,
-  PostImageAPI,
+  uploadImage,
   singUpAPI,
   loginAPI,
   searchAPI,

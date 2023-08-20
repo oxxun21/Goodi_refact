@@ -1,4 +1,4 @@
-import { PostImageAPI } from "../api";
+import { uploadImage } from "../api";
 
 export const handleDataForm = async (dataURI, name, setImageWrap, setLoading) => {
   const byteString = atob(dataURI.split(",")[1]);
@@ -12,7 +12,7 @@ export const handleDataForm = async (dataURI, name, setImageWrap, setLoading) =>
   });
   const file = new File([blob], "image.jpg");
   console.log("after: ", file);
-  const imgSrc = await PostImageAPI(file);
+  const imgSrc = await uploadImage(file);
   setImageWrap((prevArray) => {
     const newArray = [...prevArray];
     newArray[parseInt(name)] = imgSrc;
@@ -33,7 +33,7 @@ export const handleProfileDataForm = async (dataURI, setProfileSelectedImage, se
   });
   const file = new File([blob], "image.jpg");
   console.log("after: ", file);
-  const imgSrc = await PostImageAPI(file);
+  const imgSrc = await uploadImage(file);
   const newImage = imgSrc;
   setProfileSelectedImage(newImage);
   setSignUpData((prevState) => ({
@@ -57,7 +57,7 @@ export const handlePostUpdateForm = async (dataURI, name, setGetImage, setImgLoa
   });
   const file = new File([blob], "image.jpg");
   console.log("after: ", file);
-  const imgSrc = await PostImageAPI(file);
+  const imgSrc = await uploadImage(file);
   setGetImage((prevArray) => {
     const newArray = [...prevArray];
     newArray[parseInt(name)] = imgSrc;

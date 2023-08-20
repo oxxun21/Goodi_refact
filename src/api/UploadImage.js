@@ -1,12 +1,11 @@
 import axios from "axios";
+import { BASE_URL } from "../utils";
 
-// 여기 고치기
-const IMAGE_URL = "https://api.mandarin.weniv.co.kr/image/uploadfile";
-export const PostImageAPI = async (file) => {
+export const uploadImage = async (file) => {
   try {
     const formData = new FormData();
     formData.append("image", file);
-    const response = await axios.post(IMAGE_URL, formData);
+    const response = await axios.post(BASE_URL + "image/uploadfile", formData);
     return response.data.filename;
   } catch (error) {
     throw error;
