@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { Input, Button } from "../components/common";
 import { LeftDiv } from "../components/Carousel";
 
+import ProfileImgDef from "../assets/profile_img_def.svg";
+import PlusBtnImg from "../assets/add_button.svg";
+
 import JoinTo from "../assets/Join to.svg";
+import { BASE_URL } from "../utils";
 
 export default function Join() {
   const navigate = useNavigate();
-  const [userErrorMessage, setUserErrorMessage] = useState([]);
+  const formRef = useRef();
+
+  const [errorMSG, setErrorMSG] = useState("");
+  const [profileSelectedImage, setProfileSelectedImage] = useState(null);
 
   const [joinData, setJoinData] = useState({
     user: {
@@ -31,67 +38,40 @@ export default function Join() {
       },
     }));
   };
-  const handleError = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const errors = [];
-    if (joinData.user.email === "") {
-      errors.push("유효한 이메일을 입력해주세요");
-    } else if (!emailRegex.test(joinData.user.email)) {
-      errors.push("유효한 이메일을 입력해주세요");
-    } else if (joinData.user.password.length < 6) {
-      errors.push("비밀번호를 6자리 이상 입력해주세요");
-    } else {
-      errors.push("");
-      navigate("/setprofile", { state: joinData.user });
-    }
-    setUserErrorMessage(errors);
-  };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   return (
     <OuterDiv>
       <LeftDiv />
       <RightDiv>
-        <div className="right-inner">
-          <H1 className="a11y-hidden">회원가입 페이지</H1>
-          <H2>
-            <img src={JoinTo} alt="Join to" />
-          </H2>
-          <InputDiv>
-            <Label>이메일</Label>
-            <Input
-              type="email"
-              width="432px"
-              height="48px"
-              padding="15px"
-              name="email"
-              onChange={handleInputChange}
-              value={joinData.user.email}
-              placeholder="유효한 이메일을 입력해주세요"
-              hasError={userErrorMessage.includes("유효한 이메일을 입력해주세요")}
-            />
-            {/* email을 입력하지 않은 경우 */}
-            {userErrorMessage.includes("유효한 이메일을 입력해주세요") && <ErrorMassage>{userErrorMessage}</ErrorMassage>}
-          </InputDiv>
-          <InputDiv>
-            <Label>비밀번호</Label>
-            <Input
-              type="password"
-              width="432px"
-              height="48px"
-              name="password"
-              onChange={handleInputChange}
-              value={joinData.user.password}
-              placeholder="비밀번호를 입력하세요"
-              hasError={userErrorMessage.includes("비밀번호를 6자리 이상 입력해주세요")}
-            />
-            {/* 비밀번호가 6글자 미만인 경우 */}
-            {userErrorMessage.includes("비밀번호를 6자리 이상 입력해주세요") && <ErrorMassage>비밀번호를 6자리 이상 입력해주세요</ErrorMassage>}
-          </InputDiv>
-          <ButtonDiv>
-            <Button text="다음" type="submit" bg="black" width="432px" br="none" onClick={handleError} />
-          </ButtonDiv>
-        </div>
+        <h1>
+          <img src={JoinTo} alt="회원가입 페이지" />
+        </h1>
+
+        <ProfileDiv>
+          <input id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" />
+          <label htmlFor="fileInput">
+            <ProfileImgWrap>
+              <img className="button_img" src={profileSelectedImage ? BASE_URL + profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : null} />
+              <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
+            </ProfileImgWrap>
+          </label>
+        </ProfileDiv>
+
+        <Label>이메일</Label>
+        <Input type="email" name="email" placeholder="유효한 이메일을 입력해주세요" />
+
+        <Label>비밀번호</Label>
+        <Input type="password" name="password" placeholder="비밀번호를 입력하세요" />
+
+        <Label>닉네임</Label>
+        <Input name="username" placeholder="Goodi에서 사용할 닉네임을 입력해주세요" />
+
+        <Label>소개 메세지</Label>
+        <textarea placeholder="나를 소개해보세요" name="intro" />
+
+        <Button text="Goodi 시작하기" type="submit" br="none" />
       </RightDiv>
     </OuterDiv>
   );
@@ -101,65 +81,60 @@ export const OuterDiv = styled.div`
 `;
 
 export const RightDiv = styled.div`
-  width: 57%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  box-sizing: border-box;
+  justify-content: center;
   margin: 0 auto;
 
-  .right-inner {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: -50px;
-  }
-  p {
+  textarea {
+    resize: none;
+    border: 1px solid var(--gray300-color);
+    width: 100%;
+    min-height: 90px;
+    border-radius: 4px;
+    padding: 15px;
+    box-sizing: border-box;
+    outline-color: black;
     font-size: 1rem;
-    color: var(--gray500-color);
-    display: inline;
-    margin-right: 17px;
+    margin-bottom: 15px;
+    &::placeholder {
+      color: var(--gray300-color);
+      font-family: var(--font--Regular);
+    }
   }
-  .join_button {
-    font-size: 1.25rem;
+  input {
+    margin-bottom: 15px;
   }
 `;
 
-export const InputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 32px;
-`;
-
-export const H1 = styled.h1`
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-`;
-
-export const H2 = styled.div`
-  img {
-    height: 76px;
-  }
-`;
 const Label = styled.label`
   font-family: var(--font--Bold);
   margin-bottom: 9px;
-  font-weight: 700;
 `;
-const ButtonDiv = styled.div`
-  margin-top: 166px;
-`;
+
 const ErrorMassage = styled.div`
   margin-top: 10px;
   color: red;
   font-size: 14px;
+`;
+const ProfileDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 30px;
+`;
+const ProfileImgWrap = styled.div`
+  cursor: pointer;
+  position: relative;
+  /* overflow: hidden; */
+  .button_img {
+    aspect-ratio: 1/ 1;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .add_button_img {
+    position: absolute;
+    top: 67px;
+    left: 67px;
+  }
 `;

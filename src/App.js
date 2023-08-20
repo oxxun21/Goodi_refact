@@ -27,7 +27,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/setprofile" element={<Setprofile />} />
           <Route
             element={
               <ProtectRoute>
