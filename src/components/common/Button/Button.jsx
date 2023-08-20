@@ -35,8 +35,4 @@ const ButtonDef = styled.button`
     &:active {
     transform: scale(0.99);
   }
-
-  &:focus {
-    outline: 1px solid #ff1515;
-  }
 `;

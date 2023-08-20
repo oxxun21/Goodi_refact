@@ -58,6 +58,7 @@ export default function Login() {
               <label>비밀번호</label>
               <Input name="password" type="password" placeholder="비밀번호를 입력하세요" required={true} />
             </InputDiv>
+            <ErrorMassage>{errorMSG}</ErrorMassage>
             <ButtonDiv>
               <Button type="submit" height="56px" text="로그인" />
             </ButtonDiv>
@@ -178,7 +179,8 @@ const SnsBg = styled.div`
   }
 `;
 
-const ErrorMassage = styled.div`
+const ErrorMassage = styled.strong`
+  display: block;
   margin-top: 10px;
   color: red;
   font-size: 14px;
