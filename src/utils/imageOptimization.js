@@ -18,7 +18,8 @@ export const handleDataForm = async (dataURI, name, setImageWrap, setLoading) =>
     newArray[parseInt(name)] = imgSrc;
     return newArray;
   });
-  setLoading(false);
+  // setLoading(false);
+  console.log("작동");
 };
 
 export const handleProfileDataForm = async (dataURI, setProfileSelectedImage, setSignUpData) => {

@@ -1,11 +1,21 @@
+import axios from "axios";
 import { authInstance, unauthInstance } from "./instance";
+import { BASE_URL, getLoginCookie } from "../utils";
+
+export const instance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    Authorization: `Bearer ${getLoginCookie()}`,
+    "Content-Type": "application/json",
+  },
+});
 
 export const singUpAPI = async ({ username, email, password, accountname, intro, image }) => {
   try {
-    const response = await unauthInstance.post("/user", { user: { username, email, password, accountname, intro, image } });
+    const response = await instance.post("/user", { user: { username, email, password, accountname, intro, image } });
     return response;
   } catch (error) {
-    throw error;
+    return error.response;
   }
 };
 

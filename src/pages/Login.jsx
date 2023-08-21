@@ -166,7 +166,7 @@ const SnsBg = styled.div`
 
 const ErrorMassage = styled.strong`
   display: block;
-  margin-top: 10px;
+  margin-bottom: 10px;
   color: red;
   font-size: 14px;
 `;
