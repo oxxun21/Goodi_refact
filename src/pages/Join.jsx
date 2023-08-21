@@ -44,6 +44,13 @@ export default function Join() {
     }
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedImage = URL.createObjectURL(e.target.files[0]);
+      setProfileSelectedImage(selectedImage);
+    }
+  };
+
   return (
     <OuterDiv>
       <LeftDiv />
@@ -54,10 +61,10 @@ export default function Join() {
 
         <Form ref={formRef} onSubmit={handleSignup}>
           <ProfileDiv>
-            <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" />
+            <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} />
             <label htmlFor="fileInput">
               <ProfileImgWrap>
-                <img className="button_img" src={profileSelectedImage ? BASE_URL + profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : null} />
+                <img className="button_img" src={profileSelectedImage ? profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : null} />
                 <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
               </ProfileImgWrap>
             </label>
