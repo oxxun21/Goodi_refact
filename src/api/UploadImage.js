@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../utils";
+import { imageInstance } from "./instance";
 
 export const uploadImage = async (file) => {
   try {
@@ -9,5 +10,14 @@ export const uploadImage = async (file) => {
     return response.data.filename;
   } catch (error) {
     throw error;
+  }
+};
+
+export const uploadImageChangeAPI = async (formData) => {
+  try {
+    const res = await imageInstance.post("/image/uploadfile", formData);
+    return res;
+  } catch (err) {
+    return err;
   }
 };

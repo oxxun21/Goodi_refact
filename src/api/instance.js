@@ -1,5 +1,13 @@
 import axios from "axios";
-import { BASE_URL } from "../utils";
+import { BASE_URL, getLoginCookie } from "../utils";
+
+export const imageInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    Authorization: `Bearer ${getLoginCookie()}`,
+    "Content-Type": "multipart/form-data",
+  },
+});
 
 export const unauthInstance = axios.create({
   baseURL: BASE_URL,

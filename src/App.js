@@ -3,7 +3,6 @@ import GlobalStyle from "./style/GlobalStyle";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
-import Setprofile from "./pages/Setprofile";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
 import ProtectRoute from "./pages/ProtectRoute";
