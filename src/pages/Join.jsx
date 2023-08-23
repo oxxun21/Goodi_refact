@@ -69,7 +69,6 @@ export default function Join() {
               </ProfileImgWrap>
             </label>
           </ProfileDiv>
-          <ErrorMassage>{errorMSG}</ErrorMassage>
           <label>이메일</label>
           <Input type="email" name="email" placeholder="유효한 이메일을 입력해주세요" required={true} />
 
@@ -82,6 +81,7 @@ export default function Join() {
           <label>소개 메세지</label>
           <textarea placeholder="나를 소개해보세요" name="intro" />
 
+          <ErrorMassage>{errorMSG}</ErrorMassage>
           <Button text="Goodi 시작하기" type="submit" br="none" />
         </Form>
       </RightDiv>
@@ -131,11 +131,11 @@ const Form = styled.form`
   }
 `;
 
-const ErrorMassage = styled.div`
-  margin-top: 10px;
+const ErrorMassage = styled.strong`
+  font-family: var(--font--Bold);
   color: red;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 const ProfileDiv = styled.div`
@@ -146,7 +146,7 @@ const ProfileDiv = styled.div`
 const ProfileImgWrap = styled.div`
   cursor: pointer;
   position: relative;
-  /* overflow: hidden; */
+
   .button_img {
     aspect-ratio: 1/ 1;
     object-fit: cover;
