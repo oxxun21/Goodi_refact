@@ -1,36 +1,7 @@
-import { unauthInstance, authInstance } from "./instance";
-import { followAPI, unfollowAPI, followerAPI, followingAPI } from "./follow";
-import { likeAPI, cancelLikeAPI } from "./like";
-import { postUploadAPI, postListAPI, postPutAPI, postGetUpdateAPI, postDeleteAPI } from "./post";
-import { productUploadAPI, productListAPI, productPutAPI, productDeleteAPI, productGetUpdateAPI } from "./product";
-import { profileAPI, accountProfileAPI, updateProfile } from "./profile";
-import { PostImageAPI } from "./UploadImage";
-import { singUpAPI, loginAPI, searchAPI } from "./user";
-
-export {
-  unauthInstance,
-  authInstance,
-  followAPI,
-  unfollowAPI,
-  followerAPI,
-  followingAPI,
-  likeAPI,
-  cancelLikeAPI,
-  postUploadAPI,
-  postListAPI,
-  postPutAPI,
-  postGetUpdateAPI,
-  postDeleteAPI,
-  productUploadAPI,
-  productListAPI,
-  productPutAPI,
-  productDeleteAPI,
-  productGetUpdateAPI,
-  profileAPI,
-  accountProfileAPI,
-  updateProfile,
-  PostImageAPI,
-  singUpAPI,
-  loginAPI,
-  searchAPI,
-};
+export * from "./follow";
+export * from "./like";
+export * from "./post";
+export * from "./product";
+export * from "./profile";
+export * from "./uploadImage";
+export * from "./user";
