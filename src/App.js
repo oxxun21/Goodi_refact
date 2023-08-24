@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
-import ProtectRoute from "./pages/ProtectRoute";
+// import ProtectRoute from "./pages/ProtectRoute";
 
 function App() {
   const Main = lazy(() => import("./pages/Main"));
@@ -26,23 +26,23 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route
+          {/* <Route
             element={
               <ProtectRoute>
                 <Outlet />
               </ProtectRoute>
             }
-          >
-            <Route path="/main" element={<Main />} />
-            <Route path="/productDetail/:id" element={<Detail />} />
-            <Route path="/profile/:accountname" element={<Profile />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/productUpload" element={<ProductUpload />} />
-            <Route path="/postUpload" element={<PostUpload />} />
-            <Route path="/product/:product_id" element={<ProductUpdate />} />
-            <Route path="/post/:posting_id" element={<PostUpdate />} />
-            <Route path="/cart" element={<Cart />} />
-          </Route>
+          > */}
+          <Route path="/main" element={<Main />} />
+          <Route path="/productDetail/:id" element={<Detail />} />
+          <Route path="/profile/:accountname" element={<Profile />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/productUpload" element={<ProductUpload />} />
+          <Route path="/postUpload" element={<PostUpload />} />
+          <Route path="/product/:product_id" element={<ProductUpdate />} />
+          <Route path="/post/:posting_id" element={<PostUpdate />} />
+          <Route path="/cart" element={<Cart />} />
+          {/* </Route> */}
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>
