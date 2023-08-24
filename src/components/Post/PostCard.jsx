@@ -107,9 +107,7 @@ export default function PostCard({ username, profileImage, email, content, image
         </LocalNavWrap>
       </PostTop>
       <PostContent>
-        <div className="p_box">
-          <p>{content}</p>
-        </div>
+        <p>{content}</p>
         <img src={image ? image : "https://api.mandarin.weniv.co.kr/1687455865316.jpg"} alt="게시글 이미지" />
         <div>
           <span>{elapsedTimeString}</span>
@@ -135,13 +133,8 @@ export default function PostCard({ username, profileImage, email, content, image
   );
 }
 
-const StyledLink = styled(Link)`
-  color: var(--black-color);
-  text-decoration: none;
-`;
-
 const PostOuter = styled.article`
-  width: 100%;
+  width: 280px;
 `;
 const PostTop = styled.div`
   position: relative;
@@ -184,18 +177,12 @@ const PostContent = styled.div`
     font-size: 1rem;
   }
 
-  .p_box {
-    height: 85px;
-    display: flex;
-    align-items: flex-start;
-  }
-
   p {
-    font-family: var(--font-Regular);
+    min-height: 85px;
+    width: 100%;
     color: var(--gray500-color);
-    font-size: 1rem;
     line-height: 1.4rem;
-    display: inline;
+    word-wrap: break-word;
   }
 `;
 
