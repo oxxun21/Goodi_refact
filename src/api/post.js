@@ -1,12 +1,19 @@
-import { authInstance } from "./instance";
+import { getLoginCookie } from "../utils";
+import { authInstance, instance } from "./instance";
 
 //게시글 작성
-export const postUploadAPI = async (postData) => {
+export const postUploadAPI = async ({ content, image }) => {
   try {
-    const response = await authInstance.post("/post", postData);
-    return response.data;
+    const response = await instance.post(`/post`, {
+      post: {
+        content,
+        image,
+      },
+    });
+    return response;
   } catch (error) {
     console.log(error);
+    console.log(getLoginCookie());
     throw error;
   }
 };

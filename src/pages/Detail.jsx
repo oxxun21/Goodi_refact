@@ -76,6 +76,7 @@ export default function Detail() {
         setProductData(response.product);
         setPrice(response.product.price);
         setLoading(false);
+        console.log(response);
       } catch (error) {
         console.error("Account API 에러가 발생했습니다", error);
       }

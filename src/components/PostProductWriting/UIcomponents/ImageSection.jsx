@@ -6,12 +6,12 @@ import addIcon from "../../../assets/add_button_gray.svg";
 
 import { BASE_URL } from "../../../utils";
 
-export default function ImageSection({ handleInputChange, loading, imageWrap, userErrorMessage }) {
+export default function ImageSection({ handleInputChange, loading, imageWrap }) {
   return (
     <T.ImagUploadWrap>
       <T.ThumbnailWrap>
         <input id="thumbnail" type="file" name="0" style={{ display: "none" }} onChange={handleInputChange} />
-        <T.Thumbnail htmlFor="thumbnail" style={userErrorMessage && userErrorMessage.includes("이미지를 한개 이상 업로드 해주세요") ? { border: "1px solid red" } : null}>
+        <T.Thumbnail htmlFor="thumbnail">
           {loading ? (
             <T.LoadingImage>
               <span className="circle1"></span>
@@ -21,7 +21,6 @@ export default function ImageSection({ handleInputChange, loading, imageWrap, us
             <img src={imageWrap[0] ? BASE_URL + imageWrap[0] : PlusIcon} style={imageWrap[0] ? null : { width: "90px" }} alt="첫번째 이미지" />
           )}
         </T.Thumbnail>
-        {userErrorMessage.includes("이미지를 한개 이상 업로드 해주세요") && <T.ErrorMassage>이미지를 한개 이상 업로드 해주세요</T.ErrorMassage>}
       </T.ThumbnailWrap>
 
       <T.ProductImages>

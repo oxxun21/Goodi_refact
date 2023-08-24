@@ -12,17 +12,18 @@ import ProductWriting from "./UIcomponents/ProductWriting";
 import { handleDataForm } from "../../utils";
 
 export default function UploadTotalUI(props) {
-  const { src, subtext, getData, data, setData, setImageWrap, imageWrap, userErrorMessage, handleError } = props;
+  const { src, subtext, send, data, setData } = props;
 
   const location = useLocation();
 
+  const [imageWrap, setImageWrap] = useState([]);
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
 
   // 글자수 카운트
   const handleTextCount = (e) => {
     const textSlice = e.target.value;
-    setDescription(textSlice.slice(0, 50));
+    setDescription(textSlice.slice(0, 100));
   };
 
   // API 처리
@@ -49,7 +50,7 @@ export default function UploadTotalUI(props) {
     } else {
       setDescription(value);
 
-      if (data.hasOwnProperty("post")) {
+      if (location.pathname === "/postUpload") {
         setData((prevState) => ({
           ...prevState,
           post: {
@@ -60,7 +61,7 @@ export default function UploadTotalUI(props) {
         }));
       }
 
-      if (data.hasOwnProperty("product")) {
+      if (location.pathname === "/productUpload") {
         setData((prevState) => ({
           ...prevState,
           product: {
@@ -77,14 +78,6 @@ export default function UploadTotalUI(props) {
     }
   };
 
-  const joinData = (e) => {
-    e.preventDefault();
-    handleError();
-    if (userErrorMessage.length === 0) {
-      getData(data);
-    }
-  };
-
   return (
     <T.PostingWrap>
       <T.PostUiWrap>
@@ -92,14 +85,14 @@ export default function UploadTotalUI(props) {
         <img src={src} alt={src} />
         <p>{subtext}</p>
 
-        <T.UploadWrap onSubmit={joinData}>
-          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} userErrorMessage={userErrorMessage} />
+        <T.UploadWrap onSubmit={send}>
+          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} />
 
           <T.Line />
 
-          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} userErrorMessage={userErrorMessage} handleError={handleError} />}
+          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} />}
 
-          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} handleError={handleError} />}
+          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

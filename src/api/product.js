@@ -1,10 +1,17 @@
-import { authInstance } from './instance';
+import { authInstance, instance } from "./instance";
 
 //상품 작성
-export const productUploadAPI = async (postProductData, token) => {
+export const productUploadAPI = async ({ link, itemName, price, itemImage }) => {
   try {
-    const response = await authInstance.post(`/product`, postProductData)
-    return response.data;
+    const response = await instance.post("/product", {
+      product: {
+        itemName,
+        price,
+        link,
+        itemImage,
+      },
+    });
+    return response;
   } catch (error) {
     throw error;
   }
@@ -14,7 +21,7 @@ export const productUploadAPI = async (postProductData, token) => {
 export const productListAPI = async (accountname, token) => {
   try {
     const productGet_URL = `https://api.mandarin.weniv.co.kr/product/${accountname}`;
-    const response = await authInstance.get(`/product/${accountname}`)
+    const response = await authInstance.get(`/product/${accountname}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -24,7 +31,7 @@ export const productListAPI = async (accountname, token) => {
 //상품 수정
 export const productPutAPI = async (product_id, token, productData) => {
   try {
-    const response = await authInstance.put(`/product/${product_id}`, productData)
+    const response = await authInstance.put(`/product/${product_id}`, productData);
     return response;
   } catch (error) {
     throw error;
@@ -34,7 +41,7 @@ export const productPutAPI = async (product_id, token, productData) => {
 //상품 수정시에 불러오기
 export const productGetUpdateAPI = async (token, id) => {
   try {
-    const response = await authInstance.get(`/product/detail/${id}`)
+    const response = await authInstance.get(`/product/detail/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -44,11 +51,10 @@ export const productGetUpdateAPI = async (token, id) => {
 //상품 삭제
 export const productDeleteAPI = async (product_id, token) => {
   try {
-    const response = await authInstance.delete(`/product/${product_id}`)
+    const response = await authInstance.delete(`/product/${product_id}`);
     console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
