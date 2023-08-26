@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as T from "./writingUI.styled";
 import { useLocation, useParams } from "react-router";
 import imageCompression from "browser-image-compression";
@@ -10,14 +10,16 @@ import ProductWriting from "./UIcomponents/ProductWriting";
 import { handlePostUpdateForm } from "../../utils";
 
 export default function UpdateTotalUI(props) {
-  const { src, subtext, data, imageWrap, userErrorMessage, joinData, loading, description, setLoading, setImageWrap, setData } = props;
+  const { src, subtext, data, setData, send, description, imageWrap, setImageWrap } = props;
 
   const location = useLocation();
   const locationID = useParams();
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = async (e) => {
     const { name } = e.target;
 
+    // 이미지 업로드 안되는 상태
     if (e.target.type === "file") {
       const file = e.target.files[0];
       const options = {
@@ -48,16 +50,14 @@ export default function UpdateTotalUI(props) {
         <img src={src} alt={src} />
         <p>{subtext}</p>
 
-        <T.UploadWrap onSubmit={joinData}>
-          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} userErrorMessage={userErrorMessage} />
+        <T.UploadWrap onSubmit={send}>
+          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} />
 
           <T.Line />
 
-          {location.pathname === `/post/${locationID.posting_id}` && <PostWriting handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} description={description} />}
+          {location.pathname === `/post/${locationID.posting_id}` && <PostWriting handleInputChange={handleInputChange} description={description} />}
 
-          {location.pathname === `/product/${locationID.product_id}` && (
-            <ProductWriting data={data} handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} description={description} />
-          )}
+          {location.pathname === `/product/${locationID.product_id}` && <ProductWriting data={data} handleInputChange={handleInputChange} description={description} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

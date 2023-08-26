@@ -1,5 +1,4 @@
 import { uploadImageChangeAPI } from "../api";
-import BASE_URL from "./BASE_URL";
 
 export const handleUploadImageAPI = async ({ files, inputFileElement }) => {
   if (files.length === 0) return;
@@ -12,7 +11,7 @@ export const handleUploadImageAPI = async ({ files, inputFileElement }) => {
       size += files[i].size;
       const formData = new FormData();
       formData.append("image", files[i]);
-      resArray.push(uploadImageChangeAPI(formData).then((res) => BASE_URL + res.data.filename));
+      resArray.push(uploadImageChangeAPI(formData).then((res) => res.data.filename));
     }
 
     if (size >= 10000000) {

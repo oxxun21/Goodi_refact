@@ -56,7 +56,7 @@ export default function UploadTotalUI(props) {
           post: {
             ...prevState.post,
             image: imageWrap.join(),
-            [name]: name === "price" ? parseInt(value) : value,
+            [name]: value,
           },
         }));
       }

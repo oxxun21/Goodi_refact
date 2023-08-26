@@ -68,8 +68,6 @@ export default function Chat(reduceTop) {
     setHasInput("");
   };
 
-  console.log(followingList.length === 0);
-
   // 프로필, 팔로잉 데이터 가져오기
   useEffect(() => {
     const fetchProfileData = async () => {

@@ -17,60 +17,30 @@ import { postGetUpdateAPI, postPutAPI } from "../api";
 import { loginToken, accountname } from "../recoil";
 
 export default function PostUpdate() {
-  const token = useRecoilValue(loginToken);
   const { posting_id } = useParams();
   const navigate = useNavigate();
 
   const account_name = useRecoilValue(accountname);
-  const myProfile = `/profile/${account_name}`;
-
-  const [loading, setLoading] = useState(false);
-  const [userErrorMessage, setUserErrorMessage] = useState([]);
 
   const [imageWrap, setImageWrap] = useState([]);
-  const [post, setPost] = useState(null);
-  const [data, setData] = useState({
-    id: "",
-    content: "",
-    image: "",
-  });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const fetchPostingData = async () => {
-      try {
-        const response = await postGetUpdateAPI(token, posting_id);
-        setPost(response.post);
-        setData({
-          id: response.post.id,
-          content: response.post.content,
-          image: response.post.image,
-        });
-        setImageWrap(response.post.image.split(","));
-      } catch (error) {
-        console.error("게시글 정보 호출 실패", error);
-      }
+    const fetchPost = async () => {
+      const response = await postGetUpdateAPI(posting_id);
+      setData({
+        id: response.post.id,
+        content: response.post.content,
+        image: response.post.image,
+      });
+      console.log(response);
+      setImageWrap(response.post.image.split(","));
     };
-    fetchPostingData();
+    fetchPost();
   }, []);
 
-  useEffect(() => {
-    setData({ ...data, image: imageWrap.join(",") });
-  }, [imageWrap]);
-
-  const joinData = async (e) => {
+  const postUpdateSend = async (e) => {
     e.preventDefault();
-
-    const errors = [];
-    if (data.content === "" || !data.content) {
-      errors.push("게시글을 입력해주세요");
-    }
-    setUserErrorMessage(errors);
-
-    if (errors.length > 0) {
-      setUserErrorMessage(errors);
-      return;
-    }
-
     const putData = {
       post: {
         id: data.id,
@@ -79,26 +49,25 @@ export default function PostUpdate() {
       },
     };
 
-    await postPutAPI(token, posting_id, putData);
+    await postPutAPI(posting_id, putData);
 
-    navigate(myProfile);
+    navigate(`/profile/${account_name}`);
   };
 
   return (
     <Layout reduceTop="true">
-      <UpdateTotalUI
-        src={PostingUpload}
-        subtext="게시물을 수정해주세요"
-        imageWrap={imageWrap}
-        description={data.content}
-        userErrorMessage={userErrorMessage}
-        joinData={joinData}
-        loading={loading}
-        setLoading={setLoading}
-        setImageWrap={setImageWrap}
-        setData={setData}
-        data={data}
-      />
+      {data && (
+        <UpdateTotalUI
+          src={PostingUpload}
+          subtext="게시물을 수정해주세요"
+          description={data.content}
+          send={postUpdateSend}
+          setData={setData}
+          data={data}
+          imageWrap={imageWrap}
+          setImageWrap={setImageWrap}
+        />
+      )}
     </Layout>
   );
 }
