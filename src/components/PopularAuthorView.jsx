@@ -18,7 +18,6 @@ export default function PopularAuthorview({ account, heartCount }) {
   const navigate = useNavigate();
   const [userPostList, setUserPostList] = useState(null);
   const [loading, setLoading] = useState(true);
-  const token = useRecoilValue(loginToken);
   const myaccount_name = useRecoilValue(accountname);
   const checkDelete = useRecoilValue(checkDeletePost);
   const checkProfileChange = useRecoilValue(checkProfile);
@@ -27,51 +26,17 @@ export default function PopularAuthorview({ account, heartCount }) {
 
   useEffect(() => {
     const fetchPostData = async () => {
-      try {
-        const response = await postListAPI({
-          token,
-          accountname: account_name,
-        });
+      const response = await postListAPI(account_name);
 
-        if (response.post) {
-          setUserPostList(response.post);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        // 오류 처리
-        console.log(error);
-        setLoading(false); // 오류 발생 시 로딩 상태 변경
+      if (response.post) {
+        setUserPostList(response.post);
       }
+
+      setLoading(false);
     };
 
-    fetchPostData(); // fetchPostData 함수 호출
-  }, [account_name, checkDelete, checkProfileChange]);
-
-  useEffect(() => {
-    const fetchPostData = async () => {
-      try {
-        const response = await postListAPI({
-          token,
-          accountname: account_name,
-        });
-
-        if (response.post) {
-          setUserPostList(response.post);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        // 오류 처리
-        console.log(error);
-        setLoading(false); // 오류 발생 시 로딩 상태 변경
-      }
-    };
-
-    fetchPostData(); // fetchPostData 함수 호출
-
-    // 의존성 배열에 account_name을 추가하여 account_name이 변경될 때마다 useEffect를 호출하도록 설정
-  }, [account_name, checkDelete, checkProfileChange]);
+    fetchPostData();
+  }, []);
 
   const handleMouseEnter = (postId) => {
     setUserPostList((prevPosts) => prevPosts.map((post) => (post.id === postId ? { ...post, isHovered: true } : post)));

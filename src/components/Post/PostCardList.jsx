@@ -24,10 +24,7 @@ export default function PostCardList({ accountname }) {
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const response = await postListAPI({
-          token,
-          accountname: accountname,
-        });
+        const response = await postListAPI(accountname);
 
         if (response.post) {
           setUserPostList(response.post);

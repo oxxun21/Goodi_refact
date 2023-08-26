@@ -18,10 +18,9 @@ export const productUploadAPI = async ({ link, itemName, price, itemImage }) => 
 };
 
 //상품 목록
-export const productListAPI = async (accountname, token) => {
+export const productListAPI = async ({ accountname }) => {
   try {
-    const productGet_URL = `https://api.mandarin.weniv.co.kr/product/${accountname}`;
-    const response = await authInstance.get(`/product/${accountname}`);
+    const response = await instance.get(`/product/${accountname}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -29,9 +28,9 @@ export const productListAPI = async (accountname, token) => {
 };
 
 //상품 수정
-export const productPutAPI = async (product_id, token, productData) => {
+export const productPutAPI = async (product_id, productData) => {
   try {
-    const response = await authInstance.put(`/product/${product_id}`, productData);
+    const response = await instance.put(`/product/${product_id}`, productData);
     return response;
   } catch (error) {
     throw error;
@@ -39,9 +38,9 @@ export const productPutAPI = async (product_id, token, productData) => {
 };
 
 //상품 수정시에 불러오기
-export const productGetUpdateAPI = async (token, id) => {
+export const productGetUpdateAPI = async (id) => {
   try {
-    const response = await authInstance.get(`/product/detail/${id}`);
+    const response = await instance.get(`/product/detail/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -49,9 +48,9 @@ export const productGetUpdateAPI = async (token, id) => {
 };
 
 //상품 삭제
-export const productDeleteAPI = async (product_id, token) => {
+export const productDeleteAPI = async (product_id) => {
   try {
-    const response = await authInstance.delete(`/product/${product_id}`);
+    const response = await instance.delete(`/product/${product_id}`);
     console.log(response.data);
     return response.data;
   } catch (error) {

@@ -13,8 +13,8 @@ import WelcomTo from "../assets/Welcome to.svg";
 import { loginAPI } from "../api";
 import { getLoginCookie, setLoginCookie } from "../utils";
 
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { loginToken, accountname } from "../recoil";
+import { useSetRecoilState } from "recoil";
+import { accountname } from "../recoil";
 import { instance } from "../api/instance";
 
 const interceptorHeader = () => {
@@ -28,7 +28,6 @@ export default function Login() {
   const navigate = useNavigate();
   const formRef = useRef();
 
-  const [token, setToken] = useRecoilState(loginToken);
   const setIsAccountname = useSetRecoilState(accountname);
   const [errorMSG, setErrorMSG] = useState("");
 
@@ -41,12 +40,10 @@ export default function Login() {
       setErrorMSG(response.data.message);
     } else {
       const { token, accountname } = response.data.user;
-
       setIsAccountname(accountname);
-      setLoginCookie(token, { path: "/main" });
+      setLoginCookie(token, { path: "/" });
 
       interceptorHeader();
-      console.log("작동");
       navigate("/main");
     }
   };
