@@ -41,7 +41,7 @@ export default function ProductUpdate() {
         itemName: data.itemName,
         price: data.price,
         link: data.link,
-        itemImage: data.itemImage,
+        itemImage: imageWrap.join(","),
       },
     };
 

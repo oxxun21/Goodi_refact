@@ -59,6 +59,7 @@ export const handlePostUpdateForm = async (dataURI, name, setGetImage, setImgLoa
   const file = new File([blob], "image.jpg");
   console.log("after: ", file);
   const imgSrc = await uploadImage(file);
+  console.log(imgSrc);
   setGetImage((prevArray) => {
     const newArray = [...prevArray];
     newArray[parseInt(name)] = imgSrc;

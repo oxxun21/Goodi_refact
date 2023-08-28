@@ -86,7 +86,7 @@ export default function UploadTotalUI(props) {
         <p>{subtext}</p>
 
         <T.UploadWrap onSubmit={send}>
-          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} />
+          <ImageSection handleInputChange={handleInputChange} imageWrap={imageWrap} />
 
           <T.Line />
 
