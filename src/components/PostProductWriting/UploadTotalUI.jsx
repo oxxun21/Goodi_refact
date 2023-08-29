@@ -8,16 +8,11 @@ import ImageSection from "./UIcomponents/ImageSection";
 import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
-// 이미지 최적화
-import { handleDataForm } from "../../utils";
-import { uploadImageAPI } from "../../api";
-
 export default function UploadTotalUI(props) {
-  const { src, subtext, send, data, setData } = props;
+  const { src, subtext, send, data, setData, errorMSG, imageWrap, setImageWrap } = props;
 
   const location = useLocation();
 
-  const [imageWrap, setImageWrap] = useState([]);
   const [description, setDescription] = useState("");
 
   // 글자수 카운트
@@ -35,7 +30,7 @@ export default function UploadTotalUI(props) {
         ...prevState,
         post: {
           ...prevState.post,
-          image: imageWrap.join(),
+          image: imageWrap.join(","),
           [name]: value,
         },
       }));
@@ -46,7 +41,7 @@ export default function UploadTotalUI(props) {
         ...prevState,
         product: {
           ...prevState.product,
-          itemImage: imageWrap.join(),
+          itemImage: imageWrap.join(","),
           [name]: name === "price" ? parseInt(value) : value,
         },
       }));
@@ -69,9 +64,9 @@ export default function UploadTotalUI(props) {
 
           <T.Line />
 
-          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} />}
+          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} errorMSG={errorMSG} />}
 
-          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} />}
+          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} errorMSG={errorMSG} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

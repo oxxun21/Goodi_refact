@@ -14,6 +14,8 @@ import { productUploadAPI } from "../api";
 export default function ProductUpload() {
   const navigate = useNavigate();
 
+  const [imageWrap, setImageWrap] = useState([]);
+  const [errorMSG, setErrorMSG] = useState("");
   const [data, setData] = useState({
     product: {
       itemName: "",
@@ -29,19 +31,30 @@ export default function ProductUpload() {
       link: data.product.link,
       itemName: data.product.itemName,
       price: parseInt(data.product.price),
-      itemImage: data.product.itemImage,
+      itemImage: imageWrap.join(","),
     });
 
     console.log(response);
-
     if (response.status === 200) {
       navigate(`/productDetail/${response.data.product.id}`);
+    }
+    if (response.status === 422) {
+      setErrorMSG(response.data.message);
     }
   };
 
   return (
     <Layout reduceTop="true">
-      <UploadTotalUI src={productUpload} subtext="당신의 상품을 업로드 해보세요!" send={productSend} data={data} setData={setData} />
+      <UploadTotalUI
+        src={productUpload}
+        subtext="당신의 상품을 업로드 해보세요!"
+        send={productSend}
+        data={data}
+        setData={setData}
+        errorMSG={errorMSG}
+        imageWrap={imageWrap}
+        setImageWrap={setImageWrap}
+      />
     </Layout>
   );
 }

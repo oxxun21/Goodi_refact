@@ -20,6 +20,8 @@ export default function PostUpload() {
   const account_name = useRecoilValue(accountname);
   const myProfile = `/profile/${account_name}`;
 
+  const [imageWrap, setImageWrap] = useState([]);
+  const [errorMSG, setErrorMSG] = useState("");
   const [data, setData] = useState({
     post: {
       content: "",
@@ -34,11 +36,14 @@ export default function PostUpload() {
     if (response.status === 200) {
       navigate(myProfile);
     }
+    if (response.status === 422) {
+      setErrorMSG(response.data.message);
+    }
   };
 
   return (
     <Layout reduceTop="true">
-      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={postSend} data={data} setData={setData} />
+      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={postSend} data={data} setData={setData} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} />
     </Layout>
   );
 }

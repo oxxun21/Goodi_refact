@@ -13,7 +13,7 @@ export const productUploadAPI = async ({ link, itemName, price, itemImage }) => 
     });
     return response;
   } catch (error) {
-    throw error;
+    return error.response;
   }
 };
 

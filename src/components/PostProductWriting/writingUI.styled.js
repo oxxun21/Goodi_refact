@@ -43,7 +43,7 @@ export const ImagUploadWrap = styled.fieldset`
 export const ContentUploadWrap = styled.fieldset`
   flex-grow: 1;
   button {
-    margin-top: 48px;
+    margin-top: 40px;
   }
 `;
 
@@ -137,9 +137,10 @@ export const Label = styled.label`
 `;
 
 export const ErrorMassage = styled.div`
-  margin-top: 10px;
+  margin-top: 8px;
   color: red;
   font-size: 14px;
+  font-family: var(--font--Bold);
 `;
 
 export const LoadingImage = styled.div`

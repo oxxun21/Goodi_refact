@@ -3,7 +3,7 @@ import * as T from "../writingUI.styled";
 
 import { Textarea, Button } from "./../../common";
 
-export default function PostWriting({ handleInputChange, description }) {
+export default function PostWriting({ handleInputChange, description, errorMSG }) {
   return (
     <T.ContentUploadWrap>
       <T.InputWrap>
@@ -11,6 +11,7 @@ export default function PostWriting({ handleInputChange, description }) {
         <Textarea width="100%" height="300px" placeholder="게시글 내용을 입력해주세요" textCount={description} value={description} onChange={handleInputChange} name="content" count="100" />
       </T.InputWrap>
 
+      <T.ErrorMassage>{errorMSG}</T.ErrorMassage>
       <Button type="submit" height="56px" text={"게시글 업로드 하기"} br="4px" />
     </T.ContentUploadWrap>
   );

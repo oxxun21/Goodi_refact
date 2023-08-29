@@ -12,9 +12,7 @@ export const postUploadAPI = async ({ content, image }) => {
     });
     return response;
   } catch (error) {
-    console.log(error);
-    console.log(getLoginCookie());
-    throw error;
+    return error.response;
   }
 };
 

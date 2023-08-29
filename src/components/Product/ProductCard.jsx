@@ -27,9 +27,9 @@ export default function ProductCard({ profile, name, email, img, title, descript
     const handleClickOutside = (event) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (handleClick && localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
-        setIsHidden(false);
-      }
+      // if (handleClick && localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
+      //   setIsHidden(false);
+      // }
     };
     document.addEventListener("click", handleClickOutside);
     return () => {
