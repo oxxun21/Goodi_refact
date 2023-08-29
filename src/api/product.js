@@ -51,7 +51,6 @@ export const productGetUpdateAPI = async (id) => {
 export const productDeleteAPI = async (product_id) => {
   try {
     const response = await instance.delete(`/product/${product_id}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
