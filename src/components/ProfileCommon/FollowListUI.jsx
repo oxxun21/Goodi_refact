@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // api
-import { followingAPI } from "../../api/follow";
-import { followerAPI } from "../../api/follow";
+import { followingAPI, followerAPI } from "../../api";
 
 // 컴포넌트
 import Follow from "./Follow";

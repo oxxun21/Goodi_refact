@@ -8,10 +8,8 @@ import { LeftDiv } from "../components/Carousel";
 import ProfileImgDef from "../assets/profile_img_def.svg";
 import PlusBtnImg from "../assets/add_button.svg";
 import JoinTo from "../assets/Join to.svg";
-import { BASE_URL } from "../utils";
 
-import { singUpAPI } from "../api";
-import { handleUploadImageAPI } from "../utils/handleUploadImage";
+import { singUpAPI, uploadImageAPI } from "../api";
 
 export default function Join() {
   const navigate = useNavigate();
@@ -19,14 +17,13 @@ export default function Join() {
 
   const [errorMSG, setErrorMSG] = useState("");
   const [profileSelectedImage, setProfileSelectedImage] = useState(null);
+  const [imageWrap, setImageWrap] = useState([]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { email, password, username, intro, image } = formRef.current.elements;
+    const { email, password, username, intro } = formRef.current.elements;
 
     let accountName = email.value.split("@")[0];
-
-    const imageURL = await handleUploadImageAPI({ files: image.files, inputFileElement: image });
 
     const response = await singUpAPI({
       username: username.value,
@@ -34,7 +31,7 @@ export default function Join() {
       password: password.value,
       accountname: accountName,
       intro: intro.value,
-      image: imageURL,
+      image: imageWrap,
     });
 
     if (response.data.status === 422) {
@@ -44,7 +41,12 @@ export default function Join() {
     }
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
+    const { image } = formRef.current.elements;
+    const file = image.files[0];
+    const imageURL = await uploadImageAPI(file);
+    setImageWrap(imageURL);
+
     if (e.target.files && e.target.files[0]) {
       const selectedImage = URL.createObjectURL(e.target.files[0]);
       setProfileSelectedImage(selectedImage);

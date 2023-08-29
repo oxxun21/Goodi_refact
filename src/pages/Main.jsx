@@ -18,46 +18,41 @@ import CarouselImg25 from "../assets/sample-img/sample-image-25.jpg";
 import CarouselImg26 from "../assets/sample-img/sample-image-26.png";
 
 export default function Main() {
-  const [loading, setLoading] = useState(false);
-
   return (
     <Layout>
-      {loading ? (
-        <MainSkeleton />
-      ) : (
-        <MainWrap>
-          <MainLeft>
-            <article>
-              <img src={commonBanner} alt="팔로워 인기 TOP 3위 작가님들 지금 바로 상품구경" />
-            </article>
-            <section>
-              <h2 className="a11y-hidden">팔로워 인기 TOP 3 작가 작품</h2>
-              <img src={CarouselImg22} alt="" />
-              <img src={CarouselImg25} alt="" />
-              <img src={CarouselImg26} alt="" />
-              {/* 의미있게 변경 */}
-            </section>
-          </MainLeft>
+      <MainWrap>
+        <MainLeft>
+          <article>
+            <img src={commonBanner} alt="팔로워 인기 TOP 3위 작가님들 지금 바로 상품구경" />
+          </article>
+          <section>
+            <h2 className="a11y-hidden">팔로워 인기 TOP 3 작가 작품</h2>
+            <img src={CarouselImg22} alt="" />
+            <img src={CarouselImg25} alt="" />
+            <img src={CarouselImg26} alt="" />
+            {/* 의미있게 변경 */}
+          </section>
+        </MainLeft>
 
-          <Line />
+        <Line />
 
-          <MainRight>
-            <Title>
-              <img src={popularProducts} alt="popular products" />
-            </Title>
-            <MainRightCard />
-            <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
-          </MainRight>
+        <MainRight>
+          <Title>
+            <img src={popularProducts} alt="popular products" />
+          </Title>
+          <MainRightCard />
+          <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
+        </MainRight>
 
-          <MainBottom>
-            <Title>
-              <img src={popularAuthor} alt="Popular Author" />
-            </Title>
-            <PopularAuthorView account="popular1" />
-            <PopularAuthorView account="popular2" />
-          </MainBottom>
-        </MainWrap>
-      )}
+        <MainBottom>
+          <Title>
+            <img src={popularAuthor} alt="Popular Author" />
+          </Title>
+          {/* 401 에러 발생 부분 */}
+          {/* <PopularAuthorView account="popular1" />
+          <PopularAuthorView account="popular2" /> */}
+        </MainBottom>
+      </MainWrap>
     </Layout>
   );
 }

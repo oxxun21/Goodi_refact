@@ -11,19 +11,25 @@ import KakaoIcon from "../assets/kakao.svg";
 import WelcomTo from "../assets/Welcome to.svg";
 
 import { loginAPI } from "../api";
-import { setLoginCookie } from "../utils";
+import { getLoginCookie, setLoginCookie } from "../utils";
 
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { loginCheck, loginToken, accountname } from "../recoil";
+import { useSetRecoilState } from "recoil";
+import { accountname } from "../recoil";
+import { instance } from "../api/instance";
+
+const interceptorHeader = () => {
+  instance.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${getLoginCookie()}`;
+    return config;
+  });
+};
 
 export default function Login() {
   const navigate = useNavigate();
   const formRef = useRef();
 
-  const [token, setToken] = useRecoilState(loginToken);
   const setIsAccountname = useSetRecoilState(accountname);
   const [errorMSG, setErrorMSG] = useState("");
-  const setIsLoginCheck = useSetRecoilState(loginCheck);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,10 +39,11 @@ export default function Login() {
     if (response.data.status === 422) {
       setErrorMSG(response.data.message);
     } else {
-      setToken(response.data.user.token);
-      setIsAccountname(response.data.user.accountname);
-      setIsLoginCheck(true);
-      setLoginCookie(token, { path: "/main" });
+      const { token, accountname } = response.data.user;
+      setIsAccountname(accountname);
+      setLoginCookie(token, { path: "/" });
+
+      interceptorHeader();
       navigate("/main");
     }
   };

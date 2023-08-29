@@ -8,80 +8,47 @@ import ImageSection from "./UIcomponents/ImageSection";
 import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
-// 이미지 최적화
-import { handleDataForm } from "../../utils";
-
 export default function UploadTotalUI(props) {
-  const { src, subtext, getData, data, setData, setImageWrap, imageWrap, userErrorMessage, handleError } = props;
+  const { src, subtext, send, data, setData, errorMSG, imageWrap, setImageWrap } = props;
 
   const location = useLocation();
 
-  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
 
   // 글자수 카운트
   const handleTextCount = (e) => {
     const textSlice = e.target.value;
-    setDescription(textSlice.slice(0, 50));
+    setDescription(textSlice.slice(0, 100));
   };
 
-  // API 처리
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
+    setDescription(value);
 
-    if (e.target.type === "file") {
-      const file = e.target.files[0];
-
-      const options = {
-        maxSizeMB: 0.2,
-        maxWidthOrHeight: 490,
-        useWebWorker: true,
-      };
-
-      setLoading(true);
-      const resizingBlob = await imageCompression(file, options);
-      const reader = new FileReader();
-      reader.readAsDataURL(resizingBlob);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        handleDataForm(base64data, name, setImageWrap, setLoading);
-      };
-    } else {
-      setDescription(value);
-
-      if (data.hasOwnProperty("post")) {
-        setData((prevState) => ({
-          ...prevState,
-          post: {
-            ...prevState.post,
-            image: imageWrap.join(),
-            [name]: name === "price" ? parseInt(value) : value,
-          },
-        }));
-      }
-
-      if (data.hasOwnProperty("product")) {
-        setData((prevState) => ({
-          ...prevState,
-          product: {
-            ...prevState.product,
-            itemImage: imageWrap.join(),
-            [name]: name === "price" ? parseInt(value) : value,
-          },
-        }));
-      }
-
-      if (name === "content" || name === "link") {
-        handleTextCount(e);
-      }
+    if (location.pathname === "/postUpload") {
+      setData((prevState) => ({
+        ...prevState,
+        post: {
+          ...prevState.post,
+          image: imageWrap.join(","),
+          [name]: value,
+        },
+      }));
     }
-  };
 
-  const joinData = (e) => {
-    e.preventDefault();
-    handleError();
-    if (userErrorMessage.length === 0) {
-      getData(data);
+    if (location.pathname === "/productUpload") {
+      setData((prevState) => ({
+        ...prevState,
+        product: {
+          ...prevState.product,
+          itemImage: imageWrap.join(","),
+          [name]: name === "price" ? parseInt(value) : value,
+        },
+      }));
+    }
+
+    if (name === "content" || name === "link") {
+      handleTextCount(e);
     }
   };
 
@@ -92,14 +59,14 @@ export default function UploadTotalUI(props) {
         <img src={src} alt={src} />
         <p>{subtext}</p>
 
-        <T.UploadWrap onSubmit={joinData}>
-          <ImageSection handleInputChange={handleInputChange} loading={loading} imageWrap={imageWrap} userErrorMessage={userErrorMessage} />
+        <T.UploadWrap onSubmit={send}>
+          <ImageSection imageWrap={imageWrap} setImageWrap={setImageWrap} />
 
           <T.Line />
 
-          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} userErrorMessage={userErrorMessage} handleError={handleError} />}
+          {location.pathname === "/postUpload" && <PostWriting handleInputChange={handleInputChange} description={description} errorMSG={errorMSG} />}
 
-          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} userErrorMessage={userErrorMessage} handleError={handleError} />}
+          {location.pathname === "/productUpload" && <ProductWriting data={data} handleInputChange={handleInputChange} errorMSG={errorMSG} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

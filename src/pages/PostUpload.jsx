@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -13,20 +13,15 @@ import postUproad from "../assets/post_upload.svg";
 import { postUploadAPI } from "../api";
 
 //recoil
-import { loginToken, accountname } from "../recoil";
+import { accountname } from "../recoil";
 
 export default function PostUpload() {
   const navigate = useNavigate();
-
-  const token = useRecoilValue(loginToken);
   const account_name = useRecoilValue(accountname);
   const myProfile = `/profile/${account_name}`;
 
   const [imageWrap, setImageWrap] = useState([]);
-  const [userErrorMessage, setUserErrorMessage] = useState([]);
-
-  // 게시글 입력 데이터
-  const [postData, setPostData] = useState();
+  const [errorMSG, setErrorMSG] = useState("");
   const [data, setData] = useState({
     post: {
       content: "",
@@ -34,55 +29,21 @@ export default function PostUpload() {
     },
   });
 
-  const getPostData = (data) => {
-    setPostData(data);
-  };
+  const postSend = async (e) => {
+    e.preventDefault();
+    const response = await postUploadAPI({ content: data.post.content, image: data.post.image });
 
-  useEffect(() => {
-    if (postData) {
-      handlePost(postData, token);
+    if (response.status === 200) {
+      navigate(myProfile);
     }
-  }, [postData]);
-
-  const handlePost = async (PostData, token) => {
-    const response = await postUploadAPI(PostData, token);
-
-    if (response && response.hasOwnProperty("post")) navigate(myProfile);
-  };
-
-  const handleError = () => {
-    setData((prevState) => ({
-      ...prevState,
-      post: {
-        ...prevState.post,
-        image: imageWrap.join(),
-      },
-    }));
-
-    const errors = [];
-    if (data.post.image === "" && imageWrap.length === 0) {
-      errors.push("이미지를 한개 이상 업로드 해주세요");
+    if (response.status === 422) {
+      setErrorMSG(response.data.message);
     }
-
-    if (data.post.content === "" || !data.post.content) {
-      errors.push("게시글을 입력해주세요");
-    }
-    setUserErrorMessage(errors);
   };
 
   return (
     <Layout reduceTop="true">
-      <UploadTotalUI
-        src={postUproad}
-        subtext="당신의 게시글을 업로드 해보세요!"
-        getData={getPostData}
-        data={data}
-        setData={setData}
-        handleError={handleError}
-        setImageWrap={setImageWrap}
-        imageWrap={imageWrap}
-        userErrorMessage={userErrorMessage}
-      />
+      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={postSend} data={data} setData={setData} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} />
     </Layout>
   );
 }

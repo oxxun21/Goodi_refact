@@ -12,7 +12,6 @@ export const singUpAPI = async ({ username, email, password, accountname, intro,
 export const loginAPI = async ({ email, password }) => {
   try {
     const response = await instance.post("/user/login", { user: { email, password } });
-    console.log(response);
     return response;
   } catch (error) {
     throw error;

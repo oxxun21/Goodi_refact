@@ -14,7 +14,7 @@ export default function ProductCard({ profile, name, email, img, title, descript
   const handleClick = useRef();
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
-  const account_name = temp.account_name ? temp.account_name : myaccount_name;
+  const account_name = temp.accountname ? temp.accountname : myaccount_name;
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -44,8 +44,8 @@ export default function ProductCard({ profile, name, email, img, title, descript
   return (
     <CardWrap>
       <CardTop>
-        <ProfileUI user_profile={profile} user_name={name} card="true" account_name={email} id={id} />
-        {account_name === myaccount_name && (
+        <ProfileUI user_profile={profile} user_name={name} card="true" account_name={account_name} id={id} />
+        {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="메뉴 아이콘" ref={handleClick} />
           </button>
