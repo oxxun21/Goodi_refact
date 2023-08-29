@@ -79,13 +79,13 @@ export default function PostCard({ username, profileImage, email, content, image
 
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
-  const account_name = temp.account_name ? temp.account_name : myaccount_name;
+  const account_name = temp.accountname ? temp.accountname : myaccount_name;
 
   return (
     <PostOuter>
       <PostTop>
         <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile={false} card={true} account_name={account_name} />
-        {account_name === myaccount_name && (
+        {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="게시글 삭제 및 신고 메뉴" ref={handleClick} />
           </button>
