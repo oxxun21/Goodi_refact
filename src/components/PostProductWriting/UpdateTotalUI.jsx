@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as T from "./writingUI.styled";
 import { useLocation, useParams } from "react-router";
 
@@ -6,26 +6,11 @@ import ImageSection from "./UIcomponents/ImageSection";
 import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
-import { uploadImageAPI } from "../../api";
-
 export default function UpdateTotalUI(props) {
   const { src, subtext, data, setData, send, description, imageWrap, setImageWrap } = props;
 
   const location = useLocation();
   const locationID = useParams();
-
-  const handleImageChange = async (e) => {
-    const { name } = e.target;
-    if (e.target.type === "file") {
-      const file = e.target.files[0];
-      const imgSrc = await uploadImageAPI(file);
-      setImageWrap((prevArray) => {
-        const newArray = [...prevArray];
-        newArray[parseInt(name)] = imgSrc;
-        return newArray;
-      });
-    }
-  };
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
@@ -43,7 +28,7 @@ export default function UpdateTotalUI(props) {
         <p>{subtext}</p>
 
         <T.UploadWrap onSubmit={send}>
-          <ImageSection handleInputChange={handleImageChange} imageWrap={imageWrap} />
+          <ImageSection imageWrap={imageWrap} setImageWrap={setImageWrap} />
 
           <T.Line />
 

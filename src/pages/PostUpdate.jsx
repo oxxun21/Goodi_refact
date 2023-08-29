@@ -14,7 +14,7 @@ import PostingUpload from "../assets/post_uproad.svg";
 import { postGetUpdateAPI, postPutAPI } from "../api";
 
 // Recoil
-import { loginToken, accountname } from "../recoil";
+import { accountname } from "../recoil";
 
 export default function PostUpdate() {
   const { posting_id } = useParams();
@@ -45,7 +45,7 @@ export default function PostUpdate() {
       post: {
         id: data.id,
         content: data.content,
-        image: data.image,
+        image: imageWrap.join(","),
       },
     };
 

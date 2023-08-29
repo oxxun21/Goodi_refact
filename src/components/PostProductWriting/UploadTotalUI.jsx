@@ -10,6 +10,7 @@ import ProductWriting from "./UIcomponents/ProductWriting";
 
 // 이미지 최적화
 import { handleDataForm } from "../../utils";
+import { uploadImageAPI } from "../../api";
 
 export default function UploadTotalUI(props) {
   const { src, subtext, send, data, setData } = props;
@@ -17,7 +18,6 @@ export default function UploadTotalUI(props) {
   const location = useLocation();
 
   const [imageWrap, setImageWrap] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
 
   // 글자수 카운트
@@ -26,55 +26,34 @@ export default function UploadTotalUI(props) {
     setDescription(textSlice.slice(0, 100));
   };
 
-  // API 처리
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
+    setDescription(value);
 
-    if (e.target.type === "file") {
-      const file = e.target.files[0];
+    if (location.pathname === "/postUpload") {
+      setData((prevState) => ({
+        ...prevState,
+        post: {
+          ...prevState.post,
+          image: imageWrap.join(),
+          [name]: value,
+        },
+      }));
+    }
 
-      const options = {
-        maxSizeMB: 0.2,
-        maxWidthOrHeight: 490,
-        useWebWorker: true,
-      };
+    if (location.pathname === "/productUpload") {
+      setData((prevState) => ({
+        ...prevState,
+        product: {
+          ...prevState.product,
+          itemImage: imageWrap.join(),
+          [name]: name === "price" ? parseInt(value) : value,
+        },
+      }));
+    }
 
-      setLoading(true);
-      const resizingBlob = await imageCompression(file, options);
-      const reader = new FileReader();
-      reader.readAsDataURL(resizingBlob);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        handleDataForm(base64data, name, setImageWrap, setLoading);
-      };
-    } else {
-      setDescription(value);
-
-      if (location.pathname === "/postUpload") {
-        setData((prevState) => ({
-          ...prevState,
-          post: {
-            ...prevState.post,
-            image: imageWrap.join(),
-            [name]: value,
-          },
-        }));
-      }
-
-      if (location.pathname === "/productUpload") {
-        setData((prevState) => ({
-          ...prevState,
-          product: {
-            ...prevState.product,
-            itemImage: imageWrap.join(),
-            [name]: name === "price" ? parseInt(value) : value,
-          },
-        }));
-      }
-
-      if (name === "content" || name === "link") {
-        handleTextCount(e);
-      }
+    if (name === "content" || name === "link") {
+      handleTextCount(e);
     }
   };
 
@@ -86,7 +65,7 @@ export default function UploadTotalUI(props) {
         <p>{subtext}</p>
 
         <T.UploadWrap onSubmit={send}>
-          <ImageSection handleInputChange={handleInputChange} imageWrap={imageWrap} />
+          <ImageSection imageWrap={imageWrap} setImageWrap={setImageWrap} />
 
           <T.Line />
 
