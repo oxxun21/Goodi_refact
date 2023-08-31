@@ -20,7 +20,7 @@ export default function Navigation() {
 
   const icons = [
     { name: "Search", nav: "" },
-    { name: "Home", nav: "/main" },
+    { name: "Home", nav: "/" },
     { name: "MyPage", nav: myProfile },
     { name: "Cart", nav: "/cart" },
     { name: "Chat", nav: "/chat" },
@@ -151,7 +151,7 @@ const NavList = styled.button`
   }
 
   &:focus {
-    outline: 1px solid #ff1515;
+    outline: 1px solid var(--main-color);
   }
 
   &:hover {

@@ -44,7 +44,7 @@ export default function Login() {
       setLoginCookie(token, { path: "/" });
 
       interceptorHeader();
-      navigate("/main");
+      navigate("/");
     }
   };
 

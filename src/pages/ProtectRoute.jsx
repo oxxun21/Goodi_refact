@@ -11,7 +11,7 @@ export default function ProtectRoute({ children }) {
 
   useEffect(() => {
     if (!isLogin) {
-      navigate("/", { state: errorMessage });
+      navigate("/login", { state: errorMessage });
     }
   }, []);
 
