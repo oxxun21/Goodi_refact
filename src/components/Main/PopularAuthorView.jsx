@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postListAPI } from "../../api";
@@ -7,32 +7,21 @@ import { postListAPI } from "../../api";
 import ProfileUI from "../ProfileUI";
 import NoPostsUI from "../NoPostsUI";
 
-import { useRecoilValue } from "recoil";
-import { accountname, checkDeletePost, checkProfile } from "../../recoil";
-
 import iconHeartWhite from "../../assets/icon_heart_line_white.svg";
 
 import { BASE_URL } from "../../utils";
 
-export default function PopularAuthorview({ account, heartCount }) {
+export default function PopularAuthorview({ account }) {
   const navigate = useNavigate();
   const [userPostList, setUserPostList] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const myaccount_name = useRecoilValue(accountname);
-  const checkDelete = useRecoilValue(checkDeletePost);
-  const checkProfileChange = useRecoilValue(checkProfile);
-  const temp = useParams();
-  const account_name = account ? account : temp.account_name ? temp.account_name : myaccount_name;
 
   useEffect(() => {
     const fetchPostData = async () => {
-      const response = await postListAPI(account_name);
+      const response = await postListAPI({ accountname: account });
 
       if (response.post) {
         setUserPostList(response.post);
       }
-
-      setLoading(false);
     };
 
     fetchPostData();
@@ -60,7 +49,7 @@ export default function PopularAuthorview({ account, heartCount }) {
                 user_email={userPostList[0].author.accountname}
                 mainprofile={false}
                 card={true}
-                account_name={account_name}
+                account_name={account}
                 style={{ margin: "20px" }}
               />
             </BottomWrap>
