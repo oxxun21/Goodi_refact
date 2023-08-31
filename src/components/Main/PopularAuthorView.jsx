@@ -47,8 +47,8 @@ export default function PopularAuthorview({ account }) {
                 user_profile={BASE_URL + userPostList[0].author.image}
                 user_name={userPostList[0].author.username}
                 user_email={userPostList[0].author.accountname}
-                mainprofile={false}
-                card={true}
+                mainprofile="false"
+                card="true"
                 account_name={account}
                 style={{ margin: "20px" }}
               />
@@ -59,7 +59,7 @@ export default function PopularAuthorview({ account }) {
               {Array.from(userPostList)
                 .reverse()
                 .map((post) => (
-                  <li>
+                  <li key={post.id}>
                     <BottomImgDiv onMouseEnter={() => handleMouseEnter(post.id)} onMouseLeave={handleMouseLeave} onClick={() => navigate(`/profile/${post.author?.accountname}`)}>
                       <BottomImg src={BASE_URL + (post.image.split(",")[0] || "")} alt="" key={post.id} />
                       {/* 좋아요 개수와 게시글 내용을 보여주는 요소 */}

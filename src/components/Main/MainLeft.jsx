@@ -14,22 +14,25 @@ export default function MainLeft() {
 
   useEffect(() => {
     const fetchfollowProduct = async () => {
-      const usernameResponse = await followingAPI(accountName);
-      const renderProduct = usernameResponse.data.slice(0, 5);
+      try {
+        const usernameResponse = await followingAPI(accountName);
+        const renderProduct = usernameResponse.data.slice(0, 4);
 
-      const imgPromises = renderProduct.map(async (item) => {
-        const response = await productListAPI({ accountname: item.accountname });
+        const imgPromises = renderProduct.map(async (item) => {
+          const response = await productListAPI({ accountname: item.accountname });
 
-        if (response.product) {
-          const img = response.product[0].itemImage;
-          const id = response.product[0].id;
-          return { img, id };
-        }
-      });
+          if (response.product) {
+            const img = response.product[0].itemImage.split(",")[0];
+            const id = response.product[0].id;
+            return { img, id };
+          }
+        });
 
-      const imgIdResults = await Promise.all(imgPromises);
-
-      setRender(imgIdResults);
+        const imgIdResults = await Promise.all(imgPromises);
+        setRender(imgIdResults);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchfollowProduct();
   }, []);
