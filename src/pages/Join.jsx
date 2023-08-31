@@ -103,6 +103,7 @@ const RightDiv = styled.div`
   textarea {
     resize: none;
     border: 1px solid var(--gray300-color);
+    font-family: var(--font--Regular);
     width: 100%;
     min-height: 90px;
     border-radius: 4px;
