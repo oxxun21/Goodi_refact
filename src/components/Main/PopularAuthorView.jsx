@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { postListAPI } from "../api";
+import { postListAPI } from "../../api";
 
-import ProfileUI from "./ProfileUI";
-import NoPostsUI from "../components/NoPostsUI";
+import ProfileUI from "../ProfileUI";
+import NoPostsUI from "../NoPostsUI";
 
 import { useRecoilValue } from "recoil";
-import { accountname, checkDeletePost, checkProfile } from "../recoil";
+import { accountname, checkDeletePost, checkProfile } from "../../recoil";
 
-import iconHeartWhite from "../assets/icon_heart_line_white.svg";
+import iconHeartWhite from "../../assets/icon_heart_line_white.svg";
 
-import { BASE_URL } from "../utils";
+import { BASE_URL } from "../../utils";
 
 export default function PopularAuthorview({ account, heartCount }) {
   const navigate = useNavigate();

@@ -110,8 +110,7 @@ export default function Detail() {
                   key={productData.author._id}
                   user_profile={checkImageUrl(productData.author.image, "profile")}
                   user_name={productData.author.username}
-                  user_email={productData.author.accountname}
-                  account_name={account_name}
+                  account_name={productData.author.accountname}
                 />
               </div>
 
