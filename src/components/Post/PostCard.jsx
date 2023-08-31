@@ -48,13 +48,6 @@ export default function PostCard({ username, profileImage, email, content, image
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const getHeartData = () => {
-    setHeartValue((prev) => (prev += 1));
-  };
-  const cancleHeartData = () => {
-    setHeartValue((prev) => (prev -= 1));
-  };
-
   const handleLocalNav = () => {
     setIsHidden((prevIsHidden) => !prevIsHidden);
   };
@@ -113,7 +106,7 @@ export default function PostCard({ username, profileImage, email, content, image
           <span>{elapsedTimeString}</span>
           <div className="like_wrap">
             <span>{heartValue}</span>
-            <ButtonPostLike postId={postId} getHeartData={getHeartData} cancleHeartData={cancleHeartData} liked={hearted} />
+            <ButtonPostLike postId={postId} liked={hearted} setHeartValue={setHeartValue} />
           </div>
         </div>
       </PostContent>

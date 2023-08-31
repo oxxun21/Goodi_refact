@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import { loginToken, checkProfile, checkDeletePost } from "../../recoil";
+import { checkProfile, checkDeletePost } from "../../recoil";
 
 // api
 import { productListAPI } from "../../api";
@@ -15,7 +15,6 @@ import NoPostsUI from "../NoPostsUI";
 import { BASE_URL, checkImageUrl } from "../../utils";
 
 export default function ProductCardList({ accountname, profile }) {
-  const token = useRecoilValue(loginToken);
   const checkProfileChange = useRecoilValue(checkProfile);
   const checkDelete = useRecoilValue(checkDeletePost);
 
@@ -24,7 +23,7 @@ export default function ProductCardList({ accountname, profile }) {
   useEffect(() => {
     const productGet = async () => {
       try {
-        const response = await productListAPI(accountname, token);
+        const response = await productListAPI(accountname);
         setproductGetData(response);
       } catch (error) {
         console.error("Account API 에러가 발생했습니다", error);

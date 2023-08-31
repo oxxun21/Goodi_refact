@@ -1,4 +1,4 @@
-import { authInstance, instance, unauthInstance } from "./instance";
+import { instance } from "./instance";
 
 export const singUpAPI = async ({ username, email, password, accountname, intro, image }) => {
   try {
@@ -20,7 +20,7 @@ export const loginAPI = async ({ email, password }) => {
 
 export const searchAPI = async (keyword) => {
   try {
-    const response = await authInstance.get(`/user/searchuser/?keyword=${keyword}`);
+    const response = await instance.get(`/user/searchuser/?keyword=${keyword}`);
     return response;
   } catch (error) {
     throw error;

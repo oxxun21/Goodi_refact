@@ -29,7 +29,7 @@ export default function SearchHistory() {
         <h3>최근 검색어</h3>
         {isRecentSearch.length > 0 ? (
           <button type="button" onClick={handleAllDelete}>
-            모두 닫기
+            전체 삭제
           </button>
         ) : null}
       </HistoryTitle>

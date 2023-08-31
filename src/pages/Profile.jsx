@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import account_name from "../recoil/accountname";
+import { accountname } from "../recoil";
 import { checkFollow } from "../recoil";
 
 // api
@@ -17,22 +17,22 @@ import ProfileRightUI from "../layout/profileLayout/ProfileRightUI";
 import ProfileSkeleton from "./../style/skeletonUI/skeletonPage/ProfileSkeleton";
 
 export default function Profile() {
-  const accountname = useParams();
+  const account_name = useParams();
   const [loading, setLoading] = useState(true);
   const [myProfile, setMyProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
-  const myAccount = useRecoilValue(account_name);
+  const myAccount = useRecoilValue(accountname);
   const checkFollowChange = useRecoilValue(checkFollow);
 
   useEffect(() => {
-    setMyProfile(myAccount === accountname);
+    setMyProfile(myAccount === account_name.accountname);
     const getProfileData = async () => {
-      const res = await accountProfileAPI(accountname);
+      const res = await accountProfileAPI(account_name);
       setProfileData(res);
       setLoading(false);
     };
     getProfileData();
-  }, [accountname, checkFollowChange]);
+  }, [account_name, checkFollowChange]);
 
   return (
     <Layout reduceTop="true">
@@ -41,8 +41,8 @@ export default function Profile() {
           <ProfileSkeleton />
         ) : (
           <>
-            <ProfileLeftUI setProfileData={setProfileData} myProfile={myProfile} accountname={accountname} profileData={profileData} />
-            <ProfileRightUI accountname={accountname} />
+            <ProfileLeftUI setProfileData={setProfileData} myProfile={myProfile} accountname={account_name} profileData={profileData} />
+            <ProfileRightUI accountname={account_name} />
           </>
         )}
       </ProfileWrap>

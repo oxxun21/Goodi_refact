@@ -9,7 +9,7 @@ import { ButtonFollow } from "../common";
 import followSymbol from "../../assets/follow_symbol.svg";
 import { checkImageUrl } from "../../utils";
 
-export default function SearchResult({ searchResult, isFollowing }) {
+export default function SearchResult({ searchResult }) {
   return (
     <ResultWrap>
       <ResultTitle>

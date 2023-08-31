@@ -1,25 +1,23 @@
 import styled from "styled-components";
 import Button from "./Button/Button";
 import CloseButton from "../../assets/close-button.svg";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import LogoutHandler from "../Logout";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { productDeleteAPI, postDeleteAPI } from "../../api";
-import { loginToken, checkDeletePost } from "../../recoil";
+import { checkDeletePost } from "../../recoil";
 
 export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }) {
-  // const handleLogout = LogoutHandler().handleLogout;
-  const token = useRecoilValue(loginToken);
   const { handleLogout } = LogoutHandler();
   const [checkDelete, setCheckDelete] = useRecoilState(checkDeletePost);
 
   const handleClick = async (e) => {
     if (e.target.innerText === "삭제하겠습니다") {
-      const response = await postDeleteAPI(postId, token);
+      const response = await postDeleteAPI(postId);
       setCheckDelete((prev) => !prev);
       return response;
     } else if (e.target.innerText === "상품을 삭제하겠습니다") {
-      const response = await productDeleteAPI(postId, token);
+      const response = await productDeleteAPI(postId);
       setCheckDelete((prev) => !prev);
       return response;
     } else {

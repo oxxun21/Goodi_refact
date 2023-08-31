@@ -14,10 +14,10 @@ import { Form, Toast } from "../components/common";
 import ChatSkeleton from "../style/skeletonUI/skeletonPage/ChatSkeleton";
 
 // API
-import { profileAPI, followingAPI } from "../api";
+import { followingAPI, accountProfileAPI } from "../api";
 
 // Recoil
-import { loginToken, accountname } from "../recoil";
+import { accountname } from "../recoil";
 
 // Mock Data
 import chatDummy from "../mock/chatDummy";
@@ -25,7 +25,6 @@ import chatDummy from "../mock/chatDummy";
 import { checkImageUrl } from "../utils";
 
 export default function Chat(reduceTop) {
-  const token = useRecoilValue(loginToken);
   const accountName = useRecoilValue(accountname);
 
   const [toast, setToast] = useState(false);
@@ -72,10 +71,10 @@ export default function Chat(reduceTop) {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await profileAPI(token);
-        const followingData = await followingAPI(accountName, token);
-        setProfileData(response.user);
-        setFollowingList(followingData);
+        const response = await accountProfileAPI({ accountname: accountName });
+        const followingData = await followingAPI(accountName);
+        setProfileData(response);
+        setFollowingList(followingData.data);
         setLoading(false);
       } catch (error) {
         console.log("api에러", error);
@@ -110,23 +109,21 @@ export default function Chat(reduceTop) {
               </ChatUserNull>
             ) : (
               <div>
-                {followingList?.map((el, i) => {
-                  {
-                    console.log(chatDummy[i]?.text);
-                  }
-                  return (
-                    <ChatUser className={isActive === el._id ? "active" : ""} key={el._id} onClick={handleChat} data-dummy-chat={chatDummy[i]?.text} data-id={el._id} data-image={el.image}>
-                      <img src={checkImageUrl(el.image, "profile")} alt="유저 이미지" />
-                      <ChatText>
-                        <div>
-                          <strong>{el.username}</strong>
-                          <p>{chatDummy[i]?.date}</p>
-                        </div>
-                        <p className="dummy_chat">{chatDummy[i]?.text}</p>
-                      </ChatText>
-                    </ChatUser>
-                  );
-                })}
+                {followingList &&
+                  followingList.map((el, i) => {
+                    return (
+                      <ChatUser className={isActive === el._id ? "active" : ""} key={el._id} onClick={handleChat} data-dummy-chat={chatDummy[i]?.text} data-id={el._id} data-image={el.image}>
+                        <img src={checkImageUrl(el.image, "profile")} alt="유저 이미지" />
+                        <ChatText>
+                          <div>
+                            <strong>{el.username}</strong>
+                            <p>{chatDummy[i]?.date}</p>
+                          </div>
+                          <p className="dummy_chat">{chatDummy[i]?.text}</p>
+                        </ChatText>
+                      </ChatUser>
+                    );
+                  })}
               </div>
             )}
           </ChatWrapLeft>

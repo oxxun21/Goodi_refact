@@ -19,14 +19,13 @@ import DeliveryIcon from "../assets/icon_delivery_dark.svg";
 import { productGetUpdateAPI } from "../api";
 
 //recoil
-import { loginToken, accountname, cartItemsState } from "../recoil";
+import { accountname, cartItemsState } from "../recoil";
 
 import { checkImageUrl } from "../utils";
 
 export default function Detail() {
   const { id } = useParams();
-  // 유저 토큰
-  const token = useRecoilValue(loginToken);
+
   const [loading, setLoading] = useState(true);
   const [productData, setProductData] = useState("");
   const [price, setPrice] = useState(0);

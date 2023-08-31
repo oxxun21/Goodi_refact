@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 // 컴포넌트
 import SearchInput from "./SearchInput";
@@ -14,7 +14,7 @@ import SearchSkeleton from "../../style/skeletonUI/skeletonPage/SearchSkeleton";
 import { searchAPI } from "../../api";
 
 // Recoil
-import { loginToken, recentSearch } from "../../recoil";
+import { recentSearch } from "../../recoil";
 
 //! 팔로우버튼 기능
 export default function Search({ handleSearch }) {
@@ -22,8 +22,6 @@ export default function Search({ handleSearch }) {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = useRecoilValue(loginToken);
 
   // input value 가져오기
   const handleClick = async (e) => {
@@ -34,14 +32,11 @@ export default function Search({ handleSearch }) {
   // 검색결과 가져오기
   const fetchSearchAPI = async () => {
     setIsLoading(true);
-    try {
-      const response = await searchAPI(token, keyword);
-      setSearchResult(response);
-      setIsRecentSearch((preveState) => [...preveState, keyword]);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("에러", error);
-    }
+
+    const response = await searchAPI(keyword);
+    setSearchResult(response.data);
+    setIsRecentSearch((preveState) => [...preveState, keyword]);
+    setIsLoading(false);
 
     setKeyword("");
   };
