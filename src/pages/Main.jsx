@@ -2,37 +2,22 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 
-import commonBanner from "../assets/common-banner.svg";
 import arrowPrimaryIcon from "../assets/icon_arrow_primary.svg";
 import pointEdge from "../assets/point-edge.svg";
 import popularProducts from "../assets/popular-products.svg";
 import popularAuthor from "../assets/popular-author.svg";
 
-import PopularAuthorView from "../components/PopularAuthorView";
+import PopularAuthorView from "../components/Main/PopularAuthorView";
 import Layout from "../layout/Layout";
 import MainSkeleton from "../style/skeletonUI/skeletonPage/MainSkeleton";
-import MainRightCard from "./../components/MainRightCard";
-
-import CarouselImg22 from "../assets/sample-img/sample-image-22.png";
-import CarouselImg25 from "../assets/sample-img/sample-image-25.jpg";
-import CarouselImg26 from "../assets/sample-img/sample-image-26.png";
+import MainRightCard from "../components/Main/MainRightCard";
+import MainLeft from "../components/Main/MainLeft";
 
 export default function Main() {
   return (
     <Layout>
       <MainWrap>
-        <MainLeft>
-          <article>
-            <img src={commonBanner} alt="팔로워 인기 TOP 3위 작가님들 지금 바로 상품구경" />
-          </article>
-          <section>
-            <h2 className="a11y-hidden">팔로워 인기 TOP 3 작가 작품</h2>
-            <img src={CarouselImg22} alt="" />
-            <img src={CarouselImg25} alt="" />
-            <img src={CarouselImg26} alt="" />
-            {/* 의미있게 변경 */}
-          </section>
-        </MainLeft>
+        <MainLeft />
 
         <Line />
 
@@ -61,16 +46,6 @@ const MainWrap = styled.div`
   display: grid;
   grid-template-columns: 0.7fr 0.1fr 1fr;
   grid-template-rows: auto;
-`;
-
-const MainLeft = styled.section`
-  article {
-    margin-bottom: 16px;
-  }
-
-  img {
-    width: 100%;
-  }
 `;
 
 const MainRight = styled.section`
