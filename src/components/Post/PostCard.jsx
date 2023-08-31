@@ -183,4 +183,5 @@ const LocalNavWrap = styled.div`
   position: absolute;
   top: 43px;
   right: 0;
+  z-index: 10;
 `;

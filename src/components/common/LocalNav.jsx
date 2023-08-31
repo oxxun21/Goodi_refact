@@ -36,20 +36,11 @@ const LocalNavBar = styled.ul`
   background-color: white;
   padding: 6px 6px;
   box-shadow: -2px 4px 6px 0 rgba(0, 0, 0, 0.08);
-  z-index: 1;
 
   li + li {
     border-top: 1px solid var(--gray200-color);
     padding-top: 4px;
   }
-
-  ${(props) =>
-    props.navibar &&
-    css`
-      position: absolute;
-      bottom: 177px;
-      right: 90px;
-    `}
 `;
 
 const LocalList = styled.li``;
