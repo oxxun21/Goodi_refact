@@ -8,7 +8,7 @@ import ProfileUI from "./ProfileUI";
 import NoPostsUI from "../components/NoPostsUI";
 
 import { useRecoilValue } from "recoil";
-import { loginToken, accountname, checkDeletePost, checkProfile } from "../recoil";
+import { accountname, checkDeletePost, checkProfile } from "../recoil";
 
 import iconHeartWhite from "../assets/icon_heart_line_white.svg";
 
