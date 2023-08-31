@@ -9,10 +9,9 @@ import { followAPI, unfollowAPI } from "../../../api";
 
 // Recoil
 import { useRecoilValue, useRecoilState } from "recoil";
-import { loginToken, accountname, checkFollow } from "../../../recoil";
+import { accountname, checkFollow } from "../../../recoil";
 
 export default function ButtonFollow({ isFollow, accountName, padding }) {
-  const token = useRecoilValue(loginToken);
   const myAccountName = useRecoilValue(accountname);
   const [toast, setToast] = useState(false);
   const [checkFollowChange, setCheckFollowChange] = useRecoilState(checkFollow);
@@ -27,7 +26,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
   // 팔로우
   const handleFollow = async () => {
     try {
-      const response = await followAPI(accountName, token);
+      const response = await followAPI(accountName);
       setIsFollowing(true);
       handleCart();
       setCheckFollowChange((prev) => !prev);
@@ -44,7 +43,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
   // 언팔로우
   const handleUnFollow = async () => {
     try {
-      const response = await unfollowAPI(accountName, token);
+      const response = await unfollowAPI(accountName);
       setIsFollowing(false);
       handleCart();
       setCheckFollowChange((prev) => !prev);

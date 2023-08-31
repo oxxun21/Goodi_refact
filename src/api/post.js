@@ -1,5 +1,4 @@
-import { getLoginCookie } from "../utils";
-import { authInstance, instance } from "./instance";
+import { instance } from "./instance";
 
 //게시글 작성
 export const postUploadAPI = async ({ content, image }) => {
@@ -47,9 +46,9 @@ export const postGetUpdateAPI = async (id) => {
 };
 
 //게시글 삭제
-export const postDeleteAPI = async (id, token) => {
+export const postDeleteAPI = async (id) => {
   try {
-    const response = await instance.delete(`/post/${id}`, token);
+    const response = await instance.delete(`/post/${id}`);
     return response.data;
   } catch (error) {
     throw error;

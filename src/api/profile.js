@@ -1,15 +1,4 @@
-import { authInstance, instance } from "./instance";
-
-//내 프로필 정보
-export const profileAPI = async () => {
-  try {
-    const response = await authInstance.get(`/user/myinfo`);
-    return response;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+import { instance } from "./instance";
 
 //프로필 정보
 export const accountProfileAPI = async ({ accountname }) => {

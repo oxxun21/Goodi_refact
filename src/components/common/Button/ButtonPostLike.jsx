@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { likeAPI, cancelLikeAPI } from "../../../api";
-import { useRecoilState } from "recoil";
-import { loginToken } from "../../../recoil";
 
 import nonLikeIcon from "../../../assets/empty_likeBtn.svg";
 import likeIcon from "../../../assets/post_fullLikeBtn.svg";
 
+// TODO: 좋아요 API 오류
 function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
   const initialHearted = localStorage.getItem(`hearted_${postId}`) === "true";
-  const [token] = useRecoilState(loginToken);
   const [IsLiked, setIsLiked] = useState(liked);
   const [heartCount, setHeartCount] = useState(0);
   const [hearted, sethearted] = useState(initialHearted);
@@ -26,7 +24,7 @@ function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
 
       if (IsLiked) {
         // 이미 하트를 누른 경우, 좋아요 취소
-        const response = await cancelLikeAPI(token, postId);
+        const response = await cancelLikeAPI(postId);
         if (response) {
           setIsLiked(false);
           setHeartCount(response.post.heartCount);
@@ -36,7 +34,7 @@ function ButtonPostLike({ postId, getHeartData, cancleHeartData, liked }) {
         }
       } else {
         // 하트를 누르지 않은 경우, 좋아요
-        const response = await likeAPI(token, postId);
+        const response = await likeAPI(postId);
         if (response) {
           setIsLiked(true);
           setHeartCount(response.post.heartCount);

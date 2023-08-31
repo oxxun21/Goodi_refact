@@ -1,4 +1,4 @@
-import { authInstance, instance } from "./instance";
+import { instance } from "./instance";
 
 //상품 작성
 export const productUploadAPI = async ({ link, itemName, price, itemImage }) => {

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // 리코일
-import { useRecoilValue, useRecoilState } from "recoil";
-import { loginToken, checkProfile } from "../../recoil";
+import { useRecoilState } from "recoil";
+import { checkProfile } from "../../recoil";
 
 // api
-import { profileAPI, uploadImage, updateProfile } from "../../api";
+import { updateProfile, uploadImageAPI } from "../../api";
 
 // 컴포넌트
 import { Input, Button } from "../common";
@@ -17,32 +17,19 @@ import PlusBtnImg from "../../assets/add_button.svg";
 import { checkImageUrl } from "../../utils";
 
 export default function UpdateProfile({ profileData, setIsEditing, setProfileData }) {
-  // 리코일
-  const token = useRecoilValue(loginToken);
-
   // 수정 관련 state
   const [changeImageURL, setChangeImageURL] = useState(profileData.image);
-  const [isImageUpload, setIsImageUpload] = useState(false);
   const [userName, setUserName] = useState(profileData.username);
   const [intro, setIntro] = useState(profileData.intro);
   const [checkProfileChange, setCheckProfileChange] = useRecoilState(checkProfile);
-  const [postChangeImg, setPostChangeImg] = useState({
-    user: {
-      image: changeImageURL,
-    },
-  });
 
-  // 이미지 fetch
   const handleImageChange = async (e) => {
-    setIsImageUpload(true);
     const file = e.target.files[0];
-    const imgSrc = await uploadImage(file);
+    const imgSrc = await uploadImageAPI(file);
 
     setChangeImageURL(imgSrc);
-    setIsImageUpload(false);
   };
 
-  // 저장 버튼 클릭 시 수정된 API에 데이터 전달
   const handleSaveClick = (e) => {
     e.preventDefault();
 
@@ -63,12 +50,10 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
     setCheckProfileChange((prev) => !prev);
   };
 
-  // 프로필 수정 취소 이벤트
   const handleCancelClick = () => {
     setIsEditing(false);
   };
 
-  // input 값 올바르게 받기
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "username") {
@@ -77,16 +62,6 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
       setIntro(value);
     }
   };
-
-  // useEffect(() => {
-  //   const postImage = async () => {
-  //     const response = await profileAPI();
-  //   };
-
-  //   if (postChangeImg) {
-  //     postImage(postChangeImg, token);
-  //   }
-  // }, [postChangeImg]);
 
   return (
     <>
@@ -109,7 +84,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
           <textarea placeholder="소개 글을 입력해주세요" name="intro" value={intro} onChange={handleInputChange}></textarea>
         </div>
         <Button text="수정 취소" type="button" bg="white" color="black" width="100%" padding="14px 0" fontSize="16px" onClick={handleCancelClick} />
-        <Button text="수정 완료" type="submit" bg="black" width="100%" padding="14px 0" fontSize="16px" br="none" disabled={isImageUpload} />
+        <Button text="수정 완료" type="submit" bg="black" width="100%" padding="14px 0" fontSize="16px" br="none" />
       </Form>
     </>
   );
