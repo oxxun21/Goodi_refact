@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import arrowPrimaryIcon from "../assets/icon_arrow_primary.svg";
 import pointEdge from "../assets/point-edge.svg";
@@ -33,9 +33,8 @@ export default function Main() {
           <Title>
             <img src={popularAuthor} alt="Popular Author" />
           </Title>
-          {/* 401 에러 발생 부분 */}
-          {/* <PopularAuthorView account="popular1" />
-          <PopularAuthorView account="popular2" /> */}
+          <PopularAuthorView account="popular1" />
+          <PopularAuthorView account="popular2" />
         </MainBottom>
       </MainWrap>
     </Layout>

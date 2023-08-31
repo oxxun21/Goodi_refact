@@ -10,11 +10,11 @@ import { accountname } from "../../recoil";
 
 import postMenu from "../../assets/post_menu.svg";
 
-export default function ProductCard({ profile, name, email, img, title, description, price, id }) {
+export default function ProductCard({ profile, name, mainaccount, img, title, description, price, id }) {
   const handleClick = useRef();
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
-  const account_name = temp.accountname ? temp.accountname : myaccount_name;
+  const account_name = temp.accountname ? temp.accountname : mainaccount || myaccount_name;
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
 

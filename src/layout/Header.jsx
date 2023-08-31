@@ -48,6 +48,7 @@ export default function Header() {
             })
             .slice(0, 5)
         )}
+        {followingData && <span>+{followingData.length - 5}</span>}
       </FollowingWrap>
     </HeaderLayout>
   );
@@ -67,7 +68,11 @@ const HeaderLayout = styled.header`
 
 const FollowingWrap = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  align-items: center;
+  span {
+    cursor: default;
+  }
 `;
 
 const LogoLink = styled(Link)`
@@ -84,6 +89,8 @@ const LogoLink = styled(Link)`
 `;
 
 const FollowingIcon = styled.button`
+  transition: all 0.3s;
+
   img {
     width: 40px;
     height: 40px;
@@ -92,7 +99,7 @@ const FollowingIcon = styled.button`
     cursor: pointer;
   }
 
-  &:focus {
-    outline: 1px solid #ff1515;
+  &:hover {
+    transform: scale(1.3);
   }
 `;

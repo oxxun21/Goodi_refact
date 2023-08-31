@@ -27,7 +27,6 @@ export default function FollowListUI({ profileData }) {
     const response = await followerAPI(name);
     setFollowerData([...response.data]);
   };
-  console.log(profileData);
 
   useEffect(() => {
     fetchFollowingData();
