@@ -37,7 +37,7 @@ export default function Join() {
     if (response.data.status === 422) {
       setErrorMSG(response.data.message);
     } else {
-      navigate("/");
+      navigate("/login");
     }
   };
 

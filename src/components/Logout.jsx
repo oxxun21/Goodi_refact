@@ -8,7 +8,7 @@ export default function LogoutHandler() {
     localStorage.removeItem("recoil-persist");
     removeLoginCookie({ path: "/" });
 
-    navigate("/");
+    navigate("/login");
   };
 
   return { handleLogout };
