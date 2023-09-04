@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 export default function Textarea({ ...props }) {
   return (
     <TextareaBoxWrap>
       <TextareaBox {...props}></TextareaBox>
-      <p>
-        ({props.value ? props.value.length : 0} /{" "}
-        {props.count ? props.count : "100"})
-      </p>
+      <p>최대 100자까지 입력 가능합니다.</p>
     </TextareaBoxWrap>
   );
 }
@@ -17,7 +14,6 @@ const TextareaBoxWrap = styled.div`
 `;
 
 const TextareaBox = styled.textarea`
-  /* position: relative; */
   font-family: var(--font--Regular);
   resize: none;
   font-size: 16px;
@@ -27,8 +23,7 @@ const TextareaBox = styled.textarea`
   padding: 15px;
   box-sizing: border-box;
   background-color: ${(props) => props.backgroundColor};
-  border-radius: ${(props) =>
-    props.borderRadius ? props.borderRadius : "4px"};
+  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : "4px")};
   &::placeholder {
     color: var(--gray300-color);
   }

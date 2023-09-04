@@ -20,32 +20,6 @@ export default function ProductCardList({ accountname, profile }) {
 
   const [productGetData, setproductGetData] = useState(null);
 
-  const [isHidden, setIsHidden] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-
-  const handleLocalNav = () => {
-    setIsHidden((prevState) => !prevState);
-  };
-
-  // 바깥쪽 눌렀을때 로컬네비 꺼짐
-  useEffect(() => {
-    const handleClickOutside = () => {
-      const localNavElement = document.getElementById("localNavElement");
-
-      if (localNavElement) {
-        setIsHidden(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
   useEffect(() => {
     const productGet = async () => {
       try {
@@ -76,12 +50,6 @@ export default function ProductCardList({ accountname, profile }) {
                 title={productInfo.itemName}
                 description={productInfo.link}
                 price={productInfo.price}
-                handleLocalNav={handleLocalNav}
-                setIsHidden={setIsHidden}
-                handleModal={handleModal}
-                isHidden={isHidden}
-                showModal={showModal}
-                setShowModal={setShowModal}
               />
             );
           })}
