@@ -89,7 +89,6 @@ export default function Navigation() {
             { name: "상품 등록", nav: "/productUpload" },
             { name: "게시물 작성", nav: "/postUpload" },
           ]}
-          navibar="true"
         />
       ) : (
         false
@@ -126,6 +125,12 @@ const NavigationLayout = styled.article`
 
   & > button:nth-child(1) {
     margin-bottom: 32px;
+  }
+
+  ul {
+    position: relative;
+    right: 210px;
+    bottom: 195px;
   }
 `;
 

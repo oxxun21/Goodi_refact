@@ -45,6 +45,7 @@ export default function PostCardList({ accountname }) {
         <PostListWrap hasPosts={userPostList.length > 0}>
           {userPostList.map((post) => (
             <PostCard
+              key={post.id}
               postId={post.id}
               username={post.author.username}
               profileImage={post.author.image}

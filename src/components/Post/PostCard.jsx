@@ -77,7 +77,7 @@ export default function PostCard({ username, profileImage, email, content, image
   return (
     <PostOuter>
       <PostTop>
-        <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile={false} card={true} account_name={account_name} />
+        <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile="false" card="true" account_name={account_name} />
         {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="게시글 삭제 및 신고 메뉴" ref={handleClick} />
@@ -183,4 +183,5 @@ const LocalNavWrap = styled.div`
   position: absolute;
   top: 43px;
   right: 0;
+  z-index: 10;
 `;
