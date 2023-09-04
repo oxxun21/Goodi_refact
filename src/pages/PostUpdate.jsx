@@ -33,7 +33,6 @@ export default function PostUpdate() {
         content: response.post.content,
         image: response.post.image,
       });
-      console.log(response);
       setImageWrap(response.post.image.split(","));
     };
     fetchPost();
