@@ -11,11 +11,36 @@ import { accountname } from "../../recoil";
 import postMenu from "../../assets/post_menu.svg";
 
 export default function ProductCard(props) {
-  const { profile, name, mainaccount, img, title, description, price, id, handleLocalNav, setIsHidden, handleModal, isHidden, showModal, setShowModal } = props;
+  const { profile, name, mainaccount, img, title, description, price, id } = props;
   const handleClick = useRef();
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
   const account_name = temp.accountname ? temp.accountname : mainaccount || myaccount_name;
+
+  const [isHidden, setIsHidden] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleLocalNav = () => {
+    setIsHidden((prevState) => !prevState);
+  };
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const localNavElement = document.getElementById("localNavElement");
+
+      if (localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
+        setIsHidden(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <CardWrap>
@@ -29,7 +54,6 @@ export default function ProductCard(props) {
         <LocalNavWrap>
           {isHidden ? (
             <LocalNav
-              setIsHidden={setIsHidden}
               handleModal={handleModal}
               width="120px"
               fontSize="14px"
