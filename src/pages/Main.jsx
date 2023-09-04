@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -13,31 +13,72 @@ import MainSkeleton from "../style/skeletonUI/skeletonPage/MainSkeleton";
 import MainRightCard from "../components/Main/MainRightCard";
 import MainLeft from "../components/Main/MainLeft";
 
+import { useRecoilValue } from "recoil";
+import { accountname } from "../recoil";
+import { followingAPI, productListAPI } from "../api";
+
 export default function Main() {
+  const [loading, setLoading] = useState(true);
+
+  const accountName = useRecoilValue(accountname);
+  const [render, setRender] = useState([]);
+
+  useEffect(() => {
+    const fetchfollowProduct = async () => {
+      try {
+        const usernameResponse = await followingAPI(accountName);
+        const renderProduct = usernameResponse.data;
+
+        const imgPromises = renderProduct.map(async (item) => {
+          const response = await productListAPI({ accountname: item.accountname });
+
+          if (response.product.length > 0) {
+            const img = response.product[0].itemImage.split(",")[0];
+            const id = response.product[0].id;
+            return { img, id };
+          }
+        });
+        const imgIdResults = await Promise.all(imgPromises);
+
+        setLoading(false);
+        setRender(imgIdResults);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchfollowProduct();
+  }, []);
+
   return (
-    <Layout>
-      <MainWrap>
-        <MainLeft />
+    <>
+      {loading ? (
+        <MainSkeleton />
+      ) : (
+        <Layout>
+          <MainWrap>
+            <MainLeft render={render} />
 
-        <Line />
+            <Line />
 
-        <MainRight>
-          <Title>
-            <img src={popularProducts} alt="popular products" />
-          </Title>
-          <MainRightCard />
-          <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
-        </MainRight>
+            <MainRight>
+              <Title>
+                <img src={popularProducts} alt="popular products" />
+              </Title>
+              <MainRightCard />
+              <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
+            </MainRight>
 
-        <MainBottom>
-          <Title>
-            <img src={popularAuthor} alt="Popular Author" />
-          </Title>
-          <PopularAuthorView account="popular1" />
-          <PopularAuthorView account="popular2" />
-        </MainBottom>
-      </MainWrap>
-    </Layout>
+            <MainBottom>
+              <Title>
+                <img src={popularAuthor} alt="Popular Author" />
+              </Title>
+              <PopularAuthorView account="popular1" />
+              <PopularAuthorView account="popular2" />
+            </MainBottom>
+          </MainWrap>
+        </Layout>
+      )}
+    </>
   );
 }
 
