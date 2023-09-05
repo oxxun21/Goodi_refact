@@ -2,23 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { accountname } from "../recoil";
-import { followingAPI } from "../api";
 import Logo from "../assets/logo_black.svg";
 import { checkImageUrl } from "../utils";
+import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
 
 export default function Header() {
-  const accountName = useRecoilValue(accountname);
   const [followingData, setFollowingData] = useState(null);
+  const getFollowings = useRecoilValue(getFollowingQuery);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchFollowingData = async () => {
-      const response = await followingAPI(accountName);
-      setFollowingData(response.data);
-    };
-    fetchFollowingData();
+    setFollowingData(getFollowings);
   }, []);
 
   return (
