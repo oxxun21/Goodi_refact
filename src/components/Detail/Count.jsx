@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 //image
-import PlusIcon from "../assets/icon_plus_black.svg";
-import MinusIcon from "../assets/icon_minus_black.svg";
+import PlusIcon from "../../assets/icon_plus_black.svg";
+import MinusIcon from "../../assets/icon_minus_black.svg";
 
-export default function Count({ count, setCount, getPrice, price, productPrice, stock }) {
+export default function Count({ getPrice, money, productPrice, setCount, count }) {
   // 카운트 증가 함수
   const increaseHandler = () => {
     setCount(count + 1);
-    getPrice(price + productPrice);
+    getPrice(money + productPrice);
   };
 
   // 카운트 감소 함수
   const decreaseHandler = () => {
     if (count > 1) {
       setCount(count - 1);
-      getPrice(price - productPrice);
+      getPrice(money - productPrice);
     }
   };
 
