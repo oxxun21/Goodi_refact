@@ -6,6 +6,7 @@ import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
 import { getLoginCookie } from "./utils";
+import FallbackUI from "./components/FallbackUI";
 
 function App() {
   const Main = lazy(() => import("./pages/Main"));
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter basename="/final-10-Goodi">
-      <Suspense fallback={<div>로딩중.. </div>}>
+      <Suspense fallback={<FallbackUI />}>
         <ScrollToTop />
         <GlobalStyle />
         <Routes>
