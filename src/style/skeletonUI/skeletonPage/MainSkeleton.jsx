@@ -1,24 +1,28 @@
-import React from 'react'
-import styled from 'styled-components';
-import SkeletonItem from '../SkeletonItem';
-import PostSkeleton from './PostSkeleton';
+import React from "react";
+import styled from "styled-components";
+import SkeletonItem from "../SkeletonItem";
+import PostSkeleton from "./PostSkeleton";
 
 export default function MainSkeleton() {
   return (
-    <MainWrap>
-      <SkeletonMainLeft />
+    <>
+      <SkeletonLogo />
 
-      <Line />
+      <MainWrap>
+        <SkeletonMainLeft />
 
-      <SkeletonMainRight>
-        <MainRightTitle />
-        <PostSkeleton />
-        <PostSkeleton />
-        <PostSkeleton />
-        <PostSkeleton />
-      </SkeletonMainRight>
-    </MainWrap>
-  )
+        <Line />
+
+        <SkeletonMainRight>
+          <MainRightTitle />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+        </SkeletonMainRight>
+      </MainWrap>
+    </>
+  );
 }
 
 const MainWrap = styled.div`
@@ -26,7 +30,7 @@ const MainWrap = styled.div`
   grid-template-columns: 0.8fr 0.1fr 1fr;
   grid-template-rows: auto;
   margin-bottom: 120px;
-`
+`;
 
 const Line = styled.span`
   width: 1px;
@@ -53,4 +57,10 @@ const MainRightTitle = styled(SkeletonItem)`
   width: 470px;
   height: 50px;
   grid-column: 1 / 3;
-`
+`;
+
+const SkeletonLogo = styled(SkeletonItem)`
+  width: 160px;
+  height: 48px;
+  margin: 20px 60px;
+`;

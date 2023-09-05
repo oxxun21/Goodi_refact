@@ -19,7 +19,7 @@ import DeliveryIcon from "../assets/icon_delivery_dark.svg";
 import { productGetUpdateAPI } from "../api";
 
 //recoil
-import { accountname, cartItemsState } from "../recoil";
+import { cartItemsState } from "../recoil";
 
 import { checkImageUrl } from "../utils";
 
@@ -64,9 +64,6 @@ export default function Detail() {
     }
   };
 
-  const myaccount_name = useRecoilValue(accountname);
-  const account_name = id.account_name ? id.account_name : myaccount_name;
-
   // product 정보 API에서 받아오기
   useEffect(() => {
     const fetchProductData = async () => {
@@ -75,7 +72,6 @@ export default function Detail() {
         setProductData(response.product);
         setPrice(response.product.price);
         setLoading(false);
-        console.log(response);
       } catch (error) {
         console.error("Account API 에러가 발생했습니다", error);
       }
