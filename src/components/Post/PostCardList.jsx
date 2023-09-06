@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import { checkDeletePost, checkProfile } from "../../recoil";
+import { checkDeletePost } from "../../recoil";
 
 // api
 import { postListAPI } from "../../api";
@@ -18,7 +18,6 @@ import { checkImageUrl } from "../../utils";
 export default function PostCardList({ accountname }) {
   const [userPostList, setUserPostList] = useState(null);
   const checkDelete = useRecoilValue(checkDeletePost);
-  const checkProfileChange = useRecoilValue(checkProfile);
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -33,7 +32,7 @@ export default function PostCardList({ accountname }) {
       }
     };
     fetchPostData();
-  }, [accountname, checkDelete, checkProfileChange]);
+  }, [accountname, checkDelete]);
 
   console.log(userPostList);
 
@@ -42,7 +41,7 @@ export default function PostCardList({ accountname }) {
       {userPostList === null || userPostList.length === 0 ? (
         <NoPostsUI />
       ) : (
-        <PostListWrap hasPosts={userPostList.length > 0}>
+        <PostListWrap>
           {userPostList.map((post) => (
             <PostCard
               key={post.id}
@@ -64,15 +63,9 @@ export default function PostCardList({ accountname }) {
 }
 
 const PostListWrap = styled.section`
-  width: 100%;
-  ${({ hasPosts }) =>
-    hasPosts
-      ? `
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 60px 20px;
-      margin-bottom: 70px;
-    `
-      : ""}
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 60px 20px;
+  margin-bottom: 70px;
 `;

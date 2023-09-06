@@ -7,9 +7,13 @@ import { ButtonLineIcon, ButtonFollow } from "../common";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
+import { accountname } from "../../recoil";
+import { useRecoilValue } from "recoil";
 
-export default function IntroUI({ profileData, myProfile, handleEditClick }) {
+export default function IntroUI({ profileData, handleEditClick }) {
   const navigate = useNavigate();
+  const myAccount = useRecoilValue(accountname);
+
   return (
     <>
       <IntroWrap>
@@ -18,7 +22,7 @@ export default function IntroUI({ profileData, myProfile, handleEditClick }) {
         <p>{profileData.accountname}</p>
       </IntroWrap>
 
-      {myProfile ? (
+      {myAccount === profileData.accountname ? (
         <ButtonLineIcon text="프로필 수정하기" onClick={handleEditClick} basic="true" />
       ) : (
         <BtnWrap>

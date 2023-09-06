@@ -9,7 +9,6 @@ import Follow from "./Follow";
 
 export default function FollowListUI({ profileData }) {
   const [activeFollow, setActiveFollow] = useState(1);
-
   const [followingData, setFollowingData] = useState([]);
   const [followerData, setFollowerData] = useState([]);
 

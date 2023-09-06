@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import { checkProfile, checkDeletePost } from "../../recoil";
+import { checkDeletePost } from "../../recoil";
 
 // api
 import { productListAPI } from "../../api";
@@ -15,7 +15,6 @@ import NoPostsUI from "../NoPostsUI";
 import { BASE_URL, checkImageUrl } from "../../utils";
 
 export default function ProductCardList({ accountname, profile }) {
-  const checkProfileChange = useRecoilValue(checkProfile);
   const checkDelete = useRecoilValue(checkDeletePost);
 
   const [productGetData, setproductGetData] = useState(null);
@@ -30,7 +29,7 @@ export default function ProductCardList({ accountname, profile }) {
       }
     };
     productGet();
-  }, [accountname, checkProfileChange, checkDelete]);
+  }, [accountname, checkDelete]);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { BASE_URL, getLoginCookie } from "../utils";
 
 export const instance = axios.create({
   baseURL: BASE_URL,
-  timeout: 8000,
+  // timeout: 8000,
   headers: {
     Authorization: `Bearer ${getLoginCookie()}`,
     "Content-Type": "application/json",

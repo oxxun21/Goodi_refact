@@ -6,7 +6,7 @@ import IntroUI from "../../components/ProfileCommon/IntroUI";
 import FollowListUI from "../../components/ProfileCommon/FollowListUI";
 import UpdateProfile from "../../components/ProfileCommon/UpdateProfile";
 
-export default function ProfileLeftUI({ profileData, setProfileData, myProfile }) {
+export default function ProfileLeftUI({ profileData, setProfileData }) {
   // 프로필 정보 수정
   const [isEditing, setIsEditing] = useState(false);
 
@@ -25,7 +25,7 @@ export default function ProfileLeftUI({ profileData, setProfileData, myProfile }
       ) : (
         <ProfileLeft>
           <h2 className="a11y-hidden">사용자 프로필</h2>
-          <IntroUI profileData={profileData} myProfile={myProfile} handleEditClick={handleEditClick} />
+          <IntroUI profileData={profileData} handleEditClick={handleEditClick} />
           <FollowListUI profileData={profileData} />
         </ProfileLeft>
       )}

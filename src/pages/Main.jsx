@@ -14,40 +14,34 @@ import MainRightCard from "../components/Main/MainRightCard";
 import MainLeft from "../components/Main/MainLeft";
 
 import { useRecoilValue } from "recoil";
-import { accountname } from "../recoil";
-import { followingAPI, productListAPI } from "../api";
+import { productListAPI } from "../api";
+import { getFollowingQuery } from "../recoil/selector/getFollowingQuery.js";
 
 export default function Main() {
   const [loading, setLoading] = useState(true);
 
-  const accountName = useRecoilValue(accountname);
   const [render, setRender] = useState([]);
+
+  const getFollowings = useRecoilValue(getFollowingQuery);
 
   useEffect(() => {
     const fetchfollowProduct = async () => {
-      try {
-        const usernameResponse = await followingAPI(accountName);
-        const renderProduct = usernameResponse.data;
+      const imgPromises = getFollowings.map(async (item) => {
+        const response = await productListAPI({ accountname: item.accountname });
 
-        const imgPromises = renderProduct.map(async (item) => {
-          const response = await productListAPI({ accountname: item.accountname });
+        if (response.product.length > 0) {
+          const img = response.product[0].itemImage.split(",")[0];
+          const id = response.product[0].id;
+          return { img, id };
+        }
+      });
+      const imgIdResults = await Promise.all(imgPromises);
 
-          if (response.product.length > 0) {
-            const img = response.product[0].itemImage.split(",")[0];
-            const id = response.product[0].id;
-            return { img, id };
-          }
-        });
-        const imgIdResults = await Promise.all(imgPromises);
-
-        setLoading(false);
-        setRender(imgIdResults);
-      } catch (error) {
-        console.error(error);
-      }
+      setLoading(false);
+      setRender(imgIdResults);
     };
     fetchfollowProduct();
-  }, []);
+  }, [getFollowings]);
 
   return (
     <>

@@ -2,29 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { accountname } from "../recoil";
-import { followingAPI } from "../api";
 import Logo from "../assets/logo_black.svg";
 import { checkImageUrl } from "../utils";
+import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
 
-export default function Header() {
-  const accountName = useRecoilValue(accountname);
+function Header() {
   const [followingData, setFollowingData] = useState(null);
+  const getFollowings = useRecoilValue(getFollowingQuery);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchFollowingData = async () => {
-      const response = await followingAPI(accountName);
-      setFollowingData(response.data);
-    };
-    fetchFollowingData();
+    setFollowingData(getFollowings);
   }, []);
 
   return (
     <HeaderLayout>
       <h1>
-        <LogoLink to="/main">
+        <LogoLink to="/">
           <img src={Logo} alt="goodi 로고 이미지" />
         </LogoLink>
       </h1>
@@ -53,6 +48,8 @@ export default function Header() {
     </HeaderLayout>
   );
 }
+
+export default React.memo(Header);
 
 const HeaderLayout = styled.header`
   position: fixed;

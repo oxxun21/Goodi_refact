@@ -13,8 +13,7 @@ import followSymbol from "../../assets/follow_symbol.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
 
-export default function Follow(props) {
-  const { followerData, followingData, activeFollow } = props;
+export default function Follow({ followerData, followingData, activeFollow }) {
   return (
     <FollowWrap>
       {activeFollow === 1 ? (

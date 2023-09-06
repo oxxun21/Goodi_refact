@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useParams } from "react-router-dom";
 
 //component
 import Layout from "../layout/Layout";
-import DetailImage from "./../components/DetailImage";
-import Count from "../components/Count";
+import DetailImage from "../components/Detail/DetailImage";
 import ProfileUI from "../components/ProfileUI";
-import { Button, Toast } from "../components/common";
 import DetailSkeleton from "../style/skeletonUI/skeletonPage/DetailSkeleton";
 
 //image
@@ -18,10 +15,8 @@ import DeliveryIcon from "../assets/icon_delivery_dark.svg";
 //API
 import { productGetUpdateAPI } from "../api";
 
-//recoil
-import { cartItemsState } from "../recoil";
-
 import { checkImageUrl } from "../utils";
+import TotalCountPrice from "../components/Detail/TotalCountPrice";
 
 export default function Detail() {
   const { id } = useParams();
@@ -29,42 +24,7 @@ export default function Detail() {
   const [loading, setLoading] = useState(true);
   const [productData, setProductData] = useState("");
   const [price, setPrice] = useState(0);
-  const [toast, setToast] = useState(false);
 
-  const navigate = useNavigate();
-
-  // 카운트 수량 관리
-  const [count, setCount] = useState(1);
-
-  // 장바구니 상태
-  const [cartItem, setCartItem] = useRecoilState(cartItemsState);
-
-  const addToCart = () => {
-    const newItem = {
-      userImage: productData.author.image,
-      userName: productData.author.username,
-      id: productData.id,
-      productName: productData.itemName,
-      productPrice: productData.price,
-      productImage: productData.itemImage.split(",")[0],
-      productCount: count,
-    };
-
-    setToast(true);
-
-    const existingItem = cartItem.find((cartItem) => cartItem.id === newItem.id);
-
-    if (existingItem) {
-      // 이미 장바구니에 있는 상품인 경우
-      const updatedItems = cartItem.map((cartItem) => (cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem));
-      setCartItem(updatedItems);
-    } else {
-      // 장바구니에 없는 상품인 경우
-      setCartItem([...cartItem, newItem]);
-    }
-  };
-
-  // product 정보 API에서 받아오기
   useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -80,23 +40,12 @@ export default function Detail() {
     fetchProductData();
   }, []);
 
-  // 카운트 마다 변하는 가격 함수
-  const getPrice = (price) => {
-    setPrice(price);
-  };
-
-  // 숫자 세자리 수마다 컴마 찍어주는 함수
-  const priceDivide = (price) => {
-    return price.toLocaleString();
-  };
-
   return (
     <Layout>
       {loading ? (
         <DetailSkeleton />
       ) : (
         <>
-          {toast && <Toast setToast={setToast} text="장바구니에 상품이 담겼습니다." />}
           <DetailWrap>
             <DetailImage img={productData.itemImage.split(",")} />
 
@@ -130,21 +79,7 @@ export default function Detail() {
                   </p>
                 </div>
               </DeliveryDescription>
-              <h3 className="product_count_subtitle">수량</h3>
-              <Count count={count} setCount={setCount} price={price} getPrice={getPrice} productPrice={productData.price} />
-              <hr />
-              <ProductPrice>
-                <h3 className="product_price_subtitle">총 결제 금액</h3>
-                <p className="product_price">
-                  <strong>{priceDivide(price)}</strong>원
-                </p>
-              </ProductPrice>
-
-              <ButtonWrap>
-                <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
-
-                <Button text="구매하고 싶어요" className="purchase_button" type="button" bg="black" br="none" onClick={() => navigate("/chat")} />
-              </ButtonWrap>
+              <TotalCountPrice productData={productData} />
             </ProductDetail>
           </DetailWrap>
         </>
@@ -228,43 +163,5 @@ const DeliveryDescription = styled.section`
 
   .delivery_date {
     margin-bottom: 24px;
-  }
-`;
-
-const ProductPrice = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .product_price_subtitle {
-    font-family: var(--font--Bold);
-    color: var(--gray400-color);
-  }
-
-  .product_price {
-    font-family: var(--font--Medium);
-    font-size: 18px;
-    color: var(--gray400-color);
-    display: flex;
-    align-items: center;
-  }
-
-  .product_price strong {
-    font-family: var(--font--Bold);
-    color: var(--black-color);
-    font-size: 36px;
-    margin-right: 6px;
-  }
-`;
-
-const ButtonWrap = styled.div`
-  display: flex;
-  margin-top: 32px;
-  align-items: center;
-  gap: 2%;
-
-  & button {
-    cursor: pointer;
-    font-family: var(--font--Medium);
   }
 `;

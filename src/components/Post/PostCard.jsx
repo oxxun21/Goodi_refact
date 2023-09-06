@@ -75,7 +75,7 @@ export default function PostCard({ username, profileImage, email, content, image
   const account_name = temp.accountname ? temp.accountname : myaccount_name;
 
   return (
-    <PostOuter>
+    <article>
       <PostTop>
         <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile="false" card="true" account_name={account_name} />
         {temp.accountname === myaccount_name && (
@@ -122,13 +122,10 @@ export default function PostCard({ username, profileImage, email, content, image
           showCloseButton={false}
         />
       )}
-    </PostOuter>
+    </article>
   );
 }
 
-const PostOuter = styled.article`
-  width: 280px;
-`;
 const PostTop = styled.div`
   position: relative;
   display: flex;

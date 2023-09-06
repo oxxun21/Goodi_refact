@@ -8,13 +8,13 @@ import Toast from "../Toast";
 import { followAPI, unfollowAPI } from "../../../api";
 
 // Recoil
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { accountname, checkFollow } from "../../../recoil";
 
 export default function ButtonFollow({ isFollow, accountName, padding }) {
   const myAccountName = useRecoilValue(accountname);
   const [toast, setToast] = useState(false);
-  const [checkFollowChange, setCheckFollowChange] = useRecoilState(checkFollow);
+  const setCheckFollowChange = useSetRecoilState(checkFollow);
 
   // 화면상에서 UI 바로 변경되게 보여주기 위해 필요
   const [isFollowing, setIsFollowing] = useState(false);
@@ -28,7 +28,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
     try {
       const response = await followAPI(accountName);
       setIsFollowing(true);
-      handleCart();
+      handleToast();
       setCheckFollowChange((prev) => !prev);
     } catch (error) {
       console.error("API 에러", error);
@@ -36,7 +36,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
   };
 
   // 팔로우 toast
-  const handleCart = () => {
+  const handleToast = () => {
     setToast(true);
   };
 
@@ -45,7 +45,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
     try {
       const response = await unfollowAPI(accountName);
       setIsFollowing(false);
-      handleCart();
+      handleToast();
       setCheckFollowChange((prev) => !prev);
     } catch (error) {
       console.error("API 에러", error);
