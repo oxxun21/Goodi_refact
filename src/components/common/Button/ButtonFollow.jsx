@@ -28,7 +28,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
     try {
       const response = await followAPI(accountName);
       setIsFollowing(true);
-      handleCart();
+      handleToast();
       setCheckFollowChange((prev) => !prev);
     } catch (error) {
       console.error("API 에러", error);
@@ -36,7 +36,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
   };
 
   // 팔로우 toast
-  const handleCart = () => {
+  const handleToast = () => {
     setToast(true);
   };
 
@@ -45,7 +45,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
     try {
       const response = await unfollowAPI(accountName);
       setIsFollowing(false);
-      handleCart();
+      handleToast();
       setCheckFollowChange((prev) => !prev);
     } catch (error) {
       console.error("API 에러", error);
