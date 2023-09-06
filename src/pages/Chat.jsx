@@ -14,10 +14,11 @@ import { Form, Toast } from "../components/common";
 import ChatSkeleton from "../style/skeletonUI/skeletonPage/ChatSkeleton";
 
 // API
-import { followingAPI, accountProfileAPI } from "../api";
+import { accountProfileAPI } from "../api";
 
 // Recoil
 import { accountname } from "../recoil";
+import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
 
 // Mock Data
 import chatDummy from "../mock/chatDummy";
@@ -31,6 +32,7 @@ export default function Chat(reduceTop) {
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState("");
   const [followingList, setFollowingList] = useState("");
+  const getFollowings = useRecoilValue(getFollowingQuery);
 
   // 활성화하여 채팅할 상대 팔로잉 유저 ID 로 구별
   const [isActive, setIsActive] = useState("");
@@ -72,9 +74,8 @@ export default function Chat(reduceTop) {
     const fetchProfileData = async () => {
       try {
         const response = await accountProfileAPI({ accountname: accountName });
-        const followingData = await followingAPI(accountName);
         setProfileData(response);
-        setFollowingList(followingData.data);
+        setFollowingList(getFollowings);
         setLoading(false);
       } catch (error) {
         console.log("api에러", error);
