@@ -41,6 +41,7 @@ export default function Profile() {
           <ProfileSkeleton />
         ) : (
           <>
+            {/* <ProfileLeftUI setLoading={setLoading} account_name={account_name} /> */}
             <ProfileLeftUI setProfileData={setProfileData} myProfile={myProfile} accountname={account_name} profileData={profileData} />
             <ProfileRightUI accountname={account_name} />
           </>

@@ -42,7 +42,7 @@ export default function PostCardList({ accountname }) {
       {userPostList === null || userPostList.length === 0 ? (
         <NoPostsUI />
       ) : (
-        <PostListWrap hasPosts={userPostList.length > 0}>
+        <PostListWrap>
           {userPostList.map((post) => (
             <PostCard
               key={post.id}
@@ -64,15 +64,9 @@ export default function PostCardList({ accountname }) {
 }
 
 const PostListWrap = styled.section`
-  width: 100%;
-  ${({ hasPosts }) =>
-    hasPosts
-      ? `
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 60px 20px;
-      margin-bottom: 70px;
-    `
-      : ""}
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 60px 20px;
+  margin-bottom: 70px;
 `;
