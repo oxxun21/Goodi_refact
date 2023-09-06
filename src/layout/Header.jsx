@@ -6,7 +6,7 @@ import Logo from "../assets/logo_black.svg";
 import { checkImageUrl } from "../utils";
 import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
 
-export default function Header() {
+function Header() {
   const [followingData, setFollowingData] = useState(null);
   const getFollowings = useRecoilValue(getFollowingQuery);
 
@@ -48,6 +48,8 @@ export default function Header() {
     </HeaderLayout>
   );
 }
+
+export default React.memo(Header);
 
 const HeaderLayout = styled.header`
   position: fixed;

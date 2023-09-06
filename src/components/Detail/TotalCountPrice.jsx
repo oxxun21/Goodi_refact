@@ -5,6 +5,7 @@ import { Button, Toast } from "../common";
 import { useRecoilState } from "recoil";
 import { cartItemsState } from "../../recoil";
 import { useNavigate } from "react-router";
+import { priceDivide } from "../../utils";
 
 export default function TotalCountPrice({ productData }) {
   const [totalPrice, setTotalPrice] = useState(productData.price);
@@ -37,10 +38,6 @@ export default function TotalCountPrice({ productData }) {
       // 장바구니에 없는 상품인 경우
       setCartItem([...cartItem, newItem]);
     }
-  };
-
-  const priceDivide = (money) => {
-    return money.toLocaleString();
   };
 
   return (

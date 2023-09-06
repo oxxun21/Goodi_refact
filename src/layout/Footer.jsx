@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import FooterLogo from "../assets/logo_gray.svg";
 import GithubBtn from "../assets/github_button.svg";
 
-export default function Footer() {
+function Footer() {
   return (
     <FooterLayout>
       <FooterLogoImg src={FooterLogo} alt="footer 로고" />
@@ -21,6 +21,8 @@ export default function Footer() {
     </FooterLayout>
   );
 }
+
+export default React.memo(Footer);
 
 const FooterLayout = styled.footer`
   background-color: var(--gray100-color);
