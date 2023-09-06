@@ -46,7 +46,7 @@ export default function Cart() {
             <CartNull>
               <img src={cartNullIcon} alt="장바구니 아이콘" />
               <p>현재 장바구니에 등록된 상품이 없어요</p>
-              <Link to="/main">상품 구경하기</Link>
+              <Link to="/">상품 구경하기</Link>
             </CartNull>
           ) : (
             <ul>
