@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // 리코일
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { checkProfile } from "../../recoil";
 
 // api
@@ -21,7 +21,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
   const [changeImageURL, setChangeImageURL] = useState(profileData.image);
   const [userName, setUserName] = useState(profileData.username);
   const [intro, setIntro] = useState(profileData.intro);
-  const [checkProfileChange, setCheckProfileChange] = useRecoilState(checkProfile);
+  const setCheckProfileChange = useSetRecoilState(checkProfile);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
