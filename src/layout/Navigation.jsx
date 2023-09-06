@@ -12,7 +12,7 @@ import Search from "./../components/Search/Search";
 import { useRecoilValue } from "recoil";
 import { accountname, cartItemsState } from "../recoil";
 
-export default function Navigation() {
+function Navigation() {
   const cartItem = useRecoilValue(cartItemsState);
   const navigate = useNavigate();
   const account_name = useRecoilValue(accountname);
@@ -108,6 +108,8 @@ export default function Navigation() {
     </NavigationLayout>
   );
 }
+
+export default React.memo(Navigation);
 
 const NavigationLayout = styled.article`
   background-color: #ffffff;

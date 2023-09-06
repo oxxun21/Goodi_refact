@@ -19,13 +19,10 @@ import ProfileSkeleton from "./../style/skeletonUI/skeletonPage/ProfileSkeleton"
 export default function Profile() {
   const account_name = useParams();
   const [loading, setLoading] = useState(true);
-  const [myProfile, setMyProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
-  const myAccount = useRecoilValue(accountname);
   const checkFollowChange = useRecoilValue(checkFollow);
 
   useEffect(() => {
-    setMyProfile(myAccount === account_name.accountname);
     const getProfileData = async () => {
       const res = await accountProfileAPI(account_name);
       setProfileData(res);
@@ -41,8 +38,7 @@ export default function Profile() {
           <ProfileSkeleton />
         ) : (
           <>
-            {/* <ProfileLeftUI setLoading={setLoading} account_name={account_name} /> */}
-            <ProfileLeftUI setProfileData={setProfileData} myProfile={myProfile} accountname={account_name} profileData={profileData} />
+            <ProfileLeftUI setProfileData={setProfileData} profileData={profileData} />
             <ProfileRightUI accountname={account_name} />
           </>
         )}

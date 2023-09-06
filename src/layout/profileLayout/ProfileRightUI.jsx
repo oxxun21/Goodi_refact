@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 // 컴포넌트
-import ProductCardList from '../../components/Product/ProductCardList';
-import PostCardList from '../../components/Post/PostCardList';
+import ProductCardList from "../../components/Product/ProductCardList";
+import PostCardList from "../../components/Post/PostCardList";
 
 // 이미지
 import pointEdgeProfile from "../../assets/point-edge-profile.svg";
 import authorProducts from "../../assets/Author-Products.svg";
 import authorPosts from "../../assets/Author-Posts.svg";
 
-export default function ProfileRightUI({ accountname }) {
+function ProfileRightUI({ accountname }) {
   // 상품 목록, 게시글 목록 탭
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabNumber) => {
@@ -30,28 +30,20 @@ export default function ProfileRightUI({ accountname }) {
       )}
 
       <TabMenu>
-        <TabBtn
-          className={activeTab === 1 ? 'active' : ''}
-          onClick={() => handleTabClick(1)}
-        >
+        <TabBtn className={activeTab === 1 ? "active" : ""} onClick={() => handleTabClick(1)}>
           상품 목록
         </TabBtn>
-        <TabBtn
-          className={activeTab === 2 ? 'active' : ''}
-          onClick={() => handleTabClick(2)}
-        >
+        <TabBtn className={activeTab === 2 ? "active" : ""} onClick={() => handleTabClick(2)}>
           게시글 목록
         </TabBtn>
       </TabMenu>
-      {activeTab === 1 && (
-        <ProductCardList profile="true" accountname={accountname} />
-      )}
-      {activeTab === 2 && (
-        <PostCardList accountname={accountname} />
-      )}
+      {activeTab === 1 && <ProductCardList profile="true" accountname={accountname} />}
+      {activeTab === 2 && <PostCardList accountname={accountname} />}
     </ProfileRight>
-  )
+  );
 }
+
+export default React.memo(ProfileRightUI);
 
 const ProfileRight = styled.section`
   & > h2 {
@@ -84,7 +76,7 @@ const TabMenu = styled.div`
   gap: 20px;
 
   &:after {
-    content: '';
+    content: "";
     display: inline-block;
     width: 1px;
     height: 70%;
@@ -98,9 +90,9 @@ const TabMenu = styled.div`
     font-family: var(--font--semibold);
     color: black;
   }
-`
+`;
 const TabBtn = styled.button`
   padding: 8px 12px;
   color: var(--gray500-color);
   cursor: pointer;
-`
+`;
