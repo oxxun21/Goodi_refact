@@ -6,12 +6,9 @@ import { followingAPI, followerAPI } from "../../api";
 
 // 컴포넌트
 import Follow from "./Follow";
-import { useRecoilValue } from "recoil";
-import { getFollowingQuery } from "../../recoil/selector/getFollowingQuery";
 
 export default function FollowListUI({ profileData }) {
   const [activeFollow, setActiveFollow] = useState(1);
-  const getFollowings = useRecoilValue(getFollowingQuery);
   const [followingData, setFollowingData] = useState([]);
   const [followerData, setFollowerData] = useState([]);
 
@@ -20,8 +17,9 @@ export default function FollowListUI({ profileData }) {
   const handleFollowClick = (followNumber) => {
     setActiveFollow(followNumber);
   };
-  const fetchFollowingData = () => {
-    setFollowingData([...getFollowings]);
+  const fetchFollowingData = async () => {
+    const response = await followingAPI(name);
+    setFollowingData([...response.data]);
   };
 
   const fetchFollowerData = async () => {
