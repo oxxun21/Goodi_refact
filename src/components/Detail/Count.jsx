@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 //image
 import PlusIcon from "../../assets/icon_plus_black.svg";
 import MinusIcon from "../../assets/icon_minus_black.svg";
 
-export default function Count({ getPrice, money, productPrice, setCount, count }) {
+export default function Count({ productPrice, setTotalPrice, setCount, count }) {
+  const [money, setMoney] = useState(productPrice);
+
+  // 카운트 마다 변하는 가격 함수
+  const getPrice = (money) => {
+    setMoney(money);
+  };
   // 카운트 증가 함수
   const increaseHandler = () => {
     setCount(count + 1);
@@ -19,6 +25,10 @@ export default function Count({ getPrice, money, productPrice, setCount, count }
       getPrice(money - productPrice);
     }
   };
+
+  useEffect(() => {
+    setTotalPrice(money);
+  }, [count]);
 
   return (
     <Countwrap>

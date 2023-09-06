@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Count from "./Count";
-import { cartItemsState } from "../../recoil";
-import { useRecoilState } from "recoil";
 import { Button, Toast } from "../common";
+import { useRecoilState } from "recoil";
+import { cartItemsState } from "../../recoil";
 import { useNavigate } from "react-router";
 
 export default function TotalCountPrice({ productData }) {
+  const [totalPrice, setTotalPrice] = useState(productData.price);
   const [count, setCount] = useState(1);
-  const [money, setMoney] = useState(productData.price);
   const [toast, setToast] = useState(false);
 
   // 장바구니 상태
@@ -39,31 +39,24 @@ export default function TotalCountPrice({ productData }) {
     }
   };
 
-  // 카운트 마다 변하는 가격 함수
-  const getPrice = (money) => {
-    setMoney(money);
-  };
-
-  // 숫자 세자리 수마다 컴마 찍어주는 함수
   const priceDivide = (money) => {
     return money.toLocaleString();
   };
+
   return (
     <>
       {toast && <Toast setToast={setToast} text="장바구니에 상품이 담겼습니다." />}
       <h3 className="product_count_subtitle">수량</h3>
-      <Count money={money} getPrice={getPrice} productPrice={productData.price} setCount={setCount} count={count} />
+      <Count productPrice={productData.price} setTotalPrice={setTotalPrice} count={count} setCount={setCount} />
       <hr />
       <ProductPrice>
         <h3 className="product_price_subtitle">총 결제 금액</h3>
         <p className="product_price">
-          <strong>{priceDivide(money)}</strong>원
+          <strong>{priceDivide(totalPrice)}</strong>원
         </p>
       </ProductPrice>
-
       <ButtonWrap>
         <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
-
         <Button text="구매하고 싶어요" className="purchase_button" type="button" bg="black" br="none" onClick={() => navigate("/chat")} />
       </ButtonWrap>
     </>
@@ -95,7 +88,6 @@ const ProductPrice = styled.section`
     margin-right: 6px;
   }
 `;
-
 const ButtonWrap = styled.div`
   display: flex;
   margin-top: 32px;
