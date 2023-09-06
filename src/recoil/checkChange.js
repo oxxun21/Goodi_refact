@@ -14,9 +14,3 @@ export const checkFollow = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
-
-export const checkProfile = atom({
-  key: "checkProfile",
-  default: false,
-  effects_UNSTABLE: [persistAtom],
-});
