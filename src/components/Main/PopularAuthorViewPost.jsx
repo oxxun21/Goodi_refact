@@ -19,7 +19,7 @@ export default function PopularAuthorViewPost({ post }) {
 
   return (
     <BottomImgDiv onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => navigate(`/profile/${post.author?.accountname}`)}>
-      <BottomImg src={BASE_URL + (post.image.split(",")[0] || "")} alt="" key={post.id} />
+      <BottomImg src={BASE_URL + (post.image.split(",")[0] || "")} alt="게시글 사진" key={post.id} />
 
       {isHovered && (
         <>

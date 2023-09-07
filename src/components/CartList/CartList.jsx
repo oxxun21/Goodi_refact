@@ -24,7 +24,7 @@ export default function CartList({ item }) {
         </button>
       </CartUserInfo>
       <CartProductInfo>
-        <img src={checkImageUrl(item.productImage, "post")} alt="" />
+        <img src={checkImageUrl(item.productImage, "post")} alt="상품 이미지" />
         <CartProductDesc>
           <p>No. {item.id}</p>
           <strong>{item.productName}</strong>

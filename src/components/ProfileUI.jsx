@@ -8,7 +8,7 @@ function ProfileUI(props) {
 
   return (
     <UserProfile mainprofile={mainprofile} card={card} follow={follow} to={`/profile/${account_name}`}>
-      <img src={user_profile || defaultImage} alt="유저 프로필 이미지" />
+      <img src={user_profile || defaultImage} alt="유저 프로필 이미지" loading="lazy" />
       <div>
         <strong>{user_name}</strong>
         <p>{account_name}</p>
