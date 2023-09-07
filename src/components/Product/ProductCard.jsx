@@ -71,7 +71,7 @@ export default function ProductCard(props) {
         <CardContent>
           <img alt="상품 이미지" src={img} />
           <h3>{title}</h3>
-          <p>{description}</p>
+          <figcaption>{description}</figcaption>
           <strong>{price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</strong>
           <span>원</span>
         </CardContent>
@@ -125,7 +125,7 @@ const LocalNavWrap = styled.div`
   z-index: 10;
 `;
 
-const CardContent = styled.div`
+const CardContent = styled.figure`
   transition: all 0.3s;
 
   img {
@@ -146,7 +146,7 @@ const CardContent = styled.div`
     border-bottom: 1px solid var(--gray200-color);
   }
 
-  p {
+  figcaption {
     margin: 16px 0px;
     height: 3em;
     line-height: 1.5;
