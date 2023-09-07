@@ -43,7 +43,7 @@ function Header() {
             })
             .slice(0, 5)
         )}
-        {followingData && <span>+{followingData.length - 5}</span>}
+        {followingData && followingData.length > 5 && <span>+ more</span>}
       </FollowingWrap>
     </HeaderLayout>
   );
