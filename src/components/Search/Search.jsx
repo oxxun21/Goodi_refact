@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 
@@ -19,26 +19,23 @@ import { recentSearch } from "../../recoil";
 //! 팔로우버튼 기능
 export default function Search({ handleSearch }) {
   const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);
-  const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // input value 가져오기
-  const handleClick = async (e) => {
-    e.preventDefault();
-    await fetchSearchAPI();
-  };
+  const formRef = useRef();
 
   // 검색결과 가져오기
-  const fetchSearchAPI = async () => {
+  const fetchSearchAPI = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
 
-    const response = await searchAPI(keyword);
-    setSearchResult(response.data);
-    setIsRecentSearch((preveState) => [...preveState, keyword]);
-    setIsLoading(false);
+    const { keywordInput } = formRef.current.elements;
+    let keywordValue = keywordInput.value;
+    const response = await searchAPI(keywordValue);
 
-    setKeyword("");
+    setSearchResult(response.data);
+    setIsRecentSearch((preveState) => [...preveState, keywordValue]);
+    setIsLoading(false);
   };
 
   // 이벤트 버블링 방지
@@ -67,7 +64,7 @@ export default function Search({ handleSearch }) {
     <SearchbgDark onClick={handleSearch}>
       <SearchModal onClick={handleModalClick}>
         <h2>작가 검색</h2>
-        <SearchInput keyword={keyword} setKeyword={setKeyword} handleClick={handleClick} />
+        <SearchInput formRef={formRef} handleClick={fetchSearchAPI} />
         <SearchHistory />
         {isLoading ? (
           <>
