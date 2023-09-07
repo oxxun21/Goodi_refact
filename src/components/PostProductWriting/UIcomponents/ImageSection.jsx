@@ -5,7 +5,8 @@ import PlusIcon from "../../../assets/icon_plus_gray.svg";
 import addIcon from "../../../assets/add_button_gray.svg";
 
 import { BASE_URL } from "../../../utils";
-import { uploadImageAPI } from "../../../api";
+import { handleImageCompression } from "../../../utils/imageCompression";
+import imageCompression from "browser-image-compression";
 
 export default function ImageSection({ setImageWrap, imageWrap }) {
   const [loading, setLoading] = useState(false);
@@ -13,15 +14,22 @@ export default function ImageSection({ setImageWrap, imageWrap }) {
   const handleImageChange = async (e) => {
     const { name } = e.target;
     if (e.target.type === "file") {
-      setLoading(true);
       const file = e.target.files[0];
-      const imgSrc = await uploadImageAPI(file);
-      setImageWrap((prevArray) => {
-        const newArray = [...prevArray];
-        newArray[parseInt(name)] = imgSrc;
-        return newArray;
-      });
-      setLoading(false);
+
+      const options = {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 490,
+        useWebWorker: true,
+      };
+
+      setLoading(true);
+      const resizingBlob = await imageCompression(file, options);
+      const reader = new FileReader();
+      reader.readAsDataURL(resizingBlob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        handleImageCompression(base64data, name, setImageWrap, setLoading);
+      };
     }
   };
 
