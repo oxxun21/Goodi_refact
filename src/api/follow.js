@@ -20,8 +20,8 @@ export const unfollowAPI = async (accountname) => {
 
 export const followerAPI = async (accountname) => {
   try {
-    const response = await instance.get(`/profile/${accountname}/follower`);
-    return response;
+    const response = await instance.get(`/profile/${accountname}/follower/?limit=100`);
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -29,8 +29,8 @@ export const followerAPI = async (accountname) => {
 
 export const followingAPI = async (accountname) => {
   try {
-    const response = await instance.get(`/profile/${accountname}/following`);
-    return response;
+    const response = await instance.get(`/profile/${accountname}/following/?limit=100`);
+    return response.data;
   } catch (error) {
     throw error;
   }

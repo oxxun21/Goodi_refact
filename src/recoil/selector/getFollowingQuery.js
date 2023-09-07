@@ -9,7 +9,7 @@ export const getFollowingQuery = selector({
       if (response.error) {
         throw new Error(response.error);
       }
-      return response.data;
+      return response;
     } catch (error) {
       console.error("getFollowingQuery 에러:", error);
       throw error;
