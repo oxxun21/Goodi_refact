@@ -19,12 +19,12 @@ export default function FollowListUI({ profileData }) {
   };
   const fetchFollowingData = async () => {
     const response = await followingAPI(name);
-    setFollowingData([...response.data]);
+    setFollowingData([...response]);
   };
 
   const fetchFollowerData = async () => {
     const response = await followerAPI(name);
-    setFollowerData([...response.data]);
+    setFollowerData([...response]);
   };
 
   useEffect(() => {

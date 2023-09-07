@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 // 컴포넌트
@@ -12,8 +12,18 @@ import followSymbol from "../../assets/follow_symbol.svg";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
+import { useParams } from "react-router";
 
 export default function Follow({ followerData, followingData, activeFollow }) {
+  const account_name = useParams();
+
+  useEffect(() => {
+    const scrollContainer = document.querySelector(".scroll-container");
+    if (scrollContainer) {
+      scrollContainer.scrollTop = 0;
+    }
+  }, [activeFollow, account_name]);
+
   return (
     <FollowWrap>
       {activeFollow === 1 ? (
@@ -27,7 +37,7 @@ export default function Follow({ followerData, followingData, activeFollow }) {
       )}
 
       {activeFollow === 1 && followerData && followerData?.length > 0 ? (
-        <ul>
+        <ul className="scroll-container">
           {followerData.map((follow) => (
             <FollowLi key={follow._id}>
               <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow="true" />
@@ -36,7 +46,7 @@ export default function Follow({ followerData, followingData, activeFollow }) {
           ))}
         </ul>
       ) : activeFollow === 2 && followingData && followingData?.length > 0 ? (
-        <ul>
+        <ul className="scroll-container">
           {followingData.map((follow) => (
             <FollowLi key={follow._id}>
               <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow={true} />
@@ -65,6 +75,21 @@ const FollowWrap = styled.article`
       width: 50%;
     }
   }
+
+  & > ul {
+    max-height: 19rem;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+  }
 `;
 
 const FollowLi = styled.li`
@@ -75,6 +100,10 @@ const FollowLi = styled.li`
 
   & > a {
     width: 60%;
+    margin-bottom: 0;
+  }
+
+  &:last-of-type {
     margin-bottom: 0;
   }
 `;
