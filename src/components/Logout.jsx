@@ -5,7 +5,6 @@ export default function LogoutHandler() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("recoil-persist");
     removeLoginCookie({ path: "/" });
 
     navigate("/login");

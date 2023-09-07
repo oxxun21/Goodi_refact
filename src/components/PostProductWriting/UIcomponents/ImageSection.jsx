@@ -5,7 +5,7 @@ import PlusIcon from "../../../assets/icon_plus_gray.svg";
 import addIcon from "../../../assets/add_button_gray.svg";
 
 import { BASE_URL } from "../../../utils";
-import { handleImageCompression } from "../../../utils/imageCompression";
+import { handleImageCompression } from "../../../utils";
 import imageCompression from "browser-image-compression";
 
 export default function ImageSection({ setImageWrap, imageWrap }) {
