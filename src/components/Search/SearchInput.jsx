@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 // 이미지
 import SearchBtn from "../../assets/icon_search_black.svg";
 
-export default function SearchInput({ keyword, setKeyword, handleClick }) {
+export default function SearchInput({ formRef, handleClick }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <SearchInputWrap className={isActive ? "active" : ""}>
-      <input
-        type="text"
-        value={keyword}
-        placeholder="찾으시는 작가를 입력해주세요"
-        onChange={(e) => setKeyword(e.target.value)}
-        onFocus={() => setIsActive(true)}
-        onBlur={() => setIsActive(false)}
-      />
-      <button type="submit" onClick={handleClick}></button>
+    <SearchInputWrap className={isActive ? "active" : ""} ref={formRef} onSubmit={handleClick}>
+      <input type="text" name="keywordInput" placeholder="찾으시는 작가를 입력해주세요" onFocus={() => setIsActive(true)} onBlur={() => setIsActive(false)} />
+      <button type="submit"></button>
     </SearchInputWrap>
   );
 }
