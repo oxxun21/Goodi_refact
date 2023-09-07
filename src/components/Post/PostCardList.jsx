@@ -34,8 +34,6 @@ export default function PostCardList({ accountname }) {
     fetchPostData();
   }, [accountname, checkDelete]);
 
-  console.log(userPostList);
-
   return (
     <>
       {userPostList === null || userPostList.length === 0 ? (

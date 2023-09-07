@@ -100,7 +100,7 @@ export default function PostCard({ username, profileImage, email, content, image
         </LocalNavWrap>
       </PostTop>
       <PostContent>
-        <p>{content}</p>
+        <figcaption>{content}</figcaption>
         <img src={image ? image : "https://api.mandarin.weniv.co.kr/1687455865316.jpg"} alt="게시글 이미지" />
         <div>
           <span>{elapsedTimeString}</span>
@@ -141,7 +141,7 @@ const PostTop = styled.div`
     font-size: 16px;
   }
 `;
-const PostContent = styled.div`
+const PostContent = styled.figure`
   width: 100%;
   & > div {
     display: flex;
@@ -167,7 +167,7 @@ const PostContent = styled.div`
     font-size: 1rem;
   }
 
-  p {
+  figcaption {
     min-height: 85px;
     width: 100%;
     color: var(--gray500-color);
