@@ -42,7 +42,7 @@ const getElapsedTime = (createdAt) => {
 };
 
 export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }) {
-  const handleClick = useRef();
+  const handleClick = useRef(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
   const [isHidden, setIsHidden] = useState(false);
@@ -60,7 +60,7 @@ export default function PostCard({ username, profileImage, email, content, image
     const handleClickOutside = (event) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
+      if (localNavElement && !localNavElement.contains(event.target) && handleClick.current && !handleClick.current.contains(event.target)) {
         setIsHidden(false);
       }
     };

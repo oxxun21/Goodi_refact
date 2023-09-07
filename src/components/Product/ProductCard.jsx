@@ -12,7 +12,7 @@ import postMenu from "../../assets/post_menu.svg";
 
 export default function ProductCard(props) {
   const { profile, name, mainaccount, img, title, description, price, id } = props;
-  const handleClick = useRef();
+  const handleClick = useRef(null);
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
   const account_name = temp.accountname ? temp.accountname : mainaccount || myaccount_name;
@@ -32,7 +32,7 @@ export default function ProductCard(props) {
     const handleClickOutside = (event) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target) && !handleClick.current.contains(event.target)) {
+      if (localNavElement && !localNavElement.contains(event.target) && handleClick.current && !handleClick.current.contains(event.target)) {
         setIsHidden(false);
       }
     };
