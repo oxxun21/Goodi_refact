@@ -18,18 +18,25 @@ export default function MainLeft({ render }) {
         {render.length === 0 ? (
           <FollowingNull>
             <img src={cartNullIcon} alt="장바구니 아이콘" />
-            <p>아직 팔로잉한 유저가 없어요!</p>
+            <p>아직 팔로잉한 작가님이 없어요!</p>
           </FollowingNull>
         ) : (
           <>
-            {render
-              .filter((i) => i !== undefined)
-              .map((item, index) => (
-                <Link key={item.id} to={`/productDetail/${item.id}`}>
-                  <img src={checkImageUrl(item.img, "post")} alt={`팔로우한 작가 상품 이미지 ${index}`} />
-                </Link>
-              ))
-              .slice(0, 4)}
+            {render.filter((i) => i !== undefined).length > 0 ? (
+              render
+                .filter((item) => item !== undefined)
+                .slice(0, 4)
+                .map((item, index) => (
+                  <Link key={item.id} to={`/productDetail/${item.id}`}>
+                    <img src={checkImageUrl(item.img, "post")} alt={`팔로우한 작가 상품 이미지 ${index}`} />
+                  </Link>
+                ))
+            ) : (
+              <FollowingNull>
+                <img src={cartNullIcon} alt="장바구니 아이콘" />
+                <p>아직 작가님들이 상품을 올리지 않았어요!</p>
+              </FollowingNull>
+            )}
           </>
         )}
       </article>

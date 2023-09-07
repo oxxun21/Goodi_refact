@@ -43,6 +43,8 @@ export default function Main() {
     fetchfollowProduct();
   }, [getFollowings]);
 
+  console.log(render);
+
   return (
     <>
       {loading ? (
