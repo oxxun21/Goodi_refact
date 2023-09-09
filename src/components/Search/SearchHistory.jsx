@@ -13,7 +13,6 @@ export default function SearchHistory() {
 
   const handleDelete = (e) => {
     const searchText = e.target.parentElement.innerText;
-    console.log(searchText);
     setIsRecentSearch((prevState) => {
       return prevState.filter((e) => e !== searchText);
     });
