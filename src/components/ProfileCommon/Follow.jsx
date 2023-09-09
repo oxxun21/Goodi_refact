@@ -69,7 +69,7 @@ const FollowWrap = styled.article`
 
   h3 {
     height: 33px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     & > img {
       width: 50%;
@@ -77,9 +77,10 @@ const FollowWrap = styled.article`
   }
 
   & > ul {
-    max-height: 19rem;
-    overflow-y: auto;
+    max-height: 20rem;
+    overflow-y: scroll;
     padding-right: 5px;
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
       width: 5px;
