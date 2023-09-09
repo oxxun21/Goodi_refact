@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 // 리코일
 import { useRecoilValue } from "recoil";
-import { accountname } from "../recoil";
 import { checkFollow } from "../recoil";
 
 // api

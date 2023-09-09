@@ -3,13 +3,13 @@ import Button from "./Button/Button";
 import CloseButton from "../../assets/close-button.svg";
 import { useEffect } from "react";
 import LogoutHandler from "../Logout";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { productDeleteAPI, postDeleteAPI } from "../../api";
 import { checkDeletePost } from "../../recoil";
 
 export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }) {
   const { handleLogout } = LogoutHandler();
-  const [checkDelete, setCheckDelete] = useRecoilState(checkDeletePost);
+  const setCheckDelete = useSetRecoilState(checkDeletePost);
 
   const handleClick = async (e) => {
     if (e.target.innerText === "삭제하겠습니다") {

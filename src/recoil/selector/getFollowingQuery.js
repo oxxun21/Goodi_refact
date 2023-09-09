@@ -1,6 +1,7 @@
 import { selector } from "recoil";
 import { followingAPI } from "../../api";
 import accountname from "../accountname";
+
 export const getFollowingQuery = selector({
   key: "getFollowing",
   get: async ({ get }) => {
