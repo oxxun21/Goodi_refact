@@ -112,7 +112,7 @@
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=ffffff"/>&nbsp  
    <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=aws&logoColor=white">&nbsp 
   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>&nbsp 
-  <img src="https://img.shields.io/badge/Axios-DD0000?style=for-the-badge&logo=Axios&logoColor=white">&nbsp 
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">&nbsp 
  </td>
 </tr>
 <tr>
