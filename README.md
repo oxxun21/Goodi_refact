@@ -1,4 +1,4 @@
-<h1><img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" />Goodi<img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" /> (리팩토링 중!) </h1>
+<h1><img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" />Goodi<img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" /></h1>
 
 > 🦁멋쟁이사자처럼 프론트엔드스쿨 5기 프로젝트 10팀
 >
@@ -6,7 +6,9 @@
 > 테스트 ID: gooodi@gmail.com  <br />
 > 테스트 password: 123123123  <br />
 > 
-> 프로젝트 기간 : 2023.06.01 ~ 2023.06.28
+> 프로젝트 기간 : 2023.06.01 ~ 2023.06.28 <br />
+> 단체 리팩토링 기간 : 2023.07.17 ~ 2023.08.04 <br />
+> 개인 리팩토링 기간 : 2023.08.18 ~ 2023.09.10 <br />
 
 
 <img width="1202" alt="스크린샷 2023-08-08 오후 3 17 25" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/124513796/5735c26f-e5ba-4125-aabb-d47d03dbd121">
@@ -98,7 +100,6 @@
 </details>
 
 <br />
-<br />
 
 
 ## 🛠️ 기술 스택
@@ -109,8 +110,9 @@
  <td>
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">&nbsp 
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=ffffff"/>&nbsp  
-   <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=aws&logoColor=white">
+   <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=aws&logoColor=white">&nbsp 
   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>&nbsp 
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">&nbsp 
  </td>
 </tr>
 <tr>
@@ -142,7 +144,11 @@
 </tr>
 </table>
 
-<img width="950px" alt="259002718-45feed91-8ce7-44c1-befc-84fc12a2ab4a" src="https://github.com/oxxun21/Goodi/assets/98699927/3d2e58dd-7bb6-457c-9d44-4d459470771e">
+<br />
+
+- **React** : 재사용 가능한 UI 구성 요소를 만들고 컴포넌트를 조립하여 개발하는 방식은 유지보수에 유리하다고 생각하였습니다. JSX 문법을 사용하여 더 쉽고 빠르게 개발을 할 수 있었습니다.
+- **Recoil** : 빠른 시간 내에 익힐 수 있는 상태관리 툴이 필요했는데 리코일이 가장 다가가기 쉬웠으며 사용 의미와 동작들이 가장 리액트스럽다고 생각되었습니다.
+- **Styled-Components** : 한 컴포넌트 내에서 CSS를 관리할 수 있고, 상태에 따른 스타일 변화가 있는 페이지에서 조건부 스타일이 유용하게 사용될 수 있을 것 같아 선택하였습니다.
 
 <br />
 
@@ -163,7 +169,7 @@
 
 <br />
 
-## 📁 폴더 구조
+### 📁 폴더 구조
 
 ```
 📁 goodi
@@ -172,11 +178,12 @@
 │   ├── api
 │   ├── assets
 │   ├── components
-│   │         └── common
 │   ├── layout
+│   ├── mock
 │   ├── pages
 │   ├── recoil
-│   └── style
+|   ├── style
+│   └── utils
 ├──📄 App.js
 └──📄 index.js
 
@@ -192,8 +199,8 @@
 - 🎨 초기 와이어프레임/정보 구조도
 
   <span align="left">
-  <img width="40%" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/98699927/82e5026f-76d2-430f-9806-7f6deecfa8df" alt="구디 유저 플로우" />
+  <img width="40%" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/98699927/82e5026f-76d2-430f-9806-7f6deecfa8df" alt="구디 와이어프레임" />
   </span>
   <span align="right">
-  <img width="50%" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/98699927/cd16e5af-f2a8-45b1-a302-f7b0d0f361c9" alt="구디 유저 플로우" />
+  <img width="50%" src="https://github.com/FRONTENDSCHOOL5/final-10-Goodi/assets/98699927/cd16e5af-f2a8-45b1-a302-f7b0d0f361c9" alt="구디 정보 구조도" />
   </span>
