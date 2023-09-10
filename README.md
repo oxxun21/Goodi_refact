@@ -5,8 +5,8 @@
 > 🔗 <strong>리팩토링 배포 링크</strong> [https://goodi.netlify.app](https://goodi.netlify.app)  <br />
 > 🔗 배포 링크 [https://frontendschool5.github.io/final-10-Goodi](https://frontendschool5.github.io/final-10-Goodi)  <br />
 >
->  테스트 ID: gooodi@gmail.com  <br />
-> 테스트 password: 123123123  <br />
+>  테스트 ID: goodi0601@gmail.com  <br />
+> 테스트 password: goodiisborn0601  <br />
 > 
 > 프로젝트 기간 : 2023.06.01 ~ 2023.06.28 <br />
 > 단체 리팩토링 기간 : 2023.07.17 ~ 2023.08.04 <br />
