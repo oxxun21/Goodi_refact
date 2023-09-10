@@ -27,7 +27,7 @@ export function LeftDiv() {
           setFadeIn(false);
         }, fadeInDuration);
       }, fadeOutDuration);
-    }, [imageUrls]);
+    }, [transitionDuration]);
 
     return () => {
       clearInterval(interval);
