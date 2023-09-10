@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter basename="/final-10-Goodi">
+    <BrowserRouter>
       <Suspense fallback={<FallbackUI />}>
         <ScrollToTop />
         <GlobalStyle />
