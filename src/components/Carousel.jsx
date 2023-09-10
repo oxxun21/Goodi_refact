@@ -20,16 +20,14 @@ export function LeftDiv() {
     const interval = setInterval(() => {
       setFadeOut(true);
       setTimeout(() => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
-        );
+        setCurrentImageIndex((prevIndex) => (prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1));
         setFadeOut(false);
         setFadeIn(true);
         setTimeout(() => {
           setFadeIn(false);
         }, fadeInDuration);
       }, fadeOutDuration);
-    }, transitionDuration);
+    }, [transitionDuration]);
 
     return () => {
       clearInterval(interval);
@@ -46,18 +44,8 @@ export function LeftDiv() {
 
   return (
     <Container>
-      <ImageContainer
-        imageLoaded={imageLoaded}
-        fadeIn={fadeIn}
-        fadeOut={fadeOut}
-        fadeInDuration={fadeInDuration}
-        fadeOutDuration={fadeOutDuration}
-      >
-        <img
-          src={getCurrentImageUrl()}
-          alt="carousel"
-          onLoad={handleImageLoad}
-        />
+      <ImageContainer imageLoaded={imageLoaded} fadeIn={fadeIn} fadeOut={fadeOut} fadeInDuration={fadeInDuration} fadeOutDuration={fadeOutDuration}>
+        <img src={getCurrentImageUrl()} alt="carousel" onLoad={handleImageLoad} />
       </ImageContainer>
       <img className="login-ment" src={LoginMent} alt="Login Ment" />
     </Container>
@@ -84,12 +72,8 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  opacity: ${({ imageLoaded, fadeIn, fadeOut }) =>
-    imageLoaded ? (fadeIn ? 1 : fadeOut ? 0 : 1) : 0};
-  transition: opacity
-    ${({ imageLoaded, fadeIn, fadeOut, fadeInDuration, fadeOutDuration }) =>
-      imageLoaded ? (fadeIn || fadeOut ? "1s" : "1s") : "1s"}
-    ease-in-out;
+  opacity: ${({ imageLoaded, fadeIn, fadeOut }) => (imageLoaded ? (fadeIn ? 1 : fadeOut ? 0 : 1) : 0)};
+  transition: opacity ${({ imageLoaded, fadeIn, fadeOut, fadeInDuration, fadeOutDuration }) => (imageLoaded ? (fadeIn || fadeOut ? "1s" : "1s") : "1s")} ease-in-out;
 `;
 
 export default LeftDiv;
