@@ -50,7 +50,7 @@ export default function Cart() {
   };
 
   return (
-    <Layout reduceTop="true">
+    <Layout reduceTop={true}>
       <h2 className="a11y-hidden">장바구니</h2>
       <CartWrap>
         <CartLeft>
