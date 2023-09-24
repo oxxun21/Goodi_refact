@@ -1,6 +1,6 @@
 import { instance } from "./instance";
 
-export const followAPI = async (accountname) => {
+export const followAPI = async (accountname: string) => {
   try {
     const response = await instance.post(`/profile/${accountname}/follow`);
     return response;
@@ -9,7 +9,7 @@ export const followAPI = async (accountname) => {
   }
 };
 
-export const unfollowAPI = async (accountname) => {
+export const unfollowAPI = async (accountname: string) => {
   try {
     const response = await instance.delete(`/profile/${accountname}/unfollow`);
     return response;
@@ -18,7 +18,7 @@ export const unfollowAPI = async (accountname) => {
   }
 };
 
-export const followerAPI = async (accountname) => {
+export const followerAPI = async (accountname: string) => {
   try {
     const response = await instance.get(`/profile/${accountname}/follower/?limit=100`);
     return response.data;
@@ -27,7 +27,7 @@ export const followerAPI = async (accountname) => {
   }
 };
 
-export const followingAPI = async (accountname) => {
+export const followingAPI = async (accountname: string) => {
   try {
     const response = await instance.get(`/profile/${accountname}/following/?limit=100`);
     return response.data;

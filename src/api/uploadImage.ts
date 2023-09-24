@@ -1,6 +1,6 @@
 import { imageInstance } from "./instance";
 
-export const uploadImageAPI = async (file) => {
+export const uploadImageAPI = async (file: File) => {
   try {
     const formData = new FormData();
     formData.append("image", file);

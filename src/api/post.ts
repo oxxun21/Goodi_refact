@@ -1,7 +1,14 @@
+import axios from "axios";
 import { instance } from "./instance";
 
+interface post_I {
+  content: string;
+  image: string;
+  accountname?: string;
+}
+
 //게시글 작성
-export const postUploadAPI = async ({ content, image }) => {
+export const postUploadAPI = async ({ content, image }: post_I) => {
   try {
     const response = await instance.post(`/post`, {
       post: {
@@ -11,12 +18,14 @@ export const postUploadAPI = async ({ content, image }) => {
     });
     return response;
   } catch (error) {
-    return error.response;
+    if (axios.isAxiosError(error)) {
+      return error.response;
+    }
   }
 };
 
 //게시글 목록
-export const postListAPI = async ({ accountname }) => {
+export const postListAPI = async ({ accountname }: Pick<post_I, "accountname">) => {
   try {
     const response = await instance.get(`/post/${accountname}/userpost`);
     return response.data;
@@ -26,7 +35,7 @@ export const postListAPI = async ({ accountname }) => {
 };
 
 //게시글 수정
-export const postPutAPI = async (id, putData) => {
+export const postPutAPI = async (id: string, putData: post_I) => {
   try {
     const response = await instance.put(`/post/${id}`, putData);
     return response.data;
@@ -36,7 +45,7 @@ export const postPutAPI = async (id, putData) => {
 };
 
 //게시글 수정 시에 불러오기
-export const postGetUpdateAPI = async (id) => {
+export const postGetUpdateAPI = async (id: string) => {
   try {
     const reponse = await instance.get(`/post/${id}`);
     return reponse.data;
@@ -46,7 +55,7 @@ export const postGetUpdateAPI = async (id) => {
 };
 
 //게시글 삭제
-export const postDeleteAPI = async (id) => {
+export const postDeleteAPI = async (id: string) => {
   try {
     const response = await instance.delete(`/post/${id}`);
     return response.data;
