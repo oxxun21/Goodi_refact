@@ -49,7 +49,7 @@ export const productPutAPI = async (product_id: string, productData: product_I) 
 };
 
 //상품 수정시에 불러오기
-export const productGetUpdateAPI = async (id: string) => {
+export const productGetUpdateAPI = async (id: string | undefined) => {
   try {
     const response = await instance.get(`/product/detail/${id}`);
     return response.data;
