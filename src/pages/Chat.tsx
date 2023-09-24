@@ -25,13 +25,20 @@ import chatDummy from "../mock/chatDummy";
 
 import { checkImageUrl } from "../utils";
 
-export default function Chat(reduceTop) {
+import { profile_I } from "../interface/profile_I";
+import { following_I } from "../interface/follow_I";
+
+interface ChatProps {
+  reduceTop: boolean;
+}
+
+export default function Chat({ reduceTop }: ChatProps) {
   const accountName = useRecoilValue(accountname);
 
   const [toast, setToast] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState("");
-  const [followingList, setFollowingList] = useState("");
+  const [profileData, setProfileData] = useState<profile_I | null>(null);
+  const [followingList, setFollowingList] = useState<following_I[]>([]);
   const getFollowings = useRecoilValue(getFollowingQuery);
 
   // 활성화하여 채팅할 상대 팔로잉 유저 ID 로 구별
@@ -45,25 +52,25 @@ export default function Chat(reduceTop) {
   const [userImage, setUserImage] = useState("");
 
   // 내가 보내는 채팅 내용 화면에 노출
-  const [submitChat, setSubmitChat] = useState([]);
+  const [submitChat, setSubmitChat] = useState<string[]>([]);
 
   // 채팅 내용 활성화
   const [isChat, setIsChat] = useState(false);
 
   // 클릭한 해당 유저 정보가져오기
-  const handleChat = (e) => {
+  const handleChat = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dummyChat = e.currentTarget.dataset.dummyChat;
     const id = e.currentTarget.dataset.id;
     const image = e.currentTarget.dataset.image;
     setSubmitChat([]);
-    setIsActive(id);
-    setChatContent(dummyChat);
-    setUserImage(image);
+    setIsActive(id || "");
+    setChatContent(dummyChat || "");
+    setUserImage(image || "");
     setIsChat(true);
   };
 
   // 채팅을 전송하면 화면에 노출
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitChat((prevArray) => [...prevArray, hasInput]);
     setHasInput("");
@@ -131,10 +138,13 @@ export default function Chat(reduceTop) {
         )}
         <ChatWrapRight>
           <ChatProfile>
-            <ProileTextWrap>
-              <strong>{profileData.username}</strong>
-              <p>{profileData.accountname}</p>
-            </ProileTextWrap>
+            {profileData && (
+              <ProileTextWrap>
+                <strong>{profileData.username}</strong>
+                <p>{profileData.accountname}</p>
+              </ProileTextWrap>
+            )}
+
             {isChat && <ExitButton onClick={handleExit}>채팅 나가기</ExitButton>}
           </ChatProfile>
 
