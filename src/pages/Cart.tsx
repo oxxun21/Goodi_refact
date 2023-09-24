@@ -13,8 +13,20 @@ import cartNullIcon from "../assets/cart_null_icon.svg";
 import CartList from "../components/CartList/CartList";
 import { priceDivide } from "../utils";
 
+interface CartItem {
+  id: number;
+  productCount: number;
+  productImage: string;
+  productName: string;
+  productPrice: number;
+  userImage: string;
+  userName: string;
+}
+
 export default function Cart() {
-  const cartItem = useRecoilValue(cartItemsState);
+  const cartItem: CartItem[] = useRecoilValue(cartItemsState);
+  console.log(cartItem);
+
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
