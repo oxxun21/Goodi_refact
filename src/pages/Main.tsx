@@ -16,17 +16,20 @@ import MainLeft from "../components/Main/MainLeft";
 import { useRecoilValue } from "recoil";
 import { productListAPI } from "../api";
 import { getFollowingQuery } from "../recoil/selector/getFollowingQuery.js";
+import { followingSelector_I } from "../interface/follow_I";
 
 export default function Main() {
   const [loading, setLoading] = useState(true);
 
-  const [render, setRender] = useState([]);
+  const [render, setRender] = useState<{ img: string; id: string }[]>([]);
 
   const getFollowings = useRecoilValue(getFollowingQuery);
 
+  console.log(getFollowings);
+
   useEffect(() => {
     const fetchfollowProduct = async () => {
-      const imgPromises = getFollowings.map(async (item) => {
+      const imgPromises = getFollowings.map(async (item: followingSelector_I) => {
         const response = await productListAPI({ accountname: item.accountname });
 
         if (response.product.length > 0) {
