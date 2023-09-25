@@ -1,16 +1,9 @@
 import axios from "axios";
 import { instance } from "./instance";
-
-interface product_I {
-  link: string;
-  itemName: string;
-  price: number;
-  itemImage: string;
-  accountname?: string;
-}
+import { productWriting_I } from "../interface/product_I";
 
 //상품 작성
-export const productUploadAPI = async ({ link, itemName, price, itemImage }: product_I) => {
+export const productUploadAPI = async ({ link, itemName, price, itemImage }: productWriting_I) => {
   try {
     const response = await instance.post("/product", {
       product: {
@@ -29,7 +22,7 @@ export const productUploadAPI = async ({ link, itemName, price, itemImage }: pro
 };
 
 //상품 목록
-export const productListAPI = async ({ accountname }: Pick<product_I, "accountname">) => {
+export const productListAPI = async ({ accountname }: Pick<productWriting_I, "accountname">) => {
   try {
     const response = await instance.get(`/product/${accountname}`);
     return response.data;
@@ -39,7 +32,7 @@ export const productListAPI = async ({ accountname }: Pick<product_I, "accountna
 };
 
 //상품 수정
-export const productPutAPI = async (product_id: string, productData: product_I) => {
+export const productPutAPI = async (product_id: string, productData: productWriting_I) => {
   try {
     const response = await instance.put(`/product/${product_id}`, productData);
     return response;

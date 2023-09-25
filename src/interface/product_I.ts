@@ -17,3 +17,11 @@ export interface product_I {
     followingCount: number;
   };
 }
+
+export interface productWriting_I {
+  link: string;
+  itemName: string;
+  price: number;
+  itemImage: string;
+  accountname?: string;
+}

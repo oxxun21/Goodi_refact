@@ -23,3 +23,11 @@ export interface follower_I {
   followerCount: 1;
   followingCount: 0;
 }
+
+export interface followingSelector_I {
+  _id: string;
+  username: string;
+  accountname: string;
+  intro: string;
+  image: string;
+}

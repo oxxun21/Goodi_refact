@@ -1,19 +1,6 @@
 import axios from "axios";
 import { instance } from "./instance";
-
-interface signUp_I {
-  username: string;
-  email: string;
-  password: string;
-  accountname: string;
-  intro: string;
-  image: string[];
-}
-
-interface login_I {
-  email: string;
-  password: string;
-}
+import { login_I, signUp_I } from "../interface/user_I";
 
 export const singUpAPI = async ({ username, email, password, accountname, intro, image }: signUp_I) => {
   try {

@@ -25,7 +25,7 @@ import chatDummy from "../mock/chatDummy";
 
 import { checkImageUrl } from "../utils";
 
-import { profile_I } from "../interface/profile_I";
+import { profileInfo_I } from "../interface/profile_I";
 import { following_I } from "../interface/follow_I";
 
 interface ChatProps {
@@ -37,7 +37,7 @@ export default function Chat({ reduceTop }: ChatProps) {
 
   const [toast, setToast] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<profile_I | null>(null);
+  const [profileData, setProfileData] = useState<profileInfo_I | null>(null);
   const [followingList, setFollowingList] = useState<following_I[]>([]);
   const getFollowings = useRecoilValue(getFollowingQuery);
 

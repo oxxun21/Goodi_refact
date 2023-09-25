@@ -1,4 +1,4 @@
-export interface profile_I {
+export interface profileInfo_I {
   _id: string;
   username: string;
   accountname: string;
@@ -8,4 +8,11 @@ export interface profile_I {
   follower: [];
   followerCount: number;
   followingCount: number;
+}
+
+export interface profile_I {
+  username: string;
+  accountname: string;
+  intro: string;
+  image: string;
 }
