@@ -13,43 +13,54 @@ import { singUpAPI, uploadImageAPI } from "../api";
 
 export default function Join() {
   const navigate = useNavigate();
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const imageRef = useRef<HTMLInputElement>(null);
 
   const [errorMSG, setErrorMSG] = useState("");
-  const [profileSelectedImage, setProfileSelectedImage] = useState(null);
-  const [imageWrap, setImageWrap] = useState([]);
+  const [profileSelectedImage, setProfileSelectedImage] = useState<string | null>(null);
+  const [imageWrap, setImageWrap] = useState<string[]>([]);
 
-  const handleSignup = async (e) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { email, password, username, intro } = formRef.current.elements;
+    const formElements = formRef.current as HTMLFormElement;
+    if (formRef.current instanceof HTMLFormElement) {
+      const email = formElements.elements.namedItem("email") as HTMLInputElement;
+      const password = formElements.elements.namedItem("password") as HTMLInputElement;
+      const username = formElements.elements.namedItem("username") as HTMLInputElement;
+      const intro = formElements.elements.namedItem("intro") as HTMLTextAreaElement;
 
-    let accountName = email.value.split("@")[0];
+      let accountName = email.value.split("@")[0];
 
-    const response = await singUpAPI({
-      username: username.value,
-      email: email.value,
-      password: password.value,
-      accountname: accountName,
-      intro: intro.value,
-      image: imageWrap,
-    });
+      const response = await singUpAPI({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+        accountname: accountName,
+        intro: intro.value,
+        image: imageWrap,
+      });
 
-    if (response.data.status === 422) {
-      setErrorMSG(response.data.message);
-    } else {
-      navigate("/login");
+      if (response?.data.status === 422) {
+        setErrorMSG(response.data.message);
+      } else {
+        navigate("/login");
+      }
     }
   };
 
-  const handleImageChange = async (e) => {
-    const { image } = formRef.current.elements;
-    const file = image.files[0];
-    const imageURL = await uploadImageAPI(file);
-    setImageWrap(imageURL);
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const image = imageRef.current;
+    if (image) {
+      if (image.files && image.files.length > 0) {
+        const file = image.files[0];
+        const imageURL = await uploadImageAPI(file);
+        setImageWrap(imageURL);
 
-    if (e.target.files && e.target.files[0]) {
-      const selectedImage = URL.createObjectURL(e.target.files[0]);
-      setProfileSelectedImage(selectedImage);
+        if (e.target.files && e.target.files[0]) {
+          const selectedImage = URL.createObjectURL(e.target.files[0]);
+          setProfileSelectedImage(selectedImage);
+        }
+      }
     }
   };
 
@@ -61,12 +72,12 @@ export default function Join() {
           <img src={JoinTo} alt="회원가입 페이지" />
         </h1>
 
-        <Form ref={formRef} onSubmit={handleSignup}>
+        <Form ref={formRef as React.RefObject<HTMLFormElement>} onSubmit={handleSignup}>
           <ProfileDiv>
-            <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} />
+            <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} ref={imageRef} />
             <label htmlFor="fileInput">
               <ProfileImgWrap>
-                <img className="button_img" src={profileSelectedImage ? profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : null} />
+                <img className="button_img" src={profileSelectedImage ? profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : undefined} />
                 <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
               </ProfileImgWrap>
             </label>

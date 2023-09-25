@@ -7,7 +7,7 @@ interface signUp_I {
   password: string;
   accountname: string;
   intro: string;
-  image: string;
+  image: string[];
 }
 
 interface login_I {

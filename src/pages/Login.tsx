@@ -26,25 +26,28 @@ const interceptorHeader = () => {
 
 export default function Login() {
   const navigate = useNavigate();
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const setIsAccountname = useSetRecoilState(accountname);
   const [errorMSG, setErrorMSG] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { email, password } = formRef.current.elements;
+    const formElements = formRef.current as HTMLFormElement;
+    if (formRef.current instanceof HTMLFormElement) {
+      const email = formElements.elements.namedItem("email") as HTMLInputElement;
+      const password = formElements.elements.namedItem("password") as HTMLInputElement;
+      const response = await loginAPI({ email: email.value, password: password.value });
+      if (response.data.status === 422) {
+        setErrorMSG(response.data.message);
+      } else {
+        const { token, accountname } = response.data.user;
+        setIsAccountname(accountname);
+        setLoginCookie(token, { path: "/" });
 
-    const response = await loginAPI({ email: email.value, password: password.value });
-    if (response.data.status === 422) {
-      setErrorMSG(response.data.message);
-    } else {
-      const { token, accountname } = response.data.user;
-      setIsAccountname(accountname);
-      setLoginCookie(token, { path: "/" });
-
-      interceptorHeader();
-      navigate("/");
+        interceptorHeader();
+        navigate("/");
+      }
     }
   };
 
@@ -156,7 +159,7 @@ const SnsDiv = styled.div`
   padding: 4px 0 60px;
 `;
 
-const SnsBg = styled.div`
+const SnsBg = styled.div<{ bg: string }>`
   background-color: ${(props) => props.bg};
   width: 56px;
   height: 56px;

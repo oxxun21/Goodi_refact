@@ -13,7 +13,7 @@ import { accountProfileAPI } from "../api";
 import Layout from "../layout/Layout";
 import ProfileLeftUI from "../layout/profileLayout/ProfileLeftUI";
 import ProfileRightUI from "../layout/profileLayout/ProfileRightUI";
-import ProfileSkeleton from "./../style/skeletonUI/skeletonPage/ProfileSkeleton";
+import ProfileSkeleton from "../style/skeletonUI/skeletonPage/ProfileSkeleton";
 
 export default function Profile() {
   const account_name = useParams();
@@ -23,15 +23,17 @@ export default function Profile() {
 
   useEffect(() => {
     const getProfileData = async () => {
-      const res = await accountProfileAPI(account_name);
-      setProfileData(res);
-      setLoading(false);
+      if (typeof account_name.accountname === "string") {
+        const res = await accountProfileAPI({ accountname: account_name.accountname });
+        setProfileData(res);
+        setLoading(false);
+      }
     };
     getProfileData();
   }, [account_name, checkFollowChange]);
 
   return (
-    <Layout reduceTop="true">
+    <Layout reduceTop={true}>
       <ProfileWrap>
         {loading ? (
           <ProfileSkeleton />
