@@ -29,7 +29,7 @@ import { profileInfo_I } from "../interface/profile_I";
 import { following_I } from "../interface/follow_I";
 
 interface ChatProps {
-  reduceTop: boolean;
+  reduceTop?: boolean;
 }
 
 export default function Chat({ reduceTop }: ChatProps) {

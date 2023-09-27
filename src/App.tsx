@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import GlobalStyle from "./style/GlobalStyle";
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
@@ -7,8 +7,36 @@ import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
 import FallbackUI from "./components/FallbackUI";
 import { getLoginCookie } from "./utils";
+import InfoModal from "./components/InfoModal";
 
 function App() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (viewportWidth <= 1130) {
+      setShowPopup(true);
+    } else {
+      setShowPopup(false);
+    }
+  }, [viewportWidth]);
+
+  const onClose = () => {
+    setShowPopup(false);
+  };
+
   const Main = lazy(() => import("./pages/Main"));
   const Detail = lazy(() => import("./pages/Detail"));
   const Profile = lazy(() => import("./pages/Profile"));
@@ -46,6 +74,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      {showPopup && <InfoModal onClose={onClose} />}
     </BrowserRouter>
   );
 }
