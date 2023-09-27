@@ -25,8 +25,6 @@ export default function Main() {
 
   const getFollowings = useRecoilValue(getFollowingQuery);
 
-  console.log(getFollowings);
-
   useEffect(() => {
     const fetchfollowProduct = async () => {
       const imgPromises = getFollowings.map(async (item: followingSelector_I) => {
