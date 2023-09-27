@@ -15,6 +15,7 @@ import { postGetUpdateAPI, postPutAPI } from "../api";
 
 // Recoil
 import { accountname } from "../recoil";
+import { postWriting_I } from "../interface/post_I";
 
 export default function PostUpdate() {
   const { posting_id } = useParams();
@@ -23,7 +24,7 @@ export default function PostUpdate() {
   const account_name = useRecoilValue(accountname);
 
   const [imageWrap, setImageWrap] = useState([]);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<postWriting_I | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -38,23 +39,23 @@ export default function PostUpdate() {
     fetchPost();
   }, []);
 
-  const postUpdateSend = async (e) => {
+  const postUpdateSend = async (e: React.FormEvent) => {
     e.preventDefault();
-    const putData = {
-      post: {
+    if (data) {
+      const putData: postWriting_I = {
         id: data.id,
         content: data.content,
         image: imageWrap.join(","),
-      },
-    };
+      };
 
-    await postPutAPI(posting_id, putData);
+      await postPutAPI(posting_id, putData);
 
-    navigate(`/profile/${account_name}`);
+      navigate(`/profile/${account_name}`);
+    }
   };
 
   return (
-    <Layout reduceTop="true">
+    <Layout reduceTop={true}>
       {data && (
         <UpdateTotalUI
           src={PostingUpload}

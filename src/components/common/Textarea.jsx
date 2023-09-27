@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Textarea({ ...props }) {
+export default function Textarea({ inputRef, ...props }) {
   return (
     <TextareaBoxWrap>
-      <TextareaBox {...props}></TextareaBox>
+      <TextareaBox ref={inputRef} {...props}></TextareaBox>
       <p>최대 100자까지 입력 가능합니다.</p>
     </TextareaBoxWrap>
   );

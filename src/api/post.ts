@@ -30,9 +30,9 @@ export const postListAPI = async ({ accountname }: Pick<postWriting_I, "accountn
 };
 
 //게시글 수정
-export const postPutAPI = async (id: string, putData: postWriting_I) => {
+export const postPutAPI = async (id: string | undefined, putData: postWriting_I) => {
   try {
-    const response = await instance.put(`/post/${id}`, putData);
+    const response = await instance.put(`/post/${id}`, { post: putData });
     return response.data;
   } catch (error) {
     throw error;
@@ -40,7 +40,7 @@ export const postPutAPI = async (id: string, putData: postWriting_I) => {
 };
 
 //게시글 수정 시에 불러오기
-export const postGetUpdateAPI = async (id: string) => {
+export const postGetUpdateAPI = async (id: string | undefined) => {
   try {
     const reponse = await instance.get(`/post/${id}`);
     return reponse.data;
@@ -50,7 +50,7 @@ export const postGetUpdateAPI = async (id: string) => {
 };
 
 //게시글 삭제
-export const postDeleteAPI = async (id: string) => {
+export const postDeleteAPI = async (id: string | undefined) => {
   try {
     const response = await instance.delete(`/post/${id}`);
     return response.data;
