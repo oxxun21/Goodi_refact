@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import SkeletonItem from './../SkeletonItem';
+import React from "react";
+import styled from "styled-components";
+import SkeletonItem from "../SkeletonItem";
 
 export default function PostSkeleton() {
   return (
@@ -15,12 +15,12 @@ export default function PostSkeleton() {
       <SkeletonPostImage />
     </SkeletotnPost>
   );
-};
+}
 
 const SkeletotnPost = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const SkeletonUserLayout = styled.div`
   display: flex;
@@ -44,9 +44,9 @@ const SkeletonUserName = styled(SkeletonItem)`
 const SkeletonId = styled(SkeletonItem)`
   width: 107px;
   height: 14px;
-`
+`;
 
 const SkeletonPostImage = styled(SkeletonItem)`
   width: 100%;
   height: 280px;
-`
+`;
