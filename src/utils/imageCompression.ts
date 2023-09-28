@@ -1,6 +1,11 @@
 import { uploadImageAPI } from "../api";
 
-export const handleImageCompression = async (dataURI, name, setImageWrap, setLoading) => {
+export const handleImageCompression = async (
+  dataURI: string,
+  name: string,
+  setImageWrap: React.Dispatch<React.SetStateAction<string[]>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const byteString = atob(dataURI.split(",")[1]);
   const ab = new ArrayBuffer(byteString.length);
   const ia = new Uint8Array(ab);

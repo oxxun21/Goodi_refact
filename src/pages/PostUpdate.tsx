@@ -23,7 +23,7 @@ export default function PostUpdate() {
 
   const account_name = useRecoilValue(accountname);
 
-  const [imageWrap, setImageWrap] = useState([]);
+  const [imageWrap, setImageWrap] = useState<string[]>([]);
   const [data, setData] = useState<postWriting_I | null>(null);
 
   useEffect(() => {
