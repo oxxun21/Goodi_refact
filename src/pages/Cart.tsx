@@ -25,7 +25,6 @@ interface CartItem {
 
 export default function Cart() {
   const cartItem: CartItem[] = useRecoilValue(cartItemsState);
-  console.log(cartItem);
 
   const navigate = useNavigate();
 

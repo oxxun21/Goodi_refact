@@ -13,17 +13,24 @@ import ProductCard from "./ProductCard";
 import NoPostsUI from "../NoPostsUI";
 
 import { BASE_URL, checkImageUrl } from "../../utils";
+import { accountname_I } from "../../interface/user_I";
+import { productList_I } from "../../interface/product_I";
 
-export default function ProductCardList({ accountname, profile }) {
+interface productCarListProps {
+  accountname: string;
+  profile: boolean;
+}
+
+export default function ProductCardList({ accountname, profile }: productCarListProps) {
   const checkDelete = useRecoilValue(checkDeletePost);
 
-  const [productGetData, setproductGetData] = useState(null);
+  const [productGetData, setproductGetData] = useState<productList_I[] | null>(null);
 
   useEffect(() => {
     const productGet = async () => {
       try {
-        const response = await productListAPI(accountname);
-        setproductGetData(response);
+        const response = await productListAPI(accountname as string);
+        setproductGetData(response.product);
       } catch (error) {
         console.error("Account API 에러가 발생했습니다", error);
       }
@@ -33,14 +40,15 @@ export default function ProductCardList({ accountname, profile }) {
 
   return (
     <>
-      {productGetData === null || productGetData.data === 0 ? (
+      {productGetData === null || productGetData.length === 0 ? (
         <NoPostsUI />
       ) : (
         <CardList profile={profile}>
-          {productGetData.product.map((productInfo) => {
+          {productGetData.map((productInfo) => {
+            console.log(productInfo);
+
             return (
               <ProductCard
-                key={productInfo.id}
                 id={productInfo.id}
                 profile={checkImageUrl(productInfo.author.image, "profile")}
                 name={productInfo.author.username}
@@ -58,7 +66,7 @@ export default function ProductCardList({ accountname, profile }) {
   );
 }
 
-const CardList = styled.div`
+const CardList = styled.div<{ profile?: boolean }>`
   margin: ${({ profile }) => (profile ? "30px 0 70px" : "80px 0")};
   display: grid;
   grid-template-columns: ${({ profile }) => (profile ? "repeat(3, 1fr)" : "repeat(2, 1fr)")};

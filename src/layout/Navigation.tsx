@@ -7,7 +7,7 @@ import cssSprites from "../assets/css_sprites.png";
 
 // 컴포넌트
 import { LocalNav, Modal } from "../components/common";
-import Search from "./../components/Search/Search";
+import Search from "../components/Search/Search";
 
 import { useRecoilValue } from "recoil";
 import { accountname, cartItemsState } from "../recoil";
@@ -45,9 +45,9 @@ function Navigation() {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       const navigationElement = document.getElementById("navigation");
-      if (navigationElement && !navigationElement.contains(event.target)) {
+      if (navigationElement && !navigationElement.contains(event.target as Node)) {
         setIsHidden(false);
       }
     };
@@ -104,7 +104,7 @@ function Navigation() {
           showCloseButton={false}
         />
       )}
-      {showSearch && <Search setShowSearch={setShowSearch} showModal={showModal} handleSearch={handleSearch} />}
+      {showSearch && <Search handleSearch={handleSearch} />}
     </NavigationLayout>
   );
 }

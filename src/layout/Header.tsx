@@ -5,9 +5,10 @@ import { useRecoilValue } from "recoil";
 import Logo from "../assets/logo_black.svg";
 import { checkImageUrl } from "../utils";
 import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
+import { following_I } from "../interface/follow_I";
 
 function Header() {
-  const [followingData, setFollowingData] = useState(null);
+  const [followingData, setFollowingData] = useState<following_I[] | null>(null);
   const getFollowings = useRecoilValue(getFollowingQuery);
 
   const navigate = useNavigate();

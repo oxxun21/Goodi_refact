@@ -14,7 +14,7 @@ export default function PopularAuthorview({ account }) {
 
   useEffect(() => {
     const fetchPostData = async () => {
-      const response = await postListAPI({ accountname: account });
+      const response = await postListAPI(account);
 
       if (response.post) {
         setUserPostList(response.post);

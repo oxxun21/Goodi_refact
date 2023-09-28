@@ -9,13 +9,13 @@ import { useRecoilValue } from "recoil";
 import { accountname } from "../../recoil";
 
 import postMenu from "../../assets/post_menu.svg";
+import { produceCard_I } from "../../interface/product_I";
 
-export default function ProductCard(props) {
-  const { profile, name, mainaccount, img, title, description, price, id } = props;
-  const handleClick = useRef(null);
+export default function ProductCard({ profile, name, email, img, title, description, price, id }: produceCard_I) {
+  const handleClick = useRef<any>(null);
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
-  const account_name = temp.accountname ? temp.accountname : mainaccount || myaccount_name;
+  const account_name = temp.accountname ? temp.accountname : email || myaccount_name;
 
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -29,10 +29,10 @@ export default function ProductCard(props) {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target) && handleClick.current && !handleClick.current.contains(event.target)) {
+      if (localNavElement && !localNavElement.contains(event.target as Node) && handleClick.current && !handleClick.current.contains(event.target as Node)) {
         setIsHidden(false);
       }
     };
@@ -45,7 +45,7 @@ export default function ProductCard(props) {
   return (
     <CardWrap>
       <CardTop>
-        <ProfileUI user_profile={profile} user_name={name} card="true" account_name={account_name} id={id} />
+        <ProfileUI user_profile={profile} user_name={name} card={true} account_name={account_name} id={id} />
         {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="메뉴 아이콘" ref={handleClick} />
@@ -56,7 +56,6 @@ export default function ProductCard(props) {
             <LocalNav
               handleModal={handleModal}
               width="120px"
-              fontSize="14px"
               lists={[
                 { name: "상품 수정", nav: `/product/${id}` },
                 { name: "상품 삭제", nav: "" },

@@ -11,11 +11,12 @@ import { LocalNav, Modal, ButtonPostLike } from "../common";
 import ProfileUI from "../ProfileUI";
 
 import postMenu from "../../assets/post_menu.svg";
+import { postCard_I } from "../../interface/post_I";
 
-const getElapsedTime = (createdAt) => {
+const getElapsedTime = (createdAt: string) => {
   const currentTime = new Date();
   const createdDateTime = new Date(createdAt);
-  const elapsedMilliseconds = currentTime - createdDateTime;
+  const elapsedMilliseconds: number = currentTime.getTime() - createdDateTime.getTime();
 
   const msInSecond = 1000;
   const msInMinute = msInSecond * 60;
@@ -41,8 +42,8 @@ const getElapsedTime = (createdAt) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }) {
-  const handleClick = useRef(null);
+export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: postCard_I) {
+  const handleClick = useRef<any>(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
   const [isHidden, setIsHidden] = useState(false);
@@ -57,10 +58,10 @@ export default function PostCard({ username, profileImage, email, content, image
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target) && handleClick.current && !handleClick.current.contains(event.target)) {
+      if (localNavElement && !localNavElement.contains(event.target as Node) && handleClick.current && !handleClick.current.contains(event.target as Node)) {
         setIsHidden(false);
       }
     };
@@ -88,7 +89,6 @@ export default function PostCard({ username, profileImage, email, content, image
             <LocalNav
               handleModal={handleModal}
               width="120px"
-              fontSize="14px"
               lists={[
                 { name: "게시글 수정", nav: `/post/${postId}` },
                 { name: "게시글 삭제", nav: "" },

@@ -2,6 +2,7 @@ export interface profileInfo_I {
   _id: string;
   username: string;
   accountname: string;
+  intro: string;
   image: string;
   isfollow: boolean;
   following: [];

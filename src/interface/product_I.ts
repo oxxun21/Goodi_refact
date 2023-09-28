@@ -1,4 +1,4 @@
-export interface product_I {
+export interface productList_I {
   id: string;
   itemName: string;
   price: number;
@@ -13,8 +13,8 @@ export interface product_I {
     isfollow: boolean;
     following: string[];
     follower: string[];
-    followerCount: number;
-    followingCount: number;
+    followerCount?: number;
+    followingCount?: number;
   };
 }
 
@@ -25,4 +25,15 @@ export interface productWriting_I {
   price: number;
   itemImage: string;
   accountname?: string;
+}
+
+export interface produceCard_I {
+  profile: string | undefined;
+  name: string;
+  email: string;
+  img: string | undefined;
+  title: string;
+  description: string;
+  price: number;
+  id: string;
 }

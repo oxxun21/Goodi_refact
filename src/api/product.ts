@@ -1,6 +1,7 @@
 import axios from "axios";
 import { instance } from "./instance";
 import { productWriting_I } from "../interface/product_I";
+import { accountname_I } from "../interface/user_I";
 
 //상품 작성
 export const productUploadAPI = async ({ link, itemName, price, itemImage }: productWriting_I) => {
@@ -22,7 +23,7 @@ export const productUploadAPI = async ({ link, itemName, price, itemImage }: pro
 };
 
 //상품 목록
-export const productListAPI = async ({ accountname }: Pick<productWriting_I, "accountname">) => {
+export const productListAPI = async (accountname: string) => {
   try {
     const response = await instance.get(`/product/${accountname}`);
     return response.data;
@@ -52,7 +53,7 @@ export const productGetUpdateAPI = async (id: string | undefined) => {
 };
 
 //상품 삭제
-export const productDeleteAPI = async (product_id: string) => {
+export const productDeleteAPI = async (product_id: string | undefined) => {
   try {
     const response = await instance.delete(`/product/${product_id}`);
     return response.data;

@@ -5,10 +5,18 @@ import styled from "styled-components";
 import IntroUI from "../../components/ProfileCommon/IntroUI";
 import FollowListUI from "../../components/ProfileCommon/FollowListUI";
 import UpdateProfile from "../../components/ProfileCommon/UpdateProfile";
+import { profileInfo_I } from "../../interface/profile_I";
 
-export default function ProfileLeftUI({ profileData, setProfileData }) {
+interface ProfileLeftUIProps {
+  profileData?: profileInfo_I;
+  setProfileData: React.Dispatch<React.SetStateAction<any>>;
+}
+
+export default function ProfileLeftUI({ profileData, setProfileData }: ProfileLeftUIProps) {
   // 프로필 정보 수정
   const [isEditing, setIsEditing] = useState(false);
+
+  console.log(profileData);
 
   // 프로필 수정 버튼 이벤트
   const handleEditClick = () => {
@@ -18,7 +26,7 @@ export default function ProfileLeftUI({ profileData, setProfileData }) {
   return (
     <>
       {isEditing ? (
-        <ProfileLeft edit="true">
+        <ProfileLeft>
           <h2 className="a11y-hidden">사용자 프로필 수정</h2>
           <UpdateProfile profileData={profileData} setIsEditing={setIsEditing} setProfileData={setProfileData} />
         </ProfileLeft>

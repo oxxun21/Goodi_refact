@@ -14,15 +14,17 @@ import NoPostsUI from "../NoPostsUI";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
+import { accountname_I } from "../../interface/user_I";
+import { postList_I } from "../../interface/post_I";
 
-export default function PostCardList({ accountname }) {
-  const [userPostList, setUserPostList] = useState(null);
+export default function PostCardList({ accountname }: accountname_I) {
+  const [userPostList, setUserPostList] = useState<postList_I[] | null>(null);
   const checkDelete = useRecoilValue(checkDeletePost);
 
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const response = await postListAPI(accountname);
+        const response = await postListAPI(accountname as string);
 
         if (response.post) {
           setUserPostList(response.post);

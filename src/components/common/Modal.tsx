@@ -7,18 +7,29 @@ import { useSetRecoilState } from "recoil";
 import { productDeleteAPI, postDeleteAPI } from "../../api";
 import { checkDeletePost } from "../../recoil";
 
-export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }) {
+interface ModalProps {
+  text: string;
+  buttonText1: string;
+  buttonText2: string;
+  showCloseButton: boolean;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleModal: () => void;
+  postId?: string;
+}
+
+export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }: ModalProps) {
   const { handleLogout } = LogoutHandler();
   const setCheckDelete = useSetRecoilState(checkDeletePost);
 
-  const handleClick = async (e) => {
-    if (e.target.innerText === "삭제하겠습니다") {
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.innerText === "삭제하겠습니다") {
       const response = await postDeleteAPI(postId);
-      setCheckDelete((prev) => !prev);
+      setCheckDelete((prev: boolean) => !prev);
       return response;
-    } else if (e.target.innerText === "상품을 삭제하겠습니다") {
+    } else if (e.currentTarget.innerText === "상품을 삭제하겠습니다") {
       const response = await productDeleteAPI(postId);
-      setCheckDelete((prev) => !prev);
+      setCheckDelete((prev: boolean) => !prev);
       return response;
     } else {
       handleLogout();
@@ -45,8 +56,8 @@ export default function Modal({ text, buttonText1, buttonText2, showCloseButton,
 
   return (
     <>
-      <ModalBgDark showModal={showModal} onClick={handleModal}>
-        <ModalBgWhite showModal={showModal} onClick={handleModal}>
+      <ModalBgDark onClick={handleModal}>
+        <ModalBgWhite onClick={handleModal}>
           <ModalInner>
             <span>{text}</span>
             <div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 // 컴포넌트
 import SearchInput from "./SearchInput";
@@ -16,30 +16,37 @@ import { searchAPI } from "../../api";
 // Recoil
 import { recentSearch } from "../../recoil";
 
+interface searchProps {
+  handleSearch: () => void;
+}
+
 //! 팔로우버튼 기능
-export default function Search({ handleSearch }) {
-  const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);
+export default function Search({ handleSearch }: searchProps) {
+  const setIsRecentSearch = useSetRecoilState(recentSearch);
   const [searchResult, setSearchResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
 
   // 검색결과 가져오기
-  const fetchSearchAPI = async (e) => {
+  const fetchSearchAPI = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const { keywordInput } = formRef.current.elements;
-    let keywordValue = keywordInput.value;
-    const response = await searchAPI(keywordValue);
+    const formElements = formRef.current as HTMLFormElement;
+    if (formRef.current) {
+      const keywordInput = formElements.elements.namedItem("keywordInput") as HTMLInputElement;
+      let keywordValue = keywordInput.value;
+      const response = await searchAPI(keywordValue);
 
-    setSearchResult(response.data);
-    setIsRecentSearch((preveState) => [...preveState, keywordValue]);
-    setIsLoading(false);
+      setSearchResult(response.data);
+      setIsRecentSearch((preveState: string[]) => [...preveState, keywordValue]);
+      setIsLoading(false);
+    }
   };
 
   // 이벤트 버블링 방지
-  const handleModalClick = (e) => {
+  const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 

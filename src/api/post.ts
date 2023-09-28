@@ -1,6 +1,7 @@
 import axios from "axios";
 import { instance } from "./instance";
 import { postWriting_I } from "../interface/post_I";
+import { accountname_I } from "../interface/user_I";
 
 //게시글 작성
 export const postUploadAPI = async ({ content, image }: postWriting_I) => {
@@ -20,7 +21,7 @@ export const postUploadAPI = async ({ content, image }: postWriting_I) => {
 };
 
 //게시글 목록
-export const postListAPI = async ({ accountname }: Pick<postWriting_I, "accountname">) => {
+export const postListAPI = async (accountname: string) => {
   try {
     const response = await instance.get(`/post/${accountname}/userpost`);
     return response.data;

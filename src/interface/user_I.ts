@@ -11,3 +11,7 @@ export interface login_I {
   email: string;
   password: string;
 }
+
+export interface accountname_I {
+  accountname: string | undefined;
+}

@@ -28,7 +28,7 @@ export default function Main() {
   useEffect(() => {
     const fetchfollowProduct = async () => {
       const imgPromises = getFollowings.map(async (item: followingSelector_I) => {
-        const response = await productListAPI({ accountname: item.accountname });
+        const response = await productListAPI(item.accountname);
 
         if (response.product.length > 0) {
           const img = response.product[0].itemImage.split(",")[0];

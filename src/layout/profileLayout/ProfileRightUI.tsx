@@ -9,13 +9,15 @@ import PostCardList from "../../components/Post/PostCardList";
 import pointEdgeProfile from "../../assets/point-edge-profile.svg";
 import authorProducts from "../../assets/Author-Products.svg";
 import authorPosts from "../../assets/Author-Posts.svg";
+import { accountname_I } from "../../interface/user_I";
 
-function ProfileRightUI({ accountname }) {
+function ProfileRightUI({ accountname }: accountname_I) {
   // 상품 목록, 게시글 목록 탭
   const [activeTab, setActiveTab] = useState(1);
-  const handleTabClick = (tabNumber) => {
+  const handleTabClick = (tabNumber: number) => {
     setActiveTab(tabNumber);
   };
+
   return (
     <ProfileRight>
       {activeTab === 1 && (
@@ -37,7 +39,7 @@ function ProfileRightUI({ accountname }) {
           게시글 목록
         </TabBtn>
       </TabMenu>
-      {activeTab === 1 && <ProductCardList profile="true" accountname={accountname} />}
+      {activeTab === 1 && <ProductCardList profile={true} accountname={accountname ? String(accountname) : ""} />}
       {activeTab === 2 && <PostCardList accountname={accountname} />}
     </ProfileRight>
   );
