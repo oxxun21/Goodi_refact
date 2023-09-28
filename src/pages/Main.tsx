@@ -15,7 +15,7 @@ import MainLeft from "../components/Main/MainLeft";
 
 import { useRecoilValue } from "recoil";
 import { productListAPI } from "../api";
-import { getFollowingQuery } from "../recoil/selector/getFollowingQuery.js";
+import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
 import { followingSelector_I } from "../interface/follow_I";
 
 export default function Main() {
