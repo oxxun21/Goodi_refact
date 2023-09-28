@@ -32,9 +32,9 @@ export const productListAPI = async ({ accountname }: Pick<productWriting_I, "ac
 };
 
 //상품 수정
-export const productPutAPI = async (product_id: string, productData: productWriting_I) => {
+export const productPutAPI = async (product_id: string | undefined, productData: productWriting_I) => {
   try {
-    const response = await instance.put(`/product/${product_id}`, productData);
+    const response = await instance.put(`/product/${product_id}`, { product: productData });
     return response;
   } catch (error) {
     throw error;

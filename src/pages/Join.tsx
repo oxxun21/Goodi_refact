@@ -72,7 +72,7 @@ export default function Join() {
           <img src={JoinTo} alt="회원가입 페이지" />
         </h1>
 
-        <Form ref={formRef as React.RefObject<HTMLFormElement>} onSubmit={handleSignup}>
+        <Form ref={formRef} onSubmit={handleSignup}>
           <ProfileDiv>
             <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} ref={imageRef} />
             <label htmlFor="fileInput">

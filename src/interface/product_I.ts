@@ -19,6 +19,7 @@ export interface product_I {
 }
 
 export interface productWriting_I {
+  id?: string;
   link: string;
   itemName: string;
   price: number;

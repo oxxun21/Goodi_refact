@@ -10,13 +10,14 @@ import ProductUpload from "../assets/Prodcut_upload.svg";
 
 // API
 import { productGetUpdateAPI, productPutAPI } from "../api";
+import { productWriting_I } from "../interface/product_I";
 
 export default function ProductUpdate() {
   const { product_id } = useParams();
   const navigate = useNavigate();
 
   const [imageWrap, setImageWrap] = useState([]);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<productWriting_I | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,25 +34,24 @@ export default function ProductUpdate() {
     fetchProduct();
   }, []);
 
-  const productUpdateSend = async (e) => {
+  const productUpdateSend = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedProductData = {
-      product: {
+    if (data) {
+      const updatedProductData: productWriting_I = {
         id: data.id,
         itemName: data.itemName,
         price: data.price,
         link: data.link,
         itemImage: imageWrap.join(","),
-      },
-    };
+      };
+      await productPutAPI(product_id, updatedProductData);
 
-    await productPutAPI(product_id, updatedProductData);
-
-    navigate(`/productDetail/${product_id}`);
+      navigate(`/productDetail/${product_id}`);
+    }
   };
 
   return (
-    <Layout reduceTop="true">
+    <Layout reduceTop={true}>
       {data && (
         <UpdateTotalUI
           src={ProductUpload}

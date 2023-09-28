@@ -3,9 +3,9 @@ import * as T from "../writingUI.styled";
 
 import { Input, Textarea, Button } from "./../../common";
 
-export default function ProductWriting({ errorMSG, inputRef }) {
+export default function ProductWriting({ errorMSG }) {
   return (
-    <T.ContentUploadWrap ref={inputRef}>
+    <T.ContentUploadWrap>
       <T.InputWrap>
         <T.Label>상품명</T.Label>
         <Input width="100%" name="itemName" placeholder="상품명을 입력해주세요" type="text" required />

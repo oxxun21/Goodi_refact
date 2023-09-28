@@ -19,19 +19,19 @@ export default function PostUpload() {
   const navigate = useNavigate();
   const account_name = useRecoilValue(accountname);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [imageWrap, setImageWrap] = useState([]);
   const [errorMSG, setErrorMSG] = useState("");
 
   const handlePost = async (e: React.FormEvent) => {
     e.preventDefault();
-    const content = inputRef.current?.value;
 
-    console.log(content);
+    const formElements = formRef.current as HTMLFormElement;
+    if (formRef.current instanceof HTMLFormElement) {
+      const content = formElements.elements.namedItem("content") as HTMLInputElement;
 
-    if (content) {
-      const response = await postUploadAPI({ content: content, image: imageWrap.join(",") });
+      const response = await postUploadAPI({ content: content.value, image: imageWrap.join(",") });
 
       if (response?.status === 200) {
         navigate(`/profile/${account_name}`);
@@ -44,7 +44,7 @@ export default function PostUpload() {
 
   return (
     <Layout reduceTop={true}>
-      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={handlePost} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} inputRef={inputRef} />
+      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={handlePost} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} formRef={formRef} />
     </Layout>
   );
 }

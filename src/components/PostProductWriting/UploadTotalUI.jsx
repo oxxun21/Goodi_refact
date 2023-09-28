@@ -8,7 +8,7 @@ import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
 export default function UploadTotalUI(props) {
-  const { src, subtext, send, errorMSG, imageWrap, setImageWrap, inputRef } = props;
+  const { src, subtext, send, errorMSG, imageWrap, setImageWrap, formRef } = props;
 
   const location = useLocation();
 
@@ -19,14 +19,14 @@ export default function UploadTotalUI(props) {
         <img src={src} alt={src} />
         <p>{subtext}</p>
 
-        <T.UploadWrap onSubmit={send}>
+        <T.UploadWrap onSubmit={send} ref={formRef}>
           <ImageSection imageWrap={imageWrap} setImageWrap={setImageWrap} />
 
           <T.Line />
 
-          {location.pathname === "/postUpload" && <PostWriting inputRef={inputRef} errorMSG={errorMSG} />}
+          {location.pathname === "/postUpload" && <PostWriting errorMSG={errorMSG} />}
 
-          {location.pathname === "/productUpload" && <ProductWriting errorMSG={errorMSG} inputRef={inputRef} />}
+          {location.pathname === "/productUpload" && <ProductWriting errorMSG={errorMSG} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>
