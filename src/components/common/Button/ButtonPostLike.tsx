@@ -5,17 +5,22 @@ import { likeAPI, cancelLikeAPI } from "../../../api";
 import nonLikeIcon from "../../../assets/empty_likeBtn.svg";
 import likeIcon from "../../../assets/post_fullLikeBtn.svg";
 
-// TODO: 기능 수정 필요
-function ButtonPostLike({ postId, liked, setHeartValue }) {
+interface ButtonPostLikeProps {
+  postId: string;
+  liked: boolean;
+  setHeartValue: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function ButtonPostLike({ postId, liked, setHeartValue }: ButtonPostLikeProps) {
   const initialHearted = localStorage.getItem(`hearted_${postId}`) === "true";
   const [IsLiked, setIsLiked] = useState(liked);
   const [hearted, sethearted] = useState(initialHearted);
 
   const getHeartData = () => {
-    setHeartValue((prev) => (prev += 1));
+    setHeartValue((prev: number) => (prev += 1));
   };
   const cancleHeartData = () => {
-    setHeartValue((prev) => (prev -= 1));
+    setHeartValue((prev: number) => (prev -= 1));
   };
 
   const handleLike = async () => {
@@ -44,7 +49,7 @@ function ButtonPostLike({ postId, liked, setHeartValue }) {
 }
 export default ButtonPostLike;
 
-const Button = styled.button`
+const Button = styled.button<{ liked: boolean }>`
   width: 48px;
   height: 48px;
   border: none;

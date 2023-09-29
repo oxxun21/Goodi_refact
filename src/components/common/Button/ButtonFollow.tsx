@@ -11,7 +11,13 @@ import { followAPI, unfollowAPI } from "../../../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { accountname, checkFollow } from "../../../recoil";
 
-export default function ButtonFollow({ isFollow, accountName, padding }) {
+interface ButtonFollowProps {
+  isFollow: boolean;
+  accountName: string;
+  padding: string;
+}
+
+export default function ButtonFollow({ isFollow, accountName, padding }: ButtonFollowProps) {
   const myAccountName = useRecoilValue(accountname);
   const [toast, setToast] = useState(false);
   const setCheckFollowChange = useSetRecoilState(checkFollow);
@@ -29,7 +35,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
       const response = await followAPI(accountName);
       setIsFollowing(true);
       handleToast();
-      setCheckFollowChange((prev) => !prev);
+      setCheckFollowChange((prev: boolean) => !prev);
     } catch (error) {
       console.error("API 에러", error);
     }
@@ -46,7 +52,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
       const response = await unfollowAPI(accountName);
       setIsFollowing(false);
       handleToast();
-      setCheckFollowChange((prev) => !prev);
+      setCheckFollowChange((prev: boolean) => !prev);
     } catch (error) {
       console.error("API 에러", error);
     }
@@ -71,7 +77,7 @@ export default function ButtonFollow({ isFollow, accountName, padding }) {
   );
 }
 
-const FollowDelete = styled.button`
+const FollowDelete = styled.button<{ padding: string }>`
   /* padding: 8px 24px; */
   padding: ${({ padding }) => (padding ? "18px 24px;" : "8px 24px")};
   border: 1px solid var(--gray300-color);
@@ -86,7 +92,7 @@ const FollowDelete = styled.button`
   }
 `;
 
-const Follow = styled.button`
+const Follow = styled.button<{ padding: string }>`
   padding: ${({ padding }) => (padding ? "18px 24px;" : "8px 24px")};
   /* padding: 8px 24px; */
   background-color: var(--main-color);

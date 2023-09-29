@@ -67,7 +67,7 @@ export default function Login() {
 
           <ErrorMassage>{errorMSG}</ErrorMassage>
 
-          <Button type="submit" height="56px" text="로그인" />
+          <Button type="submit" text="로그인" />
         </Form>
         <Span>SNS 로그인</Span>
         <SnsDiv>

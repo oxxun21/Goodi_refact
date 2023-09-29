@@ -1,7 +1,15 @@
-import React from "react";
+import React, { Ref } from "react";
 import styled from "styled-components";
 
-export default function Textarea({ inputRef, ...props }) {
+interface TextareaProps {
+  hasError?: boolean;
+  width?: string;
+  height?: string;
+  backgroundColor?: string;
+  borderRadius?: string;
+  inputRef?: Ref<HTMLTextAreaElement>;
+}
+export default function Textarea({ inputRef, ...props }: TextareaProps) {
   return (
     <TextareaBoxWrap>
       <TextareaBox ref={inputRef} {...props}></TextareaBox>
@@ -13,7 +21,7 @@ const TextareaBoxWrap = styled.div`
   position: relative;
 `;
 
-const TextareaBox = styled.textarea`
+const TextareaBox = styled.textarea<TextareaProps>`
   font-family: var(--font--Regular);
   resize: none;
   font-size: 16px;

@@ -1,11 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Input(props) {
+interface InputProps {
+  name: string;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+  hasError?: boolean;
+  backgroundColor?: string;
+  borderRadius?: string;
+}
+
+export default function Input(props: InputProps) {
   return <InputBox {...props} />;
 }
 
-export const InputBox = styled.input`
+export const InputBox = styled.input<InputProps>`
   border: 1px solid ${(props) => (props.hasError ? "red" : "#d3d3d3")};
   width: ${(props) => props.width || "432px"};
   height: ${(props) => props.height || "48px"};

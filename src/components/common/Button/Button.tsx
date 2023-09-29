@@ -1,11 +1,25 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-export default function Button({ text, ...props }) {
+interface buttonProps {
+  text?: string;
+  bg?: string;
+  width?: string;
+  padding?: string;
+  br?: string;
+  color?: string;
+  fontSize?: string;
+  noCursor?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: "submit" | "button";
+  disabled?: boolean;
+}
+
+export default function Button({ text, ...props }: buttonProps) {
   return <ButtonDef {...props}>{text}</ButtonDef>;
 }
 
-const ButtonDef = styled.button`
+const ButtonDef = styled.button<buttonProps>`
   background-color: ${(props) => props.bg || "var(--black-color)"};
   width: ${(props) => props.width || "100%"};
   padding: ${(props) => props.padding || "18px 0"};

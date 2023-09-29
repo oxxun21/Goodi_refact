@@ -4,7 +4,7 @@ import ButtonLineIcon from "./Button/ButtonLineIcon";
 import ButtonPostLike from "./Button/ButtonPostLike";
 import Form from "./Form";
 import Input from "./Input";
-import LocalNav from "./LocalNav.tsx";
+import LocalNav from "./LocalNav";
 import Modal from "./Modal";
 import ScrollToTop from "./ScrollToTop";
 import Textarea from "./Textarea";

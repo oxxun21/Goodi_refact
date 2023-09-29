@@ -4,7 +4,12 @@ import styled from "styled-components";
 // 이미지
 import IconCheck from "../../assets/icon_check_primary.svg";
 
-export default function Toast({ setToast, text }) {
+interface ToastProps {
+  text: string;
+  setToast: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Toast({ setToast, text }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setToast(false);

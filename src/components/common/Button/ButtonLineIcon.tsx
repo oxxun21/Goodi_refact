@@ -2,11 +2,19 @@ import React from "react";
 import styled, { css } from "styled-components";
 import PlusIcon from "../../../assets/icon_plus_primary.svg";
 
-export default function ButtonLineIcon({ text, ...props }) {
+interface ButtonLineIconProps {
+  text?: string;
+  height?: string;
+  bg?: string;
+  br?: string;
+  basic?: string;
+}
+
+export default function ButtonLineIcon({ text, ...props }: ButtonLineIconProps) {
   return <ButtonLineIconUI {...props}>{text}</ButtonLineIconUI>;
 }
 
-const ButtonLineIconUI = styled.button`
+const ButtonLineIconUI = styled.button<ButtonLineIconProps>`
   height: ${(props) => props.height || "50px"};
   padding: 18px 16px;
   background-color: ${(props) => props.bg || "white"};
