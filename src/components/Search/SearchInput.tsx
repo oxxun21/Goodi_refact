@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { FormEvent, RefObject, useState } from "react";
 import styled from "styled-components";
 
 // 이미지
 import SearchBtn from "../../assets/icon_search_black.svg";
 
-export default function SearchInput({ formRef, handleClick }) {
+interface SearchInputProps {
+  formRef: RefObject<HTMLFormElement>;
+  handleClick: (e: FormEvent<HTMLFormElement>) => void;
+}
+
+export default function SearchInput({ formRef, handleClick }: SearchInputProps) {
   const [isActive, setIsActive] = useState(false);
 
   return (

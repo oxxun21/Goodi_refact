@@ -11,11 +11,13 @@ import { recentSearch } from "../../recoil";
 export default function SearchHistory() {
   const [isRecentSearch, setIsRecentSearch] = useRecoilState(recentSearch);
 
-  const handleDelete = (e) => {
-    const searchText = e.target.parentElement.innerText;
-    setIsRecentSearch((prevState) => {
-      return prevState.filter((e) => e !== searchText);
-    });
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const searchText = e.currentTarget.parentElement?.innerText;
+    if (searchText) {
+      setIsRecentSearch((prevState: string[]) => {
+        return prevState.filter((item) => item !== searchText);
+      });
+    }
   };
 
   const handleAllDelete = () => {
@@ -34,7 +36,7 @@ export default function SearchHistory() {
       </HistoryTitle>
       <TagWrap>
         {isRecentSearch.length > 0 ? (
-          isRecentSearch.map((el, i) => (
+          isRecentSearch.map((el: string, i: number) => (
             <Tag key={i}>
               {el}
               <button type="button" onClick={handleDelete}></button>

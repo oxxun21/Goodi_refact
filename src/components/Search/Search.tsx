@@ -15,15 +15,15 @@ import { searchAPI } from "../../api";
 
 // Recoil
 import { recentSearch } from "../../recoil";
+import { Search_I } from "../../interface/search_I";
 
 interface searchProps {
   handleSearch: () => void;
 }
 
-//! 팔로우버튼 기능
 export default function Search({ handleSearch }: searchProps) {
   const setIsRecentSearch = useSetRecoilState(recentSearch);
-  const [searchResult, setSearchResult] = useState("");
+  const [searchResult, setSearchResult] = useState<Search_I[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
