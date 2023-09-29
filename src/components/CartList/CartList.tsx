@@ -10,8 +10,6 @@ import { cartItem } from "../../interface/cart_I";
 export default function CartList({ item }: { item: cartItem }) {
   const [cartItem, setCartItem] = useRecoilState(cartItemsState);
 
-  console.log(item);
-
   const removeItem = (itemId: string) => {
     const updatedItems = cartItem.filter((item: cartItem) => item.id !== itemId);
     setCartItem(updatedItems);

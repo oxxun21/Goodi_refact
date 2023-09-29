@@ -16,8 +16,6 @@ export default function ProfileLeftUI({ profileData, setProfileData }: ProfileLe
   // 프로필 정보 수정
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(profileData);
-
   // 프로필 수정 버튼 이벤트
   const handleEditClick = () => {
     setIsEditing(true);

@@ -5,8 +5,6 @@ import { instance } from "./instance";
 //프로필 정보
 export const accountProfileAPI = async ({ accountname }: accountname_I) => {
   try {
-    console.log(accountname);
-
     const response = await instance.get(`/profile/${accountname}`);
     return response.data.profile;
   } catch (error) {

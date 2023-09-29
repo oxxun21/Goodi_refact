@@ -45,8 +45,6 @@ export default function ProductCardList({ accountname, profile }: productCarList
       ) : (
         <CardList profile={profile}>
           {productGetData.map((productInfo) => {
-            console.log(productInfo);
-
             return (
               <ProductCard
                 id={productInfo.id}
