@@ -124,6 +124,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  width: 26rem;
 
   label {
     font-family: var(--font--Bold);
