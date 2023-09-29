@@ -7,7 +7,7 @@ import commonBanner from "../../assets/common-banner.svg";
 
 import { checkImageUrl } from "../../utils";
 
-export default function MainLeft({ render }) {
+export default function MainLeft({ render }: { render: { img: string; id: string }[] }) {
   return (
     <MainLeftSection>
       <h2>

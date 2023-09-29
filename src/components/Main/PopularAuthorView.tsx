@@ -8,9 +8,10 @@ import NoPostsUI from "../NoPostsUI";
 
 import { BASE_URL } from "../../utils";
 import PopularAuthorViewPost from "./PopularAuthorViewPost";
+import { postList_I } from "../../interface/post_I";
 
-export default function PopularAuthorview({ account }) {
-  const [userPostList, setUserPostList] = useState(null);
+export default function PopularAuthorview({ account }: { account: string }) {
+  const [userPostList, setUserPostList] = useState<postList_I[] | null>(null);
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -60,7 +61,7 @@ export default function PopularAuthorview({ account }) {
   );
 }
 
-const PostListWrap = styled.section`
+const PostListWrap = styled.section<{ hasPosts: boolean }>`
   width: 100%;
   ${({ hasPosts }) =>
     hasPosts
