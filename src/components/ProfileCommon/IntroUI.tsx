@@ -9,8 +9,14 @@ import { ButtonLineIcon, ButtonFollow } from "../common";
 import { checkImageUrl } from "../../utils";
 import { accountname } from "../../recoil";
 import { useRecoilValue } from "recoil";
+import { profileInfo_I } from "../../interface/profile_I";
 
-export default function IntroUI({ profileData, handleEditClick }) {
+interface IntroUIProps {
+  profileData: profileInfo_I;
+  handleEditClick: () => void;
+}
+
+export default function IntroUI({ profileData, handleEditClick }: IntroUIProps) {
   const navigate = useNavigate();
   const myAccount = useRecoilValue(accountname);
 

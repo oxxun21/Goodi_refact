@@ -8,6 +8,8 @@ interface ButtonLineIconProps {
   bg?: string;
   br?: string;
   basic?: string;
+  onClick?: () => void;
+  color?: string;
 }
 
 export default function ButtonLineIcon({ text, ...props }: ButtonLineIconProps) {

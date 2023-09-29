@@ -13,8 +13,15 @@ import followSymbol from "../../assets/follow_symbol.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
 import { useParams } from "react-router";
+import { follower_I, following_I } from "../../interface/follow_I";
 
-export default function Follow({ followerData, followingData, activeFollow }) {
+interface FollowProps {
+  followerData: follower_I[];
+  followingData: following_I[];
+  activeFollow: number;
+}
+
+export default function Follow({ followerData, followingData, activeFollow }: FollowProps) {
   const account_name = useParams();
 
   useEffect(() => {

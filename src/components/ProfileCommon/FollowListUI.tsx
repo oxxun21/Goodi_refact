@@ -6,15 +6,17 @@ import { followingAPI, followerAPI } from "../../api";
 
 // 컴포넌트
 import Follow from "./Follow";
+import { profileInfo_I } from "../../interface/profile_I";
+import { follower_I, following_I } from "../../interface/follow_I";
 
-export default function FollowListUI({ profileData }) {
+export default function FollowListUI({ profileData }: { profileData: profileInfo_I }) {
   const [activeFollow, setActiveFollow] = useState(1);
-  const [followingData, setFollowingData] = useState([]);
-  const [followerData, setFollowerData] = useState([]);
+  const [followingData, setFollowingData] = useState<following_I[]>([]);
+  const [followerData, setFollowerData] = useState<follower_I[]>([]);
 
   const name = profileData.accountname;
 
-  const handleFollowClick = (followNumber) => {
+  const handleFollowClick = (followNumber: number) => {
     setActiveFollow(followNumber);
   };
   const fetchFollowingData = async () => {
@@ -35,11 +37,11 @@ export default function FollowListUI({ profileData }) {
   return (
     <>
       <FollowWrap>
-        <FollowDiv className={activeFollow === 1 && "followActive"} onClick={() => handleFollowClick(1)}>
+        <FollowDiv className={activeFollow === 1 ? "followActive" : ""} onClick={() => handleFollowClick(1)}>
           <strong>{profileData.followerCount}</strong>
           <p>팔로워</p>
         </FollowDiv>
-        <FollowDiv className={activeFollow === 2 && "followActive"} onClick={() => handleFollowClick(2)}>
+        <FollowDiv className={activeFollow === 2 ? "followActive" : ""} onClick={() => handleFollowClick(2)}>
           <strong>{profileData.followingCount}</strong>
           <p>팔로잉</p>
         </FollowDiv>

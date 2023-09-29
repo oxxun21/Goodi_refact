@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 
 // api
@@ -11,21 +11,30 @@ import { Input, Button } from "../common";
 import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
+import { profileInfo_I } from "../../interface/profile_I";
 
-export default function UpdateProfile({ profileData, setIsEditing, setProfileData }) {
+interface UpdateProfileProps {
+  profileData: profileInfo_I;
+  setProfileData: React.Dispatch<React.SetStateAction<profileInfo_I>>;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function UpdateProfile({ profileData, setIsEditing, setProfileData }: UpdateProfileProps) {
   // 수정 관련 state
   const [changeImageURL, setChangeImageURL] = useState(profileData.image);
   const [userName, setUserName] = useState(profileData.username);
   const [intro, setIntro] = useState(profileData.intro);
 
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
-    const imgSrc = await uploadImageAPI(file);
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.type === "file" && e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const imgSrc = await uploadImageAPI(file);
 
-    setChangeImageURL(imgSrc);
+      setChangeImageURL(imgSrc);
+    }
   };
 
-  const handleSaveClick = (e) => {
+  const handleSaveClick = (e: React.FormEvent) => {
     e.preventDefault();
 
     const updatedProfileData = {
@@ -48,7 +57,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
     setIsEditing(false);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === "username") {
       setUserName(value);
@@ -71,7 +80,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
       <Form onSubmit={handleSaveClick}>
         <div>
           <Label>닉네임</Label>
-          <Input required width="100%" height="48px" padding="15px" name="username" value={userName} onChange={handleInputChange} placeholder="변경할 닉네임을 입력해주세요" />
+          <Input required name="username" value={userName} onChange={handleInputChange} placeholder="변경할 닉네임을 입력해주세요" />
         </div>
         <div>
           <Label>소개 메세지</Label>

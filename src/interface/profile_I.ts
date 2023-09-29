@@ -13,7 +13,7 @@ export interface profileInfo_I {
 
 export interface profile_I {
   username: string;
-  accountname: string;
+  accountname?: string;
   intro: string;
   image: string;
 }

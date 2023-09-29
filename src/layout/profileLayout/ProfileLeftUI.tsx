@@ -26,13 +26,13 @@ export default function ProfileLeftUI({ profileData, setProfileData }: ProfileLe
       {isEditing ? (
         <ProfileLeft>
           <h2 className="a11y-hidden">사용자 프로필 수정</h2>
-          <UpdateProfile profileData={profileData} setIsEditing={setIsEditing} setProfileData={setProfileData} />
+          <UpdateProfile profileData={profileData as profileInfo_I} setIsEditing={setIsEditing} setProfileData={setProfileData} />
         </ProfileLeft>
       ) : (
         <ProfileLeft>
           <h2 className="a11y-hidden">사용자 프로필</h2>
-          <IntroUI profileData={profileData} handleEditClick={handleEditClick} />
-          <FollowListUI profileData={profileData} />
+          <IntroUI profileData={profileData as profileInfo_I} handleEditClick={handleEditClick} />
+          <FollowListUI profileData={profileData as profileInfo_I} />
         </ProfileLeft>
       )}
     </>
