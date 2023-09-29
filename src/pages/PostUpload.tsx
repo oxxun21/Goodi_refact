@@ -21,7 +21,7 @@ export default function PostUpload() {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const [imageWrap, setImageWrap] = useState([]);
+  const [imageWrap, setImageWrap] = useState<string[]>([]);
   const [errorMSG, setErrorMSG] = useState("");
 
   const handlePost = async (e: React.FormEvent) => {

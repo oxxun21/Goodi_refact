@@ -56,18 +56,7 @@ export default function PostUpdate() {
 
   return (
     <Layout reduceTop={true}>
-      {data && (
-        <UpdateTotalUI
-          src={PostingUpload}
-          subtext="게시물을 수정해주세요"
-          description={data.content}
-          send={postUpdateSend}
-          setData={setData}
-          data={data}
-          imageWrap={imageWrap}
-          setImageWrap={setImageWrap}
-        />
-      )}
+      {data && <UpdateTotalUI src={PostingUpload} subtext="게시물을 수정해주세요" send={postUpdateSend} setData={setData} data={data} imageWrap={imageWrap} setImageWrap={setImageWrap} />}
     </Layout>
   );
 }

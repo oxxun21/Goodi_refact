@@ -16,7 +16,7 @@ export default function ProductUpdate() {
   const { product_id } = useParams();
   const navigate = useNavigate();
 
-  const [imageWrap, setImageWrap] = useState([]);
+  const [imageWrap, setImageWrap] = useState<string[]>([]);
   const [data, setData] = useState<productWriting_I | null>(null);
 
   useEffect(() => {
@@ -52,18 +52,7 @@ export default function ProductUpdate() {
 
   return (
     <Layout reduceTop={true}>
-      {data && (
-        <UpdateTotalUI
-          src={ProductUpload}
-          subtext="상품을 수정해주세요"
-          data={data}
-          send={productUpdateSend}
-          setData={setData}
-          description={data.link}
-          setImageWrap={setImageWrap}
-          imageWrap={imageWrap}
-        />
-      )}
+      {data && <UpdateTotalUI src={ProductUpload} subtext="상품을 수정해주세요" data={data} send={productUpdateSend} setData={setData} setImageWrap={setImageWrap} imageWrap={imageWrap} />}
     </Layout>
   );
 }

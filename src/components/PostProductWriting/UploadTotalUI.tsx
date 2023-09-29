@@ -7,9 +7,17 @@ import ImageSection from "./UIcomponents/ImageSection";
 import PostWriting from "./UIcomponents/PostWriting";
 import ProductWriting from "./UIcomponents/ProductWriting";
 
-export default function UploadTotalUI(props) {
-  const { src, subtext, send, errorMSG, imageWrap, setImageWrap, formRef } = props;
+interface UploadTotalUIProps {
+  src: string;
+  subtext: string;
+  send: (e: React.FormEvent) => void;
+  errorMSG: string;
+  imageWrap: string[];
+  setImageWrap: React.Dispatch<React.SetStateAction<string[]>>;
+  formRef: React.RefObject<HTMLFormElement>;
+}
 
+export default function UploadTotalUI({ src, subtext, send, errorMSG, imageWrap, setImageWrap, formRef }: UploadTotalUIProps) {
   const location = useLocation();
 
   return (

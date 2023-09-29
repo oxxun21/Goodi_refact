@@ -8,12 +8,17 @@ import { BASE_URL } from "../../../utils";
 import { handleImageCompression } from "../../../utils";
 import imageCompression from "browser-image-compression";
 
-export default function ImageSection({ setImageWrap, imageWrap }) {
+interface ImageSectionProps {
+  imageWrap: string[];
+  setImageWrap: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export default function ImageSection({ setImageWrap, imageWrap }: ImageSectionProps) {
   const [loading, setLoading] = useState(false);
 
-  const handleImageChange = async (e) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    if (e.target.type === "file") {
+    if (e.target.type === "file" && e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
 
       const options = {
@@ -27,7 +32,7 @@ export default function ImageSection({ setImageWrap, imageWrap }) {
       const reader = new FileReader();
       reader.readAsDataURL(resizingBlob);
       reader.onloadend = () => {
-        const base64data = reader.result;
+        const base64data = reader.result as string;
         handleImageCompression(base64data, name, setImageWrap, setLoading);
       };
     }
@@ -44,7 +49,7 @@ export default function ImageSection({ setImageWrap, imageWrap }) {
               <span className="circle2"></span>
             </T.LoadingImage>
           ) : (
-            <img src={imageWrap[0] ? BASE_URL + imageWrap[0] : PlusIcon} style={imageWrap[0] ? null : { width: "90px" }} alt="첫번째 이미지" />
+            <img src={imageWrap[0] ? BASE_URL + imageWrap[0] : PlusIcon} style={imageWrap[0] ? undefined : { width: "90px" }} alt="첫번째 이미지" />
           )}
         </T.Thumbnail>
       </T.ThumbnailWrap>
@@ -58,7 +63,7 @@ export default function ImageSection({ setImageWrap, imageWrap }) {
               <span className="circle2"></span>
             </T.LoadingImage>
           ) : (
-            <img src={imageWrap[1] ? BASE_URL + imageWrap[1] : addIcon} style={imageWrap[1] ? null : { width: "32px" }} alt="두번째 이미지" />
+            <img src={imageWrap[1] ? BASE_URL + imageWrap[1] : addIcon} style={imageWrap[1] ? undefined : { width: "32px" }} alt="두번째 이미지" />
           )}
         </T.ProductImage>
         <T.ProductImage htmlFor="productImageTwo">
@@ -68,7 +73,7 @@ export default function ImageSection({ setImageWrap, imageWrap }) {
               <span className="circle2"></span>
             </T.LoadingImage>
           ) : (
-            <img src={imageWrap[2] ? BASE_URL + imageWrap[2] : addIcon} style={imageWrap[2] ? null : { width: "32px" }} alt="세번째 이미지" />
+            <img src={imageWrap[2] ? BASE_URL + imageWrap[2] : addIcon} style={imageWrap[2] ? undefined : { width: "32px" }} alt="세번째 이미지" />
           )}
         </T.ProductImage>
 

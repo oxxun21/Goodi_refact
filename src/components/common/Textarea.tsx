@@ -8,6 +8,12 @@ interface TextareaProps {
   backgroundColor?: string;
   borderRadius?: string;
   inputRef?: Ref<HTMLTextAreaElement>;
+  placeholder?: string;
+  maxLength?: number;
+  name?: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 export default function Textarea({ inputRef, ...props }: TextareaProps) {
   return (

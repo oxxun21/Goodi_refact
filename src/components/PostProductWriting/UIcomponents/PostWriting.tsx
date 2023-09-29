@@ -1,8 +1,8 @@
 import * as T from "../writingUI.styled";
 
-import { Textarea, Button } from "./../../common";
+import { Textarea, Button } from "../../common";
 
-export default function PostWriting({ errorMSG }) {
+export default function PostWriting({ errorMSG }: { errorMSG: string }) {
   return (
     <T.ContentUploadWrap>
       <T.InputWrap>
@@ -11,7 +11,7 @@ export default function PostWriting({ errorMSG }) {
       </T.InputWrap>
 
       <T.ErrorMassage>{errorMSG}</T.ErrorMassage>
-      <Button type="submit" height="56px" text={"게시글 업로드 하기"} br="4px" />
+      <Button type="submit" text={"게시글 업로드 하기"} br="4px" />
     </T.ContentUploadWrap>
   );
 }

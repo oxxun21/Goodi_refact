@@ -9,6 +9,8 @@ interface InputProps {
   hasError?: boolean;
   backgroundColor?: string;
   borderRadius?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: number | string;
 }
 
 export default function Input(props: InputProps) {
@@ -17,7 +19,7 @@ export default function Input(props: InputProps) {
 
 export const InputBox = styled.input<InputProps>`
   border: 1px solid ${(props) => (props.hasError ? "red" : "#d3d3d3")};
-  width: ${(props) => props.width || "432px"};
+  width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height || "48px"};
   padding: 15px;
   box-sizing: border-box;

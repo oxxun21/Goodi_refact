@@ -15,7 +15,7 @@ export default function ProductUpload() {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
 
-  const [imageWrap, setImageWrap] = useState([]);
+  const [imageWrap, setImageWrap] = useState<string[]>([]);
   const [errorMSG, setErrorMSG] = useState("");
 
   const handleProduct = async (e: React.FormEvent) => {
