@@ -5,7 +5,7 @@ import iconClose from "../../assets/icon_close.svg";
 import { useRecoilState } from "recoil";
 import { cartItemsState } from "../../recoil";
 import { checkImageUrl, priceDivide } from "../../utils";
-import { cartItem } from "../../pages/Cart";
+import { cartItem } from "../../interface/cart_I";
 
 export default function CartList({ item }: { item: cartItem }) {
   const [cartItem, setCartItem] = useRecoilState(cartItemsState);

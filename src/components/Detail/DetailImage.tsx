@@ -8,7 +8,7 @@ import LeftArrow from "../../assets/icon_arrow_left.svg";
 import RightArrow from "../../assets/icon_arrow_right.svg";
 import { checkImageUrl } from "../../utils";
 
-export default function DetailImage({ img }) {
+export default function DetailImage({ img }: { img: string[] }) {
   //이미지 index 관리
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -23,7 +23,7 @@ export default function DetailImage({ img }) {
   };
 
   //타겟 이미지를 눌렀을때 해당 이미지 인덱스로 변경
-  const handleSlide = (index) => {
+  const handleSlide = (index: number) => {
     setCurrentIndex(index);
   };
 

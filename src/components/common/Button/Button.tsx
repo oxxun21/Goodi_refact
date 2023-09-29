@@ -13,6 +13,7 @@ interface buttonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | "button";
   disabled?: boolean;
+  className?: string;
 }
 
 export default function Button({ text, ...props }: buttonProps) {

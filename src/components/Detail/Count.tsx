@@ -5,11 +5,18 @@ import styled from "styled-components";
 import PlusIcon from "../../assets/icon_plus_black.svg";
 import MinusIcon from "../../assets/icon_minus_black.svg";
 
-export default function Count({ productPrice, setTotalPrice, setCount, count }) {
+interface CountProps {
+  productPrice: number;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  count: number;
+}
+
+export default function Count({ productPrice, setTotalPrice, setCount, count }: CountProps) {
   const [money, setMoney] = useState(productPrice);
 
   // 카운트 마다 변하는 가격 함수
-  const getPrice = (money) => {
+  const getPrice = (money: number) => {
     setMoney(money);
   };
   // 카운트 증가 함수

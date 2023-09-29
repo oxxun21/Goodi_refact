@@ -12,16 +12,7 @@ import cartNullIcon from "../assets/cart_null_icon.svg";
 
 import CartList from "../components/CartList/CartList";
 import { priceDivide } from "../utils";
-
-export interface cartItem {
-  id: string;
-  productCount: number;
-  productImage: string;
-  productName: string;
-  productPrice: number;
-  userImage: string;
-  userName: string;
-}
+import { cartItem } from "../interface/cart_I";
 
 export default function Cart() {
   const cartItem: cartItem[] = useRecoilValue(cartItemsState);
