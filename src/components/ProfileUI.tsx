@@ -1,11 +1,22 @@
-import React from "react";
-import styled from "styled-components";
+import React, { ReactNode } from "react";
+import styled, { CSSProperties } from "styled-components";
 import { Link } from "react-router-dom";
 import defaultImage from "../assets/profile_img_def.svg";
 
-function ProfileUI(props) {
-  const { user_profile, user_name, mainprofile, card, follow, account_name, children } = props;
+interface ProfileUIProps {
+  user_profile?: string;
+  user_name: string;
+  mainprofile?: boolean;
+  card?: boolean;
+  follow?: boolean;
+  account_name: string;
+  user_email?: string;
+  id?: string;
+  children?: ReactNode;
+  style?: CSSProperties;
+}
 
+function ProfileUI({ user_profile, user_name, mainprofile, card, follow, account_name, style, children }: ProfileUIProps) {
   return (
     <UserProfile mainprofile={mainprofile} card={card} follow={follow} to={`/profile/${account_name}`}>
       <img src={user_profile || defaultImage} alt="유저 프로필 이미지" loading="lazy" />
@@ -18,7 +29,11 @@ function ProfileUI(props) {
   );
 }
 
-const UserProfile = styled(Link)`
+const UserProfile = styled(Link)<{
+  mainprofile?: boolean;
+  card?: boolean;
+  follow?: boolean;
+}>`
   width: 100%;
   display: flex;
   align-items: center;

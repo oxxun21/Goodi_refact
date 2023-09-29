@@ -47,7 +47,7 @@ export default function Follow({ followerData, followingData, activeFollow }: Fo
         <ul className="scroll-container">
           {followerData.map((follow) => (
             <FollowLi key={follow._id}>
-              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow="true" />
+              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow={true} />
               <ButtonFollow isFollow={follow.isfollow} accountName={follow.accountname} />
             </FollowLi>
           ))}
@@ -56,7 +56,7 @@ export default function Follow({ followerData, followingData, activeFollow }: Fo
         <ul className="scroll-container">
           {followingData.map((follow) => (
             <FollowLi key={follow._id}>
-              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow="true" />
+              <ProfileUI user_profile={checkImageUrl(follow.image, "profile")} user_name={follow.username} user_email={follow.accountname} account_name={follow.accountname} follow={true} />
               <ButtonFollow isFollow={follow.isfollow} accountName={follow.accountname} />
             </FollowLi>
           ))}

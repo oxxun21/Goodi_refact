@@ -37,8 +37,8 @@ export default function PopularAuthorview({ account }: { account: string }) {
                 user_profile={BASE_URL + userPostList[0].author.image}
                 user_name={userPostList[0].author.username}
                 user_email={userPostList[0].author.accountname}
-                mainprofile="false"
-                card="true"
+                mainprofile={false}
+                card={true}
                 account_name={account}
                 style={{ margin: "20px" }}
               />

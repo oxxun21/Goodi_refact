@@ -7,7 +7,7 @@ export default function PostWriting({ errorMSG }: { errorMSG: string }) {
     <T.ContentUploadWrap>
       <T.InputWrap>
         <T.Label>게시글 내용</T.Label>
-        <Textarea width="100%" height="300px" placeholder="게시글 내용을 입력해주세요" name="content" maxLength={100} required />
+        <Textarea height="300px" placeholder="게시글 내용을 입력해주세요" name="content" maxLength={100} required />
       </T.InputWrap>
 
       <T.ErrorMassage>{errorMSG}</T.ErrorMassage>

@@ -5,6 +5,14 @@ import LoginImage1 from "../assets/login_image1.jpg";
 import LoginImage2 from "../assets/login_image2.jpg";
 import LoginImage3 from "../assets/login_image3.jpg";
 
+interface ImageContainerProps {
+  imageLoaded: boolean;
+  fadeIn: boolean;
+  fadeOut: boolean;
+  fadeInDuration: number;
+  fadeOutDuration: number;
+}
+
 export function LeftDiv() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -27,11 +35,9 @@ export function LeftDiv() {
           setFadeIn(false);
         }, fadeInDuration);
       }, fadeOutDuration);
-    }, [transitionDuration]);
+    }, transitionDuration);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const handleImageLoad = () => {
@@ -71,7 +77,7 @@ const Container = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<ImageContainerProps>`
   opacity: ${({ imageLoaded, fadeIn, fadeOut }) => (imageLoaded ? (fadeIn ? 1 : fadeOut ? 0 : 1) : 0)};
   transition: opacity ${({ imageLoaded, fadeIn, fadeOut, fadeInDuration, fadeOutDuration }) => (imageLoaded ? (fadeIn || fadeOut ? "1s" : "1s") : "1s")} ease-in-out;
 `;

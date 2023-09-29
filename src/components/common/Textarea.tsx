@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 interface TextareaProps {
   hasError?: boolean;
-  width?: string;
   height?: string;
   backgroundColor?: string;
   borderRadius?: string;
@@ -32,7 +31,7 @@ const TextareaBox = styled.textarea<TextareaProps>`
   resize: none;
   font-size: 16px;
   border: 1px solid ${(props) => (props.hasError ? "red" : "#d3d3d3")};
-  width: ${(props) => props.width};
+  width: 100%;
   height: ${(props) => props.height};
   padding: 15px;
   box-sizing: border-box;

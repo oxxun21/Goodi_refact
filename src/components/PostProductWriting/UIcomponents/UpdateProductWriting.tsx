@@ -24,7 +24,7 @@ export default function UpdateProductWriting({ handleInputChange, data }: Update
 
       <T.InputWrap>
         <T.Label>상품 설명</T.Label>
-        <Textarea width="100%" height="100px" placeholder="상품에 대한 설명을 입력해주세요" value={data.link} onChange={handleInputChange} name="link" required />
+        <Textarea height="100px" placeholder="상품에 대한 설명을 입력해주세요" value={data.link} onChange={handleInputChange} name="link" required />
       </T.InputWrap>
 
       <Button type="submit" text={"상품 업로드 하기"} br="4px" />
