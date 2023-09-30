@@ -46,6 +46,7 @@ export default function ProductCardList({ accountname, profile }: ProductCarList
           {productGetData.map((productInfo) => {
             return (
               <ProductCard
+                key={productInfo.id}
                 id={productInfo.id}
                 profile={checkImageUrl(productInfo.author.image, "profile")}
                 name={productInfo.author.username}
