@@ -110,7 +110,7 @@
 <tr>
  <td align="center">사용 기술</td>
  <td>
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">&nbsp 
+  <img src="https://img.shields.io/badge/TypeScript-2F74C0?style=for-the-badge&logo=TypeScript&logoColor=FFF">&nbsp 
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=ffffff"/>&nbsp  
    <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=aws&logoColor=white">&nbsp 
   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>&nbsp 
