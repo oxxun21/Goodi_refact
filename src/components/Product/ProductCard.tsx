@@ -29,10 +29,10 @@ export default function ProductCard({ profile, name, email, img, title, descript
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target as Node) && handleClick.current && !handleClick.current.contains(event.target as Node)) {
+      if (localNavElement && !localNavElement.contains(e.target as Node) && handleClick.current && !handleClick.current.contains(e.target as Node)) {
         setIsHidden(false);
       }
     };

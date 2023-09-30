@@ -5,7 +5,7 @@ import { Input, Textarea, Button } from "../../common";
 import { ProductWriting_I } from "../../../interface";
 
 interface UpdateProductWritingProps {
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
   data: ProductWriting_I;
 }
 

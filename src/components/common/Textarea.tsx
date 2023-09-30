@@ -12,7 +12,7 @@ interface TextareaProps {
   name?: string;
   required?: boolean;
   value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 export default function Textarea({ inputRef, ...props }: TextareaProps) {
   return (

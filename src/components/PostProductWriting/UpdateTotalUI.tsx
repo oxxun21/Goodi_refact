@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import * as T from "./writingUI.styled";
 import { useLocation, useParams } from "react-router";
 
@@ -22,7 +22,7 @@ export default function UpdateTotalUI<T>({ src, subtext, data, setData, send, im
   const location = useLocation();
   const locationID = useParams();
 
-  const handleInputChange = async (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setData(
       (prevData) =>

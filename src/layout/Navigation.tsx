@@ -45,9 +45,9 @@ function Navigation() {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const navigationElement = document.getElementById("navigation");
-      if (navigationElement && !navigationElement.contains(event.target as Node)) {
+      if (navigationElement && !navigationElement.contains(e.target as Node)) {
         setIsHidden(false);
       }
     };

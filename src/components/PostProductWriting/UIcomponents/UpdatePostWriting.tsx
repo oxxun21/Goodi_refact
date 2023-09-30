@@ -5,7 +5,7 @@ import { Textarea, Button } from "../../common";
 import { PostWriting_I } from "../../../interface";
 
 interface UpdatePostWritingProps {
-  handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   data: PostWriting_I;
 }
 
