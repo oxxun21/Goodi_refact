@@ -1,7 +1,5 @@
 <h1><img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" />Goodi<img width="30px" height="30px" src="https://github.com/FRONTENDSCHOOL5/Goodi/assets/98699927/abe7692a-c3e8-4fcb-927f-4169f073947d" /></h1>
 
-<strong>TypeScript 변경 작업 중</strong>
-
 > 🦁멋쟁이사자처럼 프론트엔드스쿨 5기 프로젝트 10팀
 >
 > 🔗 <strong>리팩토링 배포 링크</strong> [https://goodi.netlify.app](https://goodi.netlify.app)  <br />
