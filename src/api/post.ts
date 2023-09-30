@@ -1,10 +1,9 @@
 import axios from "axios";
 import { instance } from "./instance";
-import { postWriting_I } from "../interface/post_I";
-import { accountname_I } from "../interface/user_I";
+import { PostWriting_I } from "../interface";
 
 //게시글 작성
-export const postUploadAPI = async ({ content, image }: postWriting_I) => {
+export const postUploadAPI = async ({ content, image }: PostWriting_I) => {
   try {
     const response = await instance.post(`/post`, {
       post: {
@@ -31,7 +30,7 @@ export const postListAPI = async (accountname: string) => {
 };
 
 //게시글 수정
-export const postPutAPI = async (id: string | undefined, putData: postWriting_I) => {
+export const postPutAPI = async (id: string | undefined, putData: PostWriting_I) => {
   try {
     const response = await instance.put(`/post/${id}`, { post: putData });
     return response.data;

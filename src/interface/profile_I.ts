@@ -1,4 +1,4 @@
-export interface profileInfo_I {
+export interface ProfileInfo_I {
   _id: string;
   username: string;
   accountname: string;
@@ -11,7 +11,7 @@ export interface profileInfo_I {
   followingCount: number;
 }
 
-export interface profile_I {
+export interface Profile_I {
   username: string;
   accountname?: string;
   intro: string;

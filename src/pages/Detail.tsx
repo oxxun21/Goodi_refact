@@ -17,13 +17,13 @@ import { productGetUpdateAPI } from "../api";
 
 import { checkImageUrl } from "../utils";
 import TotalCountPrice from "../components/Detail/TotalCountPrice";
-import { productList_I } from "../interface/product_I";
+import { ProductList_I } from "../interface";
 
 export default function Detail() {
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
-  const [productData, setProductData] = useState<productList_I | null>(null);
+  const [productData, setProductData] = useState<ProductList_I | null>(null);
   const [price, setPrice] = useState(0);
 
   useEffect(() => {

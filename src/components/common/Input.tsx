@@ -9,7 +9,7 @@ interface InputProps {
   hasError?: boolean;
   backgroundColor?: string;
   borderRadius?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: number | string;
 }
 

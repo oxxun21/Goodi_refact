@@ -1,4 +1,4 @@
-export interface productList_I {
+export interface ProductList_I {
   id: string;
   itemName: string;
   price: number;
@@ -18,7 +18,7 @@ export interface productList_I {
   };
 }
 
-export interface productWriting_I {
+export interface ProductWriting_I {
   id?: string;
   link: string;
   itemName: string;
@@ -27,7 +27,7 @@ export interface productWriting_I {
   accountname?: string;
 }
 
-export interface produceCard_I {
+export interface ProduceCard_I {
   profile: string | undefined;
   name: string;
   email: string;

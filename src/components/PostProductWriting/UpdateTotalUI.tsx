@@ -1,12 +1,11 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import * as T from "./writingUI.styled";
 import { useLocation, useParams } from "react-router";
 
 import ImageSection from "./UIcomponents/ImageSection";
 import UpdatePostWriting from "./UIcomponents/UpdatePostWriting";
 import UpdateProductWriting from "./UIcomponents/UpdateProductWriting";
-import { productWriting_I } from "../../interface/product_I";
-import { postWriting_I } from "../../interface/post_I";
+import { ProductWriting_I, PostWriting_I } from "../../interface";
 
 interface UpdateTotalUIProps<T> {
   src: string;
@@ -23,7 +22,7 @@ export default function UpdateTotalUI<T>({ src, subtext, data, setData, send, im
   const location = useLocation();
   const locationID = useParams();
 
-  const handleInputChange = async (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setData(
       (prevData) =>
@@ -47,9 +46,9 @@ export default function UpdateTotalUI<T>({ src, subtext, data, setData, send, im
 
           <T.Line />
 
-          {location.pathname === `/post/${locationID.posting_id}` && <UpdatePostWriting handleInputChange={handleInputChange} data={data as postWriting_I} />}
+          {location.pathname === `/post/${locationID.posting_id}` && <UpdatePostWriting handleInputChange={handleInputChange} data={data as PostWriting_I} />}
 
-          {location.pathname === `/product/${locationID.product_id}` && <UpdateProductWriting data={data as productWriting_I} handleInputChange={handleInputChange} />}
+          {location.pathname === `/product/${locationID.product_id}` && <UpdateProductWriting data={data as ProductWriting_I} handleInputChange={handleInputChange} />}
         </T.UploadWrap>
       </T.PostUiWrap>
     </T.PostingWrap>

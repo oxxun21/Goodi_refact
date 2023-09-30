@@ -1,4 +1,4 @@
-export interface following_I {
+export interface Following_I {
   _id: string;
   username: string;
   accountname: string;
@@ -11,7 +11,7 @@ export interface following_I {
   followingCount: 0;
 }
 
-export interface follower_I {
+export interface Follower_I {
   _id: string;
   username: string;
   accountname: string;
@@ -24,7 +24,7 @@ export interface follower_I {
   followingCount: 0;
 }
 
-export interface followingSelector_I {
+export interface FollowingSelector_I {
   _id: string;
   username: string;
   accountname: string;

@@ -6,13 +6,13 @@ import { followingAPI, followerAPI } from "../../api";
 
 // 컴포넌트
 import Follow from "./Follow";
-import { profileInfo_I } from "../../interface/profile_I";
-import { follower_I, following_I } from "../../interface/follow_I";
 
-export default function FollowListUI({ profileData }: { profileData: profileInfo_I }) {
+import { ProfileInfo_I, Follower_I, Following_I } from "../../interface";
+
+export default function FollowListUI({ profileData }: { profileData: ProfileInfo_I }) {
   const [activeFollow, setActiveFollow] = useState(1);
-  const [followingData, setFollowingData] = useState<following_I[]>([]);
-  const [followerData, setFollowerData] = useState<follower_I[]>([]);
+  const [followingData, setFollowingData] = useState<Following_I[]>([]);
+  const [followerData, setFollowerData] = useState<Follower_I[]>([]);
 
   const name = profileData.accountname;
 

@@ -8,10 +8,10 @@ import NoPostsUI from "../NoPostsUI";
 
 import { BASE_URL } from "../../utils";
 import PopularAuthorViewPost from "./PopularAuthorViewPost";
-import { postList_I } from "../../interface/post_I";
+import { PostList_I } from "../../interface";
 
 export default function PopularAuthorview({ account }: { account: string }) {
-  const [userPostList, setUserPostList] = useState<postList_I[] | null>(null);
+  const [userPostList, setUserPostList] = useState<PostList_I[] | null>(null);
 
   useEffect(() => {
     const fetchPostData = async () => {

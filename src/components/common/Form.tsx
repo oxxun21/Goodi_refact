@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import sendBtn from "../../assets/icon-send-gray.svg";
@@ -7,11 +7,11 @@ import sendBtnHover from "../../assets/icon-send-black.svg";
 interface FormProps {
   hasInput: string;
   setHasInput: (value: string) => void;
-  handleSubmit: (e: FormEvent) => void;
+  handleSubmit: (e: React.FormEvent) => void;
 }
 
 export default function Form({ hasInput, setHasInput, handleSubmit }: FormProps) {
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHasInput(e.target.value);
   };
   return (

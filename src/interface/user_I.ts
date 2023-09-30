@@ -1,4 +1,4 @@
-export interface signUp_I {
+export interface SignUp_I {
   username: string;
   email: string;
   password: string;
@@ -7,11 +7,11 @@ export interface signUp_I {
   image: string[];
 }
 
-export interface login_I {
+export interface Login_I {
   email: string;
   password: string;
 }
 
-export interface accountname_I {
+export interface Accountname_I {
   accountname: string | undefined;
 }

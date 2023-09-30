@@ -6,10 +6,9 @@ import { useRecoilState } from "recoil";
 import { cartItemsState } from "../../recoil";
 import { useNavigate } from "react-router";
 import { priceDivide } from "../../utils";
-import { productList_I } from "../../interface/product_I";
-import { cartItem } from "../../interface/cart_I";
+import { ProductList_I, CartItem_I } from "../../interface";
 
-export default function TotalCountPrice({ productData }: { productData: productList_I }) {
+export default function TotalCountPrice({ productData }: { productData: ProductList_I }) {
   const [totalPrice, setTotalPrice] = useState(productData.price);
   const [count, setCount] = useState(1);
   const [toast, setToast] = useState(false);
@@ -30,11 +29,11 @@ export default function TotalCountPrice({ productData }: { productData: productL
 
     setToast(true);
 
-    const existingItem = cartItem.find((cartItem: cartItem) => cartItem.id === newItem.id);
+    const existingItem = cartItem.find((cartItem: CartItem_I) => cartItem.id === newItem.id);
 
     if (existingItem) {
       // 이미 장바구니에 있는 상품인 경우
-      const updatedItems = cartItem.map((cartItem: cartItem) => (cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem));
+      const updatedItems = cartItem.map((cartItem: CartItem_I) => (cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem));
       setCartItem(updatedItems);
     } else {
       // 장바구니에 없는 상품인 경우

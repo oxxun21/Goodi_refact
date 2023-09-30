@@ -15,7 +15,8 @@ import { postGetUpdateAPI, postPutAPI } from "../api";
 
 // Recoil
 import { accountname } from "../recoil";
-import { postWriting_I } from "../interface/post_I";
+
+import { PostWriting_I } from "../interface";
 
 export default function PostUpdate() {
   const { posting_id } = useParams();
@@ -24,7 +25,7 @@ export default function PostUpdate() {
   const account_name = useRecoilValue(accountname);
 
   const [imageWrap, setImageWrap] = useState<string[]>([]);
-  const [data, setData] = useState<postWriting_I | null>(null);
+  const [data, setData] = useState<PostWriting_I | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -42,7 +43,7 @@ export default function PostUpdate() {
   const postUpdateSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (data) {
-      const putData: postWriting_I = {
+      const putData: PostWriting_I = {
         id: data.id,
         content: data.content,
         image: imageWrap.join(","),

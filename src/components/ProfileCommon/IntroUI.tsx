@@ -7,12 +7,13 @@ import { ButtonLineIcon, ButtonFollow } from "../common";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
+
 import { accountname } from "../../recoil";
 import { useRecoilValue } from "recoil";
-import { profileInfo_I } from "../../interface/profile_I";
+import { ProfileInfo_I } from "../../interface";
 
 interface IntroUIProps {
-  profileData: profileInfo_I;
+  profileData: ProfileInfo_I;
   handleEditClick: () => void;
 }
 

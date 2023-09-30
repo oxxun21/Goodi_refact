@@ -11,7 +11,8 @@ import { LocalNav, Modal, ButtonPostLike } from "../common";
 import ProfileUI from "../ProfileUI";
 
 import postMenu from "../../assets/post_menu.svg";
-import { postCard_I } from "../../interface/post_I";
+
+import { PostCard_I } from "../../interface";
 
 const getElapsedTime = (createdAt: string) => {
   const currentTime = new Date();
@@ -42,7 +43,7 @@ const getElapsedTime = (createdAt: string) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: postCard_I) {
+export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: PostCard_I) {
   const handleClick = useRef<any>(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
@@ -58,10 +59,10 @@ export default function PostCard({ username, profileImage, email, content, image
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(event.target as Node) && handleClick.current && !handleClick.current.contains(event.target as Node)) {
+      if (localNavElement && !localNavElement.contains(e.target as Node) && handleClick.current && !handleClick.current.contains(e.target as Node)) {
         setIsHidden(false);
       }
     };

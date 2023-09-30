@@ -13,18 +13,17 @@ import ProductCard from "./ProductCard";
 import NoPostsUI from "../NoPostsUI";
 
 import { BASE_URL, checkImageUrl } from "../../utils";
-import { accountname_I } from "../../interface/user_I";
-import { productList_I } from "../../interface/product_I";
+import { ProductList_I } from "../../interface";
 
-interface productCarListProps {
+interface ProductCarListProps {
   accountname: string;
   profile: boolean;
 }
 
-export default function ProductCardList({ accountname, profile }: productCarListProps) {
+export default function ProductCardList({ accountname, profile }: ProductCarListProps) {
   const checkDelete = useRecoilValue(checkDeletePost);
 
-  const [productGetData, setproductGetData] = useState<productList_I[] | null>(null);
+  const [productGetData, setproductGetData] = useState<ProductList_I[] | null>(null);
 
   useEffect(() => {
     const productGet = async () => {
@@ -47,6 +46,7 @@ export default function ProductCardList({ accountname, profile }: productCarList
           {productGetData.map((productInfo) => {
             return (
               <ProductCard
+                key={productInfo.id}
                 id={productInfo.id}
                 profile={checkImageUrl(productInfo.author.image, "profile")}
                 name={productInfo.author.username}

@@ -1,11 +1,11 @@
-export interface postWriting_I {
+export interface PostWriting_I {
   id?: string;
   content: string;
   image: string;
   accountname?: string;
 }
 
-export interface postList_I {
+export interface PostList_I {
   id: string;
   content: string;
   image: string;
@@ -28,7 +28,7 @@ export interface postList_I {
   };
 }
 
-export interface postCard_I {
+export interface PostCard_I {
   username: string;
   profileImage: string;
   email: string;

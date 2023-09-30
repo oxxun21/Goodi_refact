@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // api
@@ -11,11 +11,11 @@ import { Input, Button } from "../common";
 import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
-import { profileInfo_I } from "../../interface/profile_I";
+import { ProfileInfo_I } from "../../interface";
 
 interface UpdateProfileProps {
-  profileData: profileInfo_I;
-  setProfileData: React.Dispatch<React.SetStateAction<profileInfo_I>>;
+  profileData: ProfileInfo_I;
+  setProfileData: React.Dispatch<React.SetStateAction<ProfileInfo_I>>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -25,7 +25,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
   const [userName, setUserName] = useState(profileData.username);
   const [intro, setIntro] = useState(profileData.intro);
 
-  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.type === "file" && e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       const imgSrc = await uploadImageAPI(file);
@@ -57,7 +57,7 @@ export default function UpdateProfile({ profileData, setIsEditing, setProfileDat
     setIsEditing(false);
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === "username") {
       setUserName(value);

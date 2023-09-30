@@ -14,12 +14,13 @@ import Layout from "../layout/Layout";
 import ProfileLeftUI from "../layout/profileLayout/ProfileLeftUI";
 import ProfileRightUI from "../layout/profileLayout/ProfileRightUI";
 import ProfileSkeleton from "../style/skeletonUI/skeletonPage/ProfileSkeleton";
-import { profileInfo_I } from "../interface/profile_I";
+
+import { ProfileInfo_I } from "../interface";
 
 export default function Profile() {
   const { accountname } = useParams();
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<profileInfo_I | undefined>(undefined);
+  const [profileData, setProfileData] = useState<ProfileInfo_I | undefined>(undefined);
   const checkFollowChange = useRecoilValue(checkFollow);
 
   useEffect(() => {

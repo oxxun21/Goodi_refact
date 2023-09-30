@@ -12,10 +12,10 @@ import cartNullIcon from "../assets/cart_null_icon.svg";
 
 import CartList from "../components/CartList/CartList";
 import { priceDivide } from "../utils";
-import { cartItem } from "../interface/cart_I";
+import { CartItem_I } from "../interface";
 
 export default function Cart() {
-  const cartItem: cartItem[] = useRecoilValue(cartItemsState);
+  const cartItem: CartItem_I[] = useRecoilValue(cartItemsState);
 
   const navigate = useNavigate();
 
