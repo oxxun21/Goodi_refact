@@ -11,11 +11,12 @@ import { Input, Button } from "../common";
 import PlusBtnImg from "../../assets/add_button.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
-import { profileInfo_I } from "../../interface/profile_I";
+
+import { ProfileInfo_I } from "../../interface";
 
 interface UpdateProfileProps {
-  profileData: profileInfo_I;
-  setProfileData: React.Dispatch<React.SetStateAction<profileInfo_I>>;
+  profileData: ProfileInfo_I;
+  setProfileData: React.Dispatch<React.SetStateAction<ProfileInfo_I>>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

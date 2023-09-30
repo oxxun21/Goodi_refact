@@ -16,7 +16,7 @@ import MainLeft from "../components/Main/MainLeft";
 import { useRecoilValue } from "recoil";
 import { productListAPI } from "../api";
 import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
-import { followingSelector_I } from "../interface/follow_I";
+import { FollowingSelector_I } from "../interface";
 
 export default function Main() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ export default function Main() {
 
   useEffect(() => {
     const fetchfollowProduct = async () => {
-      const imgPromises = getFollowings.map(async (item: followingSelector_I) => {
+      const imgPromises = getFollowings.map(async (item: FollowingSelector_I) => {
         const response = await productListAPI(item.accountname);
 
         if (response.product.length > 0) {

@@ -2,11 +2,11 @@ import React from "react";
 import * as T from "../writingUI.styled";
 
 import { Textarea, Button } from "../../common";
-import { postWriting_I } from "../../../interface/post_I";
+import { PostWriting_I } from "../../../interface";
 
 interface UpdatePostWritingProps {
   handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  data: postWriting_I;
+  data: PostWriting_I;
 }
 
 export default function UpdatePostWriting({ handleInputChange, data }: UpdatePostWritingProps) {

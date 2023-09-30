@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-interface buttonProps {
+interface ButtonProps {
   text?: string;
   bg?: string;
   width?: string;
@@ -16,11 +16,11 @@ interface buttonProps {
   className?: string;
 }
 
-export default function Button({ text, ...props }: buttonProps) {
+export default function Button({ text, ...props }: ButtonProps) {
   return <ButtonDef {...props}>{text}</ButtonDef>;
 }
 
-const ButtonDef = styled.button<buttonProps>`
+const ButtonDef = styled.button<ButtonProps>`
   background-color: ${(props) => props.bg || "var(--black-color)"};
   width: ${(props) => props.width || "100%"};
   padding: ${(props) => props.padding || "18px 0"};

@@ -15,13 +15,14 @@ import { searchAPI } from "../../api";
 
 // Recoil
 import { recentSearch } from "../../recoil";
-import { Search_I } from "../../interface/search_I";
 
-interface searchProps {
+import { Search_I } from "../../interface";
+
+interface SearchProps {
   handleSearch: () => void;
 }
 
-export default function Search({ handleSearch }: searchProps) {
+export default function Search({ handleSearch }: SearchProps) {
   const setIsRecentSearch = useSetRecoilState(recentSearch);
   const [searchResult, setSearchResult] = useState<Search_I[]>([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-interface LocalNavProps extends HTMLAttributes<HTMLUListElement> {
+interface LocalNavProps {
   lists: { name: string; nav: string }[];
   width?: string;
   handleModal?: () => void;

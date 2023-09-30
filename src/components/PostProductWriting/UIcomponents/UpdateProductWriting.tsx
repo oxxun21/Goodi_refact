@@ -2,11 +2,11 @@ import React from "react";
 import * as T from "../writingUI.styled";
 
 import { Input, Textarea, Button } from "../../common";
-import { productWriting_I } from "../../../interface/product_I";
+import { ProductWriting_I } from "../../../interface";
 
 interface UpdateProductWritingProps {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
-  data: productWriting_I;
+  data: ProductWriting_I;
 }
 
 export default function UpdateProductWriting({ handleInputChange, data }: UpdateProductWritingProps) {

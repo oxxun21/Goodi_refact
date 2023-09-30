@@ -13,11 +13,11 @@ import followSymbol from "../../assets/follow_symbol.svg";
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
 import { useParams } from "react-router";
-import { follower_I, following_I } from "../../interface/follow_I";
+import { Follower_I, Following_I } from "../../interface";
 
 interface FollowProps {
-  followerData: follower_I[];
-  followingData: following_I[];
+  followerData: Follower_I[];
+  followingData: Following_I[];
   activeFollow: number;
 }
 

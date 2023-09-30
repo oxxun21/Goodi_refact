@@ -11,7 +11,8 @@ import { LocalNav, Modal, ButtonPostLike } from "../common";
 import ProfileUI from "../ProfileUI";
 
 import postMenu from "../../assets/post_menu.svg";
-import { postCard_I } from "../../interface/post_I";
+
+import { PostCard_I } from "../../interface";
 
 const getElapsedTime = (createdAt: string) => {
   const currentTime = new Date();
@@ -42,7 +43,7 @@ const getElapsedTime = (createdAt: string) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: postCard_I) {
+export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: PostCard_I) {
   const handleClick = useRef<any>(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);

@@ -4,12 +4,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 
-interface layoutProps {
+interface LayoutProps {
   reduceTop?: boolean;
   children: ReactNode;
 }
 
-export default function Layout({ reduceTop, children }: layoutProps) {
+export default function Layout({ reduceTop, children }: LayoutProps) {
   return (
     <>
       <Header />

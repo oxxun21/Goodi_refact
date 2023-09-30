@@ -10,14 +10,15 @@ import ProductUpload from "../assets/Prodcut_upload.svg";
 
 // API
 import { productGetUpdateAPI, productPutAPI } from "../api";
-import { productWriting_I } from "../interface/product_I";
+
+import { ProductWriting_I } from "../interface";
 
 export default function ProductUpdate() {
   const { product_id } = useParams();
   const navigate = useNavigate();
 
   const [imageWrap, setImageWrap] = useState<string[]>([]);
-  const [data, setData] = useState<productWriting_I | null>(null);
+  const [data, setData] = useState<ProductWriting_I | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -37,7 +38,7 @@ export default function ProductUpdate() {
   const productUpdateSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (data) {
-      const updatedProductData: productWriting_I = {
+      const updatedProductData: ProductWriting_I = {
         id: data.id,
         itemName: data.itemName,
         price: data.price,

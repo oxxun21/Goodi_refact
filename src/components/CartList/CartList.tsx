@@ -5,13 +5,13 @@ import iconClose from "../../assets/icon_close.svg";
 import { useRecoilState } from "recoil";
 import { cartItemsState } from "../../recoil";
 import { checkImageUrl, priceDivide } from "../../utils";
-import { cartItem } from "../../interface/cart_I";
+import { CartItem_I } from "../../interface";
 
-export default function CartList({ item }: { item: cartItem }) {
+export default function CartList({ item }: { item: CartItem_I }) {
   const [cartItem, setCartItem] = useRecoilState(cartItemsState);
 
   const removeItem = (itemId: string) => {
-    const updatedItems = cartItem.filter((item: cartItem) => item.id !== itemId);
+    const updatedItems = cartItem.filter((item: CartItem_I) => item.id !== itemId);
     setCartItem(updatedItems);
   };
 

@@ -9,9 +9,10 @@ import PostCardList from "../../components/Post/PostCardList";
 import pointEdgeProfile from "../../assets/point-edge-profile.svg";
 import authorProducts from "../../assets/Author-Products.svg";
 import authorPosts from "../../assets/Author-Posts.svg";
-import { accountname_I } from "../../interface/user_I";
 
-function ProfileRightUI({ accountname }: accountname_I) {
+import { Accountname_I } from "../../interface";
+
+function ProfileRightUI({ accountname }: Accountname_I) {
   // 상품 목록, 게시글 목록 탭
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabNumber: number) => {

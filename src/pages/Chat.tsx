@@ -25,8 +25,7 @@ import chatDummy from "../mock/chatDummy";
 
 import { checkImageUrl } from "../utils";
 
-import { profileInfo_I } from "../interface/profile_I";
-import { following_I } from "../interface/follow_I";
+import { ProfileInfo_I, Following_I } from "../interface";
 
 interface ChatProps {
   reduceTop?: boolean;
@@ -37,8 +36,8 @@ export default function Chat({ reduceTop }: ChatProps) {
 
   const [toast, setToast] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<profileInfo_I | null>(null);
-  const [followingList, setFollowingList] = useState<following_I[]>([]);
+  const [profileData, setProfileData] = useState<ProfileInfo_I | null>(null);
+  const [followingList, setFollowingList] = useState<Following_I[]>([]);
   const getFollowings = useRecoilValue(getFollowingQuery);
 
   // 활성화하여 채팅할 상대 팔로잉 유저 ID 로 구별

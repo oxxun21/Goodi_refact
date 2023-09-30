@@ -7,8 +7,9 @@ import { ButtonFollow } from "../common";
 
 // 이미지
 import followSymbol from "../../assets/follow_symbol.svg";
+
 import { checkImageUrl } from "../../utils";
-import { Search_I } from "../../interface/search_I";
+import { Search_I } from "../../interface";
 
 export default function SearchResult({ searchResult }: { searchResult: Search_I[] }) {
   console.log(searchResult);

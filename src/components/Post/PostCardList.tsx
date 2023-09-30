@@ -14,11 +14,11 @@ import NoPostsUI from "../NoPostsUI";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
-import { accountname_I } from "../../interface/user_I";
-import { postList_I } from "../../interface/post_I";
 
-export default function PostCardList({ accountname }: accountname_I) {
-  const [userPostList, setUserPostList] = useState<postList_I[] | null>(null);
+import { Accountname_I, PostList_I } from "../../interface";
+
+export default function PostCardList({ accountname }: Accountname_I) {
+  const [userPostList, setUserPostList] = useState<PostList_I[] | null>(null);
   const checkDelete = useRecoilValue(checkDeletePost);
 
   useEffect(() => {

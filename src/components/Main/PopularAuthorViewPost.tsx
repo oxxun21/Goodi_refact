@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import { BASE_URL } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { postList_I } from "../../interface/post_I";
+import { PostList_I } from "../../interface";
 
-export default function PopularAuthorViewPost({ post }: { post: postList_I }) {
+export default function PopularAuthorViewPost({ post }: { post: PostList_I }) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 

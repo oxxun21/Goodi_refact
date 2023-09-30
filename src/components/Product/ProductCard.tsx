@@ -9,9 +9,9 @@ import { useRecoilValue } from "recoil";
 import { accountname } from "../../recoil";
 
 import postMenu from "../../assets/post_menu.svg";
-import { produceCard_I } from "../../interface/product_I";
+import { ProduceCard_I } from "../../interface";
 
-export default function ProductCard({ profile, name, email, img, title, description, price, id }: produceCard_I) {
+export default function ProductCard({ profile, name, email, img, title, description, price, id }: ProduceCard_I) {
   const handleClick = useRef<any>(null);
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();

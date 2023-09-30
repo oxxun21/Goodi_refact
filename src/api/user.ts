@@ -1,8 +1,8 @@
 import axios from "axios";
 import { instance } from "./instance";
-import { login_I, signUp_I } from "../interface/user_I";
+import { Login_I, SignUp_I } from "../interface";
 
-export const singUpAPI = async ({ username, email, password, accountname, intro, image }: signUp_I) => {
+export const singUpAPI = async ({ username, email, password, accountname, intro, image }: SignUp_I) => {
   try {
     const response = await instance.post("/user", { user: { username, email, password, accountname, intro, image } });
     return response;
@@ -13,7 +13,7 @@ export const singUpAPI = async ({ username, email, password, accountname, intro,
   }
 };
 
-export const loginAPI = async ({ email, password }: login_I) => {
+export const loginAPI = async ({ email, password }: Login_I) => {
   try {
     const response = await instance.post("/user/login", { user: { email, password } });
     return response;
