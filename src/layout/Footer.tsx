@@ -44,6 +44,10 @@ const FooterLayout = styled.footer`
     font-size: 16px;
     font-weight: 600;
   }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 const FooterLogoImg = styled.img`

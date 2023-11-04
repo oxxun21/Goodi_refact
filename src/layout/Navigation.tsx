@@ -127,12 +127,28 @@ const NavigationLayout = styled.article`
 
   & > button:nth-child(1) {
     margin-bottom: 32px;
+    @media screen and (max-width: 992px) {
+      margin-bottom: 0;
+    }
   }
 
   ul {
     position: relative;
     right: 210px;
     bottom: 195px;
+  }
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    bottom: 0;
+    padding-top: 0;
+    border-left: none;
+  }
+
+  @media screen and (max-width: 480px) {
+    gap: 0;
   }
 `;
 

@@ -23,4 +23,10 @@ export default function Layout({ reduceTop, children }: LayoutProps) {
 const Wrapper = styled.div<{ reduceTop?: boolean }>`
   width: calc(100% - 80px);
   padding-top: ${({ reduceTop }) => (reduceTop ? "5rem" : "7.5rem")};
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 480px) {
+    padding-top: 2rem;
+  }
 `;
