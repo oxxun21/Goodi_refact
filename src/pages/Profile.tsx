@@ -83,4 +83,7 @@ const ProfileWrap = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media only screen and (max-width: 480px) {
+    padding: 20px;
+  }
 `;

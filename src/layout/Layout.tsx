@@ -27,6 +27,6 @@ const Wrapper = styled.div<{ reduceTop?: boolean }>`
     width: 100%;
   }
   @media only screen and (max-width: 480px) {
-    padding-top: 2rem;
+    padding-top: ${({ reduceTop }) => (reduceTop ? "0" : "2rem")};
   }
 `;
