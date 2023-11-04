@@ -68,4 +68,10 @@ const PostListWrap = styled.section`
   grid-template-rows: auto;
   gap: 60px 20px;
   margin-bottom: 70px;
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;

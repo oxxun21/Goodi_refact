@@ -68,4 +68,13 @@ const ProfileLeft = styled.section`
     line-height: 1.3;
     text-align: justify;
   }
+  @media screen and (max-width: 1024px) {
+    min-width: auto;
+    height: 960px;
+  }
+  @media screen and (max-width: 600px) {
+    margin-bottom: 60px;
+  }
+  @media only screen and (max-width: 480px) {
+  }
 `;
