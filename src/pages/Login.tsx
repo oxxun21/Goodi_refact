@@ -92,6 +92,18 @@ export default function Login() {
 
 const OuterDiv = styled.div`
   display: flex;
+  height: 100dvh;
+
+  & > div:first-of-type {
+    width: 45%;
+  }
+  & > div:last-of-type {
+    width: 55%;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
+  }
 `;
 
 const RightDiv = styled.div`
@@ -99,7 +111,6 @@ const RightDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
 
   h1 {
     margin-bottom: 30px;
@@ -124,7 +135,8 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  width: 26rem;
+  width: 55%;
+  box-sizing: border-box;
 
   label {
     font-family: var(--font--Bold);
@@ -143,6 +155,10 @@ const Form = styled.form`
     position: absolute;
     bottom: -38px;
     left: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
   }
 `;
 
