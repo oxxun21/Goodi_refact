@@ -115,6 +115,9 @@ const TabMenu = styled.div`
   @media screen and (max-width: 1024px) {
     margin-top: 70px;
   }
+  @media only screen and (max-width: 480px) {
+    margin-top: 40px;
+  }
 `;
 const TabBtn = styled.button`
   padding: 8px 12px;

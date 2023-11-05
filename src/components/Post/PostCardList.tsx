@@ -73,5 +73,6 @@ const PostListWrap = styled.section`
   }
   @media screen and (max-width: 600px) {
     grid-template-columns: 1fr;
+    gap: 40px 0;
   }
 `;

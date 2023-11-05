@@ -74,6 +74,9 @@ const ProfileWrap = styled.div`
     @media screen and (max-width: 600px) {
       height: 1150px;
     }
+    @media only screen and (max-width: 480px) {
+      height: 1120px;
+    }
   }
 
   @media screen and (max-width: 1060px) {
