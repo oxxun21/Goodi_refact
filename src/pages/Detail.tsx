@@ -95,6 +95,15 @@ const DetailWrap = styled.section`
   margin: 0 60px 120px 80px;
   display: flex;
   gap: 5%;
+  @media screen and (max-width: 1024px) {
+    margin: 0px 40px 120px;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 480px) {
+    margin: 0px 20px 120px;
+  }
 `;
 
 const ProductDetail = styled.div`
@@ -108,6 +117,9 @@ const ProductDetail = styled.div`
   .product_title {
     font-family: var(--font--Bold);
     font-size: 34px;
+    @media screen and (max-width: 992px) {
+      font-size: 1.8rem;
+    }
   }
 
   .product_description {
@@ -124,6 +136,10 @@ const ProductDetail = styled.div`
   hr {
     margin: 24px 0 32px 0;
     border: solid 1px var(--gray100-color);
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 3rem;
   }
 `;
 
@@ -143,6 +159,9 @@ const DeliveryDescription = styled.section`
     height: 32px;
     margin-right: 16px;
     margin-top: -7px;
+    @media only screen and (max-width: 480px) {
+      margin-right: 8px;
+    }
   }
 
   & div h3 {
@@ -151,6 +170,9 @@ const DeliveryDescription = styled.section`
     font-family: var(--font--Bold);
     flex-shrink: 0;
     margin-right: 8px;
+    @media only screen and (max-width: 480px) {
+      width: 20%;
+    }
   }
 
   & div p {
@@ -166,5 +188,9 @@ const DeliveryDescription = styled.section`
 
   .delivery_date {
     margin-bottom: 24px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 20px 10px;
   }
 `;
