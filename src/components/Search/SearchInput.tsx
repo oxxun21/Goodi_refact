@@ -58,4 +58,8 @@ const SearchInputWrap = styled.form`
   &.active {
     border-bottom: 2px solid var(--main-color);
   }
+
+  @media only screen and (max-width: 992px) {
+    margin-bottom: 35px;
+  }
 `;

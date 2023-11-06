@@ -105,6 +105,9 @@ const ProductDetailImg = styled.div`
     border: 3px solid var(--main-color);
     border-radius: 4px;
   }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const LeftButton = styled.button`

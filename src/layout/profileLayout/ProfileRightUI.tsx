@@ -64,6 +64,21 @@ const ProfileRight = styled.section`
       height: 40px;
       background: url(${pointEdgeProfile}) no-repeat center/contain;
       vertical-align: bottom;
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      margin-top: 0;
+    }
+    @media screen and (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
+
+  & > h2 > img {
+    @media screen and (max-width: 600px) {
+      width: 80%;
     }
   }
 `;
@@ -92,6 +107,16 @@ const TabMenu = styled.div`
   button.active {
     font-family: var(--font--semibold);
     color: black;
+  }
+
+  @media screen and (max-width: 1060px) {
+    margin-top: 100px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-top: 70px;
+  }
+  @media only screen and (max-width: 480px) {
+    margin-top: 40px;
   }
 `;
 const TabBtn = styled.button`

@@ -23,12 +23,15 @@ export default function Form({ hasInput, setHasInput, handleSubmit }: FormProps)
 }
 
 const FormLayout = styled.form`
-  padding: 24px 32px 50px 32px;
+  padding: 24px 32px 50px;
   background-color: white;
   display: flex;
   justify-content: space-between;
   gap: 24px;
   border-top: 1px solid var(--gray200-color);
+  @media only screen and (max-width: 992px) {
+    padding: 24px 32px 30px;
+  }
 `;
 
 const FormInput = styled.input`

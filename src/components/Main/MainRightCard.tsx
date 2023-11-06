@@ -82,4 +82,13 @@ const CardList = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   gap: 60px;
+
+  @media screen and (max-width: 1060px) {
+    margin: 40px 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 60px 0;
+  }
 `;

@@ -57,6 +57,10 @@ const MainLeftSection = styled.section`
   img {
     width: 100%;
   }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 const FollowingNull = styled.div`

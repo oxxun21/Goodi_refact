@@ -60,8 +60,6 @@ export function LeftDiv() {
 
 const Container = styled.div`
   background-color: black;
-  max-width: 43%;
-  height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -74,6 +72,10 @@ const Container = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  @media screen and (max-width: 1024px) {
+    display: none;
   }
 `;
 

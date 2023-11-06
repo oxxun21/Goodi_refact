@@ -70,4 +70,10 @@ const CardList = styled.div<{ profile?: boolean }>`
   grid-template-columns: ${({ profile }) => (profile ? "repeat(3, 1fr)" : "repeat(2, 1fr)")};
   grid-template-rows: auto;
   gap: ${({ profile }) => (profile ? "60px 30px" : "60px")};
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;

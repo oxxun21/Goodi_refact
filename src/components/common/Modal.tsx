@@ -87,7 +87,7 @@ const ModalBgDark = styled.div`
   z-index: 9999;
 `;
 const ModalBgWhite = styled.div`
-  width: 378px;
+  min-width: 340px;
   background-color: white;
   border-radius: 8px;
   top: 50%;

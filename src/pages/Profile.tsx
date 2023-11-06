@@ -68,5 +68,25 @@ const ProfileWrap = styled.div`
     width: 100%;
     height: 330px;
     background: #000;
+    @media screen and (max-width: 1024px) {
+      height: 1220px;
+    }
+    @media screen and (max-width: 600px) {
+      height: 1150px;
+    }
+    @media only screen and (max-width: 480px) {
+      height: 1120px;
+    }
+  }
+
+  @media screen and (max-width: 1060px) {
+    padding: 50px;
+  }
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 480px) {
+    padding: 20px;
   }
 `;

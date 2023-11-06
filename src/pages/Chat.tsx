@@ -182,6 +182,12 @@ const ChatWrap = styled.div`
   position: relative;
   display: flex;
   min-height: 100%;
+  @media only screen and (max-width: 992px) {
+    margin-bottom: 80px;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 const ChatWrapLeft = styled.section`
@@ -210,6 +216,12 @@ const ChatWrapLeft = styled.section`
       background: url(${edgeChat}) no-repeat center/contain;
       vertical-align: bottom;
     }
+    @media only screen and (max-width: 992px) {
+      width: 120px;
+    }
+    @media only screen and (max-width: 480px) {
+      margin: 20px 0px 20px 50px;
+    }
   }
 
   & > div {
@@ -222,6 +234,15 @@ const ChatWrapLeft = styled.section`
     &::-webkit-scrollbar {
       display: none; /* 크롬, 사파리, 오페라, 엣지 */
     }
+    @media only screen and (max-width: 768px) {
+      height: fit-content;
+      overflow: initial;
+      margin-bottom: 100px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    border-right: initial;
   }
 `;
 
@@ -246,6 +267,12 @@ const ChatUser = styled.section`
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50px;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 1.7rem 3rem;
+  }
+  @media only screen and (max-width: 480px) {
+    padding: 1rem 1.5rem;
   }
 `;
 
@@ -282,10 +309,13 @@ const ChatText = styled.div`
 const ChatWrapRight = styled.section`
   width: 50%;
   background-color: #fafafa;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ChatProfile = styled.div`
-  width: 48%;
+  width: 100%;
   background-color: white;
   padding: 20px 32px;
   border-bottom: 1px solid var(--gray200-color);
@@ -293,12 +323,6 @@ const ChatProfile = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  z-index: 1;
-
-  button {
-    z-index: 1;
-  }
 `;
 
 const ProileTextWrap = styled.div`
@@ -356,9 +380,7 @@ const ChatUserNull = styled.div`
 `;
 
 const ChatContents = styled.div`
-  margin-top: 120px;
-  height: 350px;
-  padding: 0 32px 50px 32px;
+  padding: 30px 32px 50px;
   overflow: scroll;
   position: relative;
 

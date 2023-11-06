@@ -90,5 +90,18 @@ const Post = styled.ul`
   li:first-child {
     grid-row: 1 / span 2;
     grid-column: 1 / 2;
+    @media screen and (max-width: 1060px) {
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+
+  @media screen and (max-width: 1060px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `;

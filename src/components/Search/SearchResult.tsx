@@ -41,6 +41,9 @@ export default function SearchResult({ searchResult }: { searchResult: Search_I[
 
 const ResultWrap = styled.section`
   margin-top: 72px;
+  @media only screen and (max-width: 992px) {
+    margin-top: 40px;
+  }
 `;
 const ResultTitle = styled.div`
   display: flex;

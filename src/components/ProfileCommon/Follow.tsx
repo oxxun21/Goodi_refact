@@ -80,6 +80,15 @@ const FollowWrap = styled.article`
 
     & > img {
       width: 50%;
+      @media screen and (max-width: 1024px) {
+        width: 30%;
+      }
+      @media screen and (max-width: 600px) {
+        width: 50%;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      height: auto;
     }
   }
 

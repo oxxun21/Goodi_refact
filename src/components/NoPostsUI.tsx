@@ -19,6 +19,9 @@ const PostNull = styled.div`
   img {
     width: 80px;
     display: block;
-    margin: 210px auto 20px;
+    margin: 120px auto 20px;
+  }
+  @media screen and (max-width: 1280px) {
+    margin-bottom: 120px;
   }
 `;

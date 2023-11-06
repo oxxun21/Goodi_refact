@@ -95,11 +95,23 @@ const CartWrap = styled.section`
   justify-content: space-between;
   gap: 64px;
   padding: 40px 50px 40px 80px;
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 const CartLeft = styled.section`
   width: 60%;
   min-height: 550px;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    order: 2;
+    margin-bottom: 80px;
+    min-height: auto;
+  }
 `;
 
 const CartNull = styled.div`
@@ -129,6 +141,10 @@ const CartNull = styled.div`
 const CartRight = styled.section`
   width: 40%;
   position: relative;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    order: 1;
+  }
 `;
 
 const CartRightSticky = styled.div`

@@ -74,7 +74,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      {showPopup && <InfoModal onClose={onClose} />}
+      {/* {showPopup && <InfoModal onClose={onClose} />} */}
     </BrowserRouter>
   );
 }

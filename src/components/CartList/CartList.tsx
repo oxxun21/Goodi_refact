@@ -95,6 +95,13 @@ const CartProductInfo = styled.div`
     width: 150px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    @media screen and (max-width: 600px) {
+      width: auto;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
   }
 `;
 

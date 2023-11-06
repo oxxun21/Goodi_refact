@@ -103,13 +103,25 @@ export default function Join() {
 }
 const OuterDiv = styled.div`
   display: flex;
+  height: 100dvh;
+
+  & > div:first-of-type {
+    width: 45%;
+  }
+  & > div:last-of-type {
+    width: 55%;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
+  }
 `;
 
 const RightDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
+  align-items: center;
 
   textarea {
     resize: none;
@@ -134,7 +146,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 26rem;
+  width: 55%;
 
   label {
     font-family: var(--font--Bold);
@@ -143,6 +155,10 @@ const Form = styled.form`
 
   input {
     margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
   }
 `;
 

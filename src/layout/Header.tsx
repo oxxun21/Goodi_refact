@@ -63,6 +63,21 @@ const HeaderLayout = styled.header`
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
+  @media only screen and (max-width: 480px) {
+    position: static;
+    padding: 1rem;
+  }
+  h1 img {
+    @media screen and (max-width: 480px) {
+      width: 80%;
+    }
+  }
 `;
 
 const FollowingWrap = styled.div`
@@ -71,6 +86,9 @@ const FollowingWrap = styled.div`
   align-items: center;
   span {
     cursor: default;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `;
 
