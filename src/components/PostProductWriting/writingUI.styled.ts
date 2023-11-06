@@ -6,6 +6,9 @@ export const PostingWrap = styled.div`
   padding-top: 100px;
   background: url(${PostBackground}) no-repeat #fafafa;
   padding-bottom: 40px;
+  @media only screen and (max-width: 992px) {
+    padding-bottom: 100px;
+  }
 `;
 
 export const PostUiWrap = styled.section`
@@ -19,11 +22,27 @@ export const PostUiWrap = styled.section`
 
   & > img {
     height: 58px;
+    @media only screen and (max-width: 768px) {
+      height: 48px;
+    }
+    @media only screen and (max-width: 600px) {
+      height: 38px;
+    }
   }
   & > p {
     color: var(--gray400-color);
     font-size: 16px;
     margin-top: 4px;
+    @media only screen and (max-width: 600px) {
+      font-size: 12px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 40px;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    padding: 20px;
   }
 `;
 
@@ -31,13 +50,26 @@ export const UploadWrap = styled.form`
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
+  @media only screen and (max-width: 1060px) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-top: 30px;
+  }
 `;
 
 export const ImagUploadWrap = styled.fieldset`
   flex-grow: 1;
-  flex-basis: 400px;
   display: flex;
-  gap: 5%;
+  gap: 1rem;
+  @media only screen and (max-width: 1280px) {
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 1060px) {
+    flex-direction: row;
+  }
 `;
 
 export const ContentUploadWrap = styled.fieldset`
@@ -52,14 +84,35 @@ export const Line = styled.span`
   display: inline-block;
   background-color: var(--gray200-color);
   margin: 0 40px;
+
+  @media only screen and (max-width: 1060px) {
+    display: none;
+  }
 `;
 
 export const ThumbnailWrap = styled.div`
   width: 70%;
+  @media only screen and (max-width: 1280px) {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 1060px) {
+    width: 70%;
+  }
 `;
 
 export const ProductImages = styled.div`
   width: 25%;
+  @media only screen and (max-width: 1280px) {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+
+  @media only screen and (max-width: 1060px) {
+    width: 25%;
+    display: initial;
+  }
 `;
 
 export const Thumbnail = styled.label`
@@ -91,6 +144,10 @@ export const Thumbnail = styled.label`
     position: absolute;
     top: 20px;
     left: 20px;
+    @media only screen and (max-width: 600px) {
+      top: 10px;
+      left: 10px;
+    }
   }
 `;
 
@@ -113,7 +170,14 @@ export const ProductImage = styled.label`
   }
 
   & + & {
-    margin-top: 20px;
+    margin-top: 1rem;
+    @media only screen and (max-width: 1280px) {
+      margin-top: 0;
+    }
+
+    @media only screen and (max-width: 1060px) {
+      margin-top: 1rem;
+    }
   }
 
   img {
