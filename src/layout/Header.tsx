@@ -67,7 +67,7 @@ const HeaderLayout = styled.header`
     width: 100%;
   }
   @media only screen and (max-width: 768px) {
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
   }
   @media only screen and (max-width: 480px) {
     position: static;
