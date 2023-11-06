@@ -105,6 +105,9 @@ const SearchbgDark = styled.div`
       background-color: rgba(0, 0, 0, 0.7);
     }
   }
+  @media only screen and (max-width: 992px) {
+    width: 100%;
+  }
 `;
 
 const SearchModal = styled.article`
@@ -136,5 +139,16 @@ const SearchModal = styled.article`
     font-family: var(--font--Bold);
     font-size: 18px;
     margin-top: 72px;
+  }
+
+  @media only screen and (max-width: 1060px) {
+    width: 50%;
+    padding: 60px 40px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 70%;
+  }
+  @media only screen and (max-width: 480px) {
+    width: 95%;
   }
 `;

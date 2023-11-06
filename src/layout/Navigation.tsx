@@ -145,9 +145,6 @@ const NavigationLayout = styled.article`
     bottom: 0;
     padding-top: 0;
     border-left: none;
-  }
-
-  @media screen and (max-width: 480px) {
     gap: 0;
   }
 `;
@@ -228,6 +225,9 @@ const NavList = styled.button`
 
   .Logout {
     background: url(${cssSprites}) -114px -10px;
+  }
+  @media screen and (max-width: 992px) {
+    background: #fff;
   }
 `;
 
