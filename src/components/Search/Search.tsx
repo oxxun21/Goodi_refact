@@ -146,7 +146,7 @@ const SearchModal = styled.article`
     padding: 60px 40px;
   }
   @media only screen and (max-width: 768px) {
-    width: 70%;
+    width: 80%;
   }
   @media only screen and (max-width: 480px) {
     width: 95%;

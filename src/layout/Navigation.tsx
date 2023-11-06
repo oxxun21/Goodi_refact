@@ -136,6 +136,17 @@ const NavigationLayout = styled.article`
     position: relative;
     right: 210px;
     bottom: 195px;
+    @media screen and (max-width: 992px) {
+      position: absolute;
+      top: -60px;
+      left: 78%;
+      right: initial;
+      bottom: initial;
+      transform: translate(-50%, -50%);
+    }
+    @media only screen and (max-width: 600px) {
+      width: 140px;
+    }
   }
 
   @media screen and (max-width: 992px) {
@@ -172,6 +183,9 @@ const NavList = styled.button`
 
   &:focus {
     outline: 1px solid var(--main-color);
+    @media screen and (max-width: 992px) {
+      outline: 0;
+    }
   }
 
   &:hover {
