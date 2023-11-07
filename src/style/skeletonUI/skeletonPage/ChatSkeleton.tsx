@@ -63,6 +63,17 @@ const ChatWrapSkeleton = styled.div`
       background: url(${edgeChat}) no-repeat center/contain;
       vertical-align: bottom;
     }
+    @media only screen and (max-width: 992px) {
+      width: 120px;
+    }
+    @media only screen and (max-width: 480px) {
+      margin: 20px 0px 20px 50px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: initial;
   }
 `;
 
@@ -71,6 +82,15 @@ const ChatUserSkeletonWrap = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  @media only screen and (max-width: 1280px) {
+    padding: 28px 2rem;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 28px 4rem;
+  }
+  @media only screen and (max-width: 480px) {
+    padding: 28px 1rem;
+  }
 `;
 
 const ImageSkeleton = styled(SkeletonItem)`
@@ -86,7 +106,7 @@ const UserNameSkeleton = styled(SkeletonItem)`
 `;
 
 const ChatContentSkeleton = styled(SkeletonItem)`
-  width: 400px;
+  width: 20rem;
   height: 20px;
   margin-top: 12px;
 `;
