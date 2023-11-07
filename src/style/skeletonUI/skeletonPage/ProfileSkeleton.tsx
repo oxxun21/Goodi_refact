@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components';
-import PostSkeleton from './PostSkeleton';
-import SkeletonItem from '../SkeletonItem';
+import React from "react";
+import styled from "styled-components";
+import PostSkeleton from "./PostSkeleton";
+import SkeletonItem from "../SkeletonItem";
 
 export default function ProfileSkeleton() {
   return (
@@ -14,7 +14,6 @@ export default function ProfileSkeleton() {
       </ProfileLeft>
       <ProfileRight>
         <TabMenu />
-        {/* PostSkeleton 이렇게 밖에 못쓰나? */}
         <ProfileRightGrid>
           <PostSkeleton />
           <PostSkeleton />
@@ -22,7 +21,7 @@ export default function ProfileSkeleton() {
         </ProfileRightGrid>
       </ProfileRight>
     </>
-  )
+  );
 }
 
 // 왼쪽
@@ -69,7 +68,7 @@ const SkeletonOther = styled(SkeletonItem)`
 // 오른쪽
 const ProfileRight = styled.section`
   margin-top: 220px;
-`
+`;
 
 const ProfileRightGrid = styled.div`
   display: grid;
@@ -77,7 +76,7 @@ const ProfileRightGrid = styled.div`
   grid-template-rows: auto;
   gap: 60px 30px;
   margin-bottom: 120px;
-`
+`;
 
 const TabMenu = styled(SkeletonItem)`
   width: 220px;
