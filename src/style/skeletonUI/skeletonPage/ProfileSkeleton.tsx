@@ -39,6 +39,18 @@ const ProfileLeft = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 1060px) {
+    padding: 50px;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+  @media only screen and (max-width: 480px) {
+    padding: 30px;
+  }
 `;
 
 const SkeletonProfileImage = styled(SkeletonItem)`
@@ -68,6 +80,9 @@ const SkeletonOther = styled(SkeletonItem)`
 // 오른쪽
 const ProfileRight = styled.section`
   margin-top: 220px;
+  @media screen and (max-width: 1024px) {
+    margin-top: 0;
+  }
 `;
 
 const ProfileRightGrid = styled.div`
@@ -76,6 +91,12 @@ const ProfileRightGrid = styled.div`
   grid-template-rows: auto;
   gap: 60px 30px;
   margin-bottom: 120px;
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const TabMenu = styled(SkeletonItem)`
@@ -83,4 +104,7 @@ const TabMenu = styled(SkeletonItem)`
   height: 25px;
   margin: 70px 0 30px;
   position: relative;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;

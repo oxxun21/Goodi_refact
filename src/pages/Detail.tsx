@@ -66,14 +66,14 @@ export default function Detail() {
                 <DeliveryDescription>
                   <div className="delivery_date">
                     <img src={DeliveryIcon} alt="박스 아이콘" />
-                    <h3 className="delivery_price_subtitle">배송 기간</h3>
+                    <strong className="delivery_price_subtitle">배송 기간</strong>
                     <p className="delivery_price_text">
                       지금 주문하면 <strong>3일 이내</strong> 출고 예정 (주말, 공휴일 제외)
                     </p>
                   </div>
                   <div className="delivery_price">
                     <img src={MoneyIcon} alt="동전 아이콘" />
-                    <h3 className="delivery_price_subtitle">배송비</h3>
+                    <strong className="delivery_price_subtitle">배송비</strong>
                     <p className="delivery_price_text">
                       구디 제품 80,000원 이상 구매시 무료배송
                       <br />
@@ -159,20 +159,17 @@ const DeliveryDescription = styled.section`
     height: 32px;
     margin-right: 16px;
     margin-top: -7px;
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 992px) {
       margin-right: 8px;
     }
   }
 
-  & div h3 {
-    width: 15%;
+  & div > strong {
+    width: 60px;
     font-size: 16px;
     font-family: var(--font--Bold);
     flex-shrink: 0;
-    margin-right: 8px;
-    @media only screen and (max-width: 480px) {
-      width: 20%;
-    }
+    margin-right: 12px;
   }
 
   & div p {
@@ -181,13 +178,17 @@ const DeliveryDescription = styled.section`
     color: var(--gray500-color);
   }
 
-  & div p strong {
+  & div p > strong {
     font-family: var(--font--Bold);
     color: var(--sub-color);
   }
 
   .delivery_date {
     margin-bottom: 24px;
+  }
+
+  @media only screen and (max-width: 1060px) {
+    padding: 31px 10px 24px;
   }
 
   @media only screen and (max-width: 480px) {

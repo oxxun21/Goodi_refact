@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components';
-import SkeletonItem from '../SkeletonItem';
-import UserSkeleton from './UserSkeleton';
+import React from "react";
+import styled from "styled-components";
+import SkeletonItem from "../SkeletonItem";
+import UserSkeleton from "./UserSkeleton";
 
 export default function DetailSkeleton() {
   return (
@@ -14,19 +14,9 @@ export default function DetailSkeleton() {
           <ProductDescrpition />
           <ProductDescrpitionOther />
         </ProductDetailSection>
-
-        <ProductDetailSection>
-          <ProductCountBox />
-          <ProductPrice />
-          <BtnDiv>
-            <PurchaseBtn />
-            <PurchaseBtn />
-          </BtnDiv>
-        </ProductDetailSection>
-
       </ProductDetailSkeleton>
     </DetailWrapSkeleton>
-  )
+  );
 }
 
 const DetailWrapSkeleton = styled.div`
@@ -34,12 +24,22 @@ const DetailWrapSkeleton = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 5%;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 480px) {
+    margin: 0px 20px 120px;
+  }
 `;
 
 const DetailImageSkeleton = styled(SkeletonItem)`
   width: 40%;
-  height: 650px;
-`
+  height: 350px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 360px;
+  }
+`;
 
 const ProductDetailSkeleton = styled.div`
   width: 55%;
@@ -47,49 +47,31 @@ const ProductDetailSkeleton = styled.div`
   justify-content: space-between;
   flex-direction: column;
   gap: 100px;
-`
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 3rem;
+  }
+`;
 
 const ProductDetailSection = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   gap: 15px;
-`
+`;
 
 const ProductTitle = styled(SkeletonItem)`
-  width: 340px;
+  width: 80%;
   height: 40px;
   margin-top: 15px;
-`
+`;
 
 const ProductDescrpition = styled(SkeletonItem)`
   width: 100%;
   height: 55px;
-`
+`;
 
 const ProductDescrpitionOther = styled(SkeletonItem)`
   width: 100%;
   height: 150px;
-`
-
-const ProductCountBox = styled(SkeletonItem)`
-  width: 25%;
-  height: 48px;
-`
-
-const ProductPrice = styled(SkeletonItem)`
-  width: 160px;
-  height: 48px;
-  align-self: flex-end;
-`
-
-const BtnDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-const PurchaseBtn = styled(SkeletonItem)`
-  width: 350px;
-  height: 56px;
-  display: inline-block;
-`
+`;
