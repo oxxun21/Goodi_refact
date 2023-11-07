@@ -63,12 +63,14 @@ export const ImagUploadWrap = styled.fieldset`
   flex-grow: 1;
   display: flex;
   gap: 1rem;
+  max-width: 430px;
   @media only screen and (max-width: 1280px) {
     flex-direction: column;
   }
 
   @media only screen and (max-width: 1060px) {
     flex-direction: row;
+    max-width: initial;
   }
 `;
 

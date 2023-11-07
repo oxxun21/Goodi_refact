@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import GlobalStyle from "./style/GlobalStyle";
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Login from "./pages/Login";

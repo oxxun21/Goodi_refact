@@ -135,4 +135,7 @@ const FollowNull = styled.div`
     display: block;
     margin: 0 auto 10px;
   }
+  @media screen and (max-width: 1024px) {
+    margin-top: 5rem;
+  }
 `;

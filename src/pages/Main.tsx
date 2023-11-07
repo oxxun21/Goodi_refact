@@ -82,7 +82,7 @@ const MainWrap = styled.div`
   grid-template-columns: 0.7fr 0.1fr 1fr;
   grid-template-rows: auto;
 
-  @media screen and (max-width: 1060px) {
+  @media screen and (max-width: 1280px) {
     grid-template-columns: 1fr 0.1fr 1fr;
   }
 

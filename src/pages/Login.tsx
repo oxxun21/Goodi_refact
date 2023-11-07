@@ -116,6 +116,13 @@ const RightDiv = styled.div`
     margin-bottom: 30px;
   }
 
+  h1 > img {
+    @media screen and (max-width: 600px) {
+      width: 90%;
+      padding-left: 20px;
+    }
+  }
+
   p {
     font-size: 16px;
     color: var(--gray500-color);

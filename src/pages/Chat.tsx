@@ -234,6 +234,9 @@ const ChatWrapLeft = styled.section`
     &::-webkit-scrollbar {
       display: none; /* 크롬, 사파리, 오페라, 엣지 */
     }
+    @media only screen and (max-width: 992px) {
+      height: 65vh;
+    }
     @media only screen and (max-width: 768px) {
       height: fit-content;
       overflow: initial;
