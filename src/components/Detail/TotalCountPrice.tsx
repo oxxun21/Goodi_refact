@@ -33,7 +33,9 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
 
     if (existingItem) {
       // 이미 장바구니에 있는 상품인 경우
-      const updatedItems = cartItem.map((cartItem: CartItem_I) => (cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem));
+      const updatedItems = cartItem.map((cartItem: CartItem_I) =>
+        cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem
+      );
       setCartItem(updatedItems);
     } else {
       // 장바구니에 없는 상품인 경우
@@ -54,8 +56,22 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
         </p>
       </ProductPrice>
       <ButtonWrap>
-        <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
-        <Button text="구매하고 싶어요" className="purchase_button" type="button" bg="black" br="none" onClick={() => navigate("/chat")} />
+        <Button
+          text="장바구니 담기"
+          className="cart_button"
+          type="button"
+          bg="white"
+          color="var(--black-color)"
+          onClick={addToCart}
+        />
+        <Button
+          text="구매하고 싶어요"
+          className="purchase_button"
+          type="button"
+          bg="black"
+          br="none"
+          onClick={() => navigate("/purchase", { state: [productData] })}
+        />
       </ButtonWrap>
     </>
   );
