@@ -1,36 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import IconCheck from "../../assets/icon_check_primary.svg";
 import styled from "styled-components";
 
 export default function PaymentAgree() {
+  const [selectedButton, setSelectedButton] = useState<Number | null>(null);
+
+  const handleButtonClick = (index: Number | null) => {
+    setSelectedButton(index === selectedButton ? null : index);
+  };
+
+  const paymentType = ["신용카드", "토스", "카카오페이", "네이버페이", "휴대폰결제", "계좌이체"];
+
   return (
     <PaymentAgreeContain>
       <h3>결제수단</h3>
       <PaymentSelect>
-        <li>
-          <button>신용카드</button>
-        </li>
-        <li>
-          <button>토스</button>
-        </li>
-        <li>
-          <button>카카오페이</button>
-        </li>
-        <li>
-          <button>네이버페이</button>
-        </li>
-        <li>
-          <button>휴대폰결제</button>
-        </li>
-        <li>
-          <button>계좌이체</button>
-        </li>
+        {paymentType.map((type, index) => (
+          <li key={index} className={selectedButton === index ? "selected" : ""}>
+            <button onClick={() => handleButtonClick(index)}>{type}</button>
+          </li>
+        ))}
       </PaymentSelect>
       <h3 className="a11y-hidden">이용 약관 동의</h3>
       <input type="checkbox" id="checkbox" />
       <label htmlFor="checkbox"></label>
       <strong>모두 동의합니다</strong>
-      <p>주문 상품정보 및 결제대행 서비스 이용약관에 모두 동의합니다.</p>
+      <p>
+        주문 상품정보 및 결제대행 서비스 이용약관에 모두 동의합니다.
+        <br />* 이 페이지는 화면만 구현되어 있어, 결제가 진행되지 않습니다.
+      </p>
     </PaymentAgreeContain>
   );
 }
@@ -45,6 +43,7 @@ const PaymentSelect = styled.ul`
   & li {
     border: 1px solid #eee;
     border-radius: 5px;
+    transition: all 0.2s;
   }
 
   & button {
@@ -57,7 +56,7 @@ const PaymentSelect = styled.ul`
     box-sizing: border-box;
   }
 
-  & button:focus {
+  .selected {
     background-color: var(--dark-sub-color);
     color: #fff;
   }
