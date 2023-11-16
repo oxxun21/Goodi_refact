@@ -1,12 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import GlobalStyle from "./style/GlobalStyle";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
@@ -51,7 +45,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/purchase" element={<Purchase />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="/404" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -43,6 +43,11 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
     }
   };
 
+  const purchaseObj = {
+    ...productData,
+    count,
+  };
+
   return (
     <>
       {toast && <Toast setToast={setToast} text="장바구니에 상품이 담겼습니다." />}
@@ -70,7 +75,7 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
           type="button"
           bg="black"
           br="none"
-          onClick={() => navigate("/purchase", { state: [productData] })}
+          onClick={() => navigate("/purchase", { state: [purchaseObj] })}
         />
       </ButtonWrap>
     </>
