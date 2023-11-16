@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
 import FallbackUI from "./components/FallbackUI";
 import { getLoginCookie } from "./utils";
+import Purchase from "./pages/Purchase";
 
 function App() {
   const Main = lazy(() => import("./pages/Main"));
@@ -42,8 +43,9 @@ function App() {
             <Route path="/product/:product_id" element={<ProductUpdate />} />
             <Route path="/post/:posting_id" element={<PostUpdate />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/purchase" element={<Purchase />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="/404" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

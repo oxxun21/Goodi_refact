@@ -21,7 +21,7 @@ export default function Cart() {
 
   const handleButtonClick = () => {
     if (cartItem.length !== 0) {
-      navigate("/chat");
+      navigate("/purchase", { state: cartItem });
     }
   };
 
@@ -81,8 +81,23 @@ export default function Cart() {
                 </li>
               </ul>
             </OrderInfo>
-            <Button disabled={cartItem.length === 0} type="button" text="구매하고 싶어요" onClick={handleButtonClick} padding="16px 0" />
-            <Button disabled={cartItem.length === 0} type="button" text="상품 전체 삭제" onClick={cartResetButton} bg="white" color="black" br="1px solid black" padding="16px 0" />
+            <Button
+              disabled={cartItem.length === 0}
+              type="button"
+              text="구매하고 싶어요"
+              onClick={handleButtonClick}
+              padding="16px 0"
+            />
+            <Button
+              disabled={cartItem.length === 0}
+              type="button"
+              text="상품 전체 삭제"
+              onClick={cartResetButton}
+              bg="white"
+              color="black"
+              br="1px solid black"
+              padding="16px 0"
+            />
           </CartRightSticky>
         </CartRight>
       </CartWrap>
