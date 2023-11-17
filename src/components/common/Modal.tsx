@@ -1,78 +1,44 @@
 import styled from "styled-components";
 import Button from "./Button/Button";
-import CloseButton from "../../assets/close-button.svg";
 import { useEffect } from "react";
-import LogoutHandler from "../Logout";
-import { useSetRecoilState } from "recoil";
-import { productDeleteAPI, postDeleteAPI } from "../../api";
-import { checkDeletePost } from "../../recoil";
+import { createPortal } from "react-dom";
 
 interface ModalProps {
   text: string;
   buttonText1: string;
   buttonText2: string;
-  showCloseButton: boolean;
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  handleModal: () => void;
-  postId?: string;
+  onClose: () => void;
+  handleModalClick: () => void;
 }
 
-export default function Modal({ text, buttonText1, buttonText2, showCloseButton, showModal, setShowModal, handleModal, postId, ...props }: ModalProps) {
-  const { handleLogout } = LogoutHandler();
-  const setCheckDelete = useSetRecoilState(checkDeletePost);
-
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.innerText === "삭제하겠습니다") {
-      const response = await postDeleteAPI(postId);
-      setCheckDelete((prev: boolean) => !prev);
-      return response;
-    } else if (e.currentTarget.innerText === "상품을 삭제하겠습니다") {
-      const response = await productDeleteAPI(postId);
-      setCheckDelete((prev: boolean) => !prev);
-      return response;
-    } else {
-      handleLogout();
-    }
-    handleLogout();
-  };
-
+export default function Modal({ text, buttonText1, buttonText2, onClose, handleModalClick }: ModalProps) {
   useEffect(() => {
-    // modal이 떠 있을 땐 스크롤 막음
-    disableScroll();
-    // modal 닫히면 다시 스크롤 가능하도록 함
-    return () => enableScroll();
+    const root = document.body;
+    root.style.cssText = `
+      position: fixed;
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = root.style.top;
+      root.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
   }, []);
 
-  // 스크롤 막는 함수
-  const disableScroll = () => {
-    document.body.style.overflow = "hidden";
-  };
-
-  // 스크롤 가능하게 하는 함수
-  const enableScroll = () => {
-    document.body.style.overflow = "auto";
-  };
-
-  return (
-    <>
-      <ModalBgDark onClick={handleModal}>
-        <ModalBgWhite onClick={handleModal}>
-          <ModalInner>
-            <span>{text}</span>
-            <div>
-              <Button width="100%" text={buttonText1} onClick={handleClick} />
-              <Button width="100%" bg="white" color="black" onClick={handleModal} text={buttonText2} />
-            </div>
-          </ModalInner>
-          {showCloseButton && (
-            <button onClick={handleModal}>
-              <img src={CloseButton} alt="닫기 버튼" />
-            </button>
-          )}
-        </ModalBgWhite>
-      </ModalBgDark>
-    </>
+  return createPortal(
+    <ModalBgDark onClick={onClose}>
+      <ModalBgWhite onClick={(e) => e.stopPropagation()}>
+        <ModalInner>
+          <span>{text}</span>
+          <div>
+            <Button width="100%" text={buttonText1} onClick={handleModalClick} fontSize="14px" />
+            <Button width="100%" bg="white" color="black" onClick={onClose} text={buttonText2} fontSize="14px" />
+          </div>
+        </ModalInner>
+      </ModalBgWhite>
+    </ModalBgDark>,
+    document.getElementById("modal")!
   );
 }
 
@@ -94,15 +60,6 @@ const ModalBgWhite = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-
-  & > button {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
-  & img {
-    cursor: pointer;
-  }
 `;
 const ModalInner = styled.div`
   max-width: 305px;
@@ -111,21 +68,9 @@ const ModalInner = styled.div`
   padding-top: 60px;
   & span {
     display: block;
-    font-size: 19px;
+    font-size: 18px;
     margin-bottom: 30px;
     text-align: center;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  & > div > button {
-    font-size: 14px;
-    font-family: var(--font--semibold);
-    border-radius: 4px;
   }
 
   & > div > button:first-child {

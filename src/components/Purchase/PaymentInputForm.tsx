@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { Input } from "../common";
+import { Button, Input } from "../common";
 
 export interface UserInfo_I {
   address: string;
@@ -41,7 +41,7 @@ export default function PaymentInputForm() {
           <Input name="name" placeholder="구매자 이름을 입력해주세요" required={true} />
           <label htmlFor="phoneNumber">구매자 연락처</label>
           <Input name="phoneNumber" placeholder="구매자 전화번호를 입력해주세요" required={true} />
-          <button type="submit">확인</button>
+          <Button text="확인" padding="0.8rem" fontSize="16px" width="80px" />
         </Form>
       )}
     </>
@@ -61,11 +61,6 @@ const Form = styled.form`
   }
 
   & > button {
-    cursor: pointer;
-    padding: 0.8rem 1.5rem;
-    background: black;
-    color: #fff;
-    border-radius: 3px;
     display: block;
     margin-left: auto;
   }

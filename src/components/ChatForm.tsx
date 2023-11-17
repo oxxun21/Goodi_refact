@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import sendBtn from "../../assets/icon-send-gray.svg";
-import sendBtnHover from "../../assets/icon-send-black.svg";
+import sendBtn from "../assets/icon-send-gray.svg";
+import sendBtnHover from "../assets/icon-send-black.svg";
 
 interface FormProps {
   hasInput: string;
@@ -10,7 +10,7 @@ interface FormProps {
   handleSubmit: (e: React.FormEvent) => void;
 }
 
-export default function Form({ hasInput, setHasInput, handleSubmit }: FormProps) {
+export default function ChatForm({ hasInput, setHasInput, handleSubmit }: FormProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHasInput(e.target.value);
   };
@@ -42,7 +42,10 @@ const FormInput = styled.input`
 `;
 
 const FormButton = styled.button<{ hasInput: string }>`
-  background: ${({ hasInput }) => (hasInput === "" ? `url(${sendBtn}) no-repeat center center/contain` : `url(${sendBtnHover}) no-repeat center center/contain`)};
+  background: ${({ hasInput }) =>
+    hasInput === ""
+      ? `url(${sendBtn}) no-repeat center center/contain`
+      : `url(${sendBtnHover}) no-repeat center center/contain`};
   width: 32px;
   height: 32px;
   transition: all 0.3s;

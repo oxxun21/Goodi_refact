@@ -5,17 +5,19 @@ import styled from "styled-components";
 import ProfileUI from "../ProfileUI";
 import { LocalNav, Modal } from "../common";
 
-import { useRecoilValue } from "recoil";
-import { accountname } from "../../recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accountname, checkDeletePost } from "../../recoil";
 
 import postMenu from "../../assets/post_menu.svg";
 import { ProduceCard_I } from "../../interface";
+import { productDeleteAPI } from "../../api";
 
 export default function ProductCard({ profile, name, email, img, title, description, price, id }: ProduceCard_I) {
   const handleClick = useRef<any>(null);
   const myaccount_name = useRecoilValue(accountname);
   const temp = useParams();
   const account_name = temp.accountname ? temp.accountname : email || myaccount_name;
+  const setCheckDelete = useSetRecoilState(checkDeletePost);
 
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -24,15 +26,26 @@ export default function ProductCard({ profile, name, email, img, title, descript
     setIsHidden((prevState) => !prevState);
   };
 
-  const handleModal = () => {
+  const onClose = () => {
     setShowModal(!showModal);
+  };
+
+  const handleModalClick = async () => {
+    const response = await productDeleteAPI(id);
+    setCheckDelete((prev: boolean) => !prev);
+    return response;
   };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(e.target as Node) && handleClick.current && !handleClick.current.contains(e.target as Node)) {
+      if (
+        localNavElement &&
+        !localNavElement.contains(e.target as Node) &&
+        handleClick.current &&
+        !handleClick.current.contains(e.target as Node)
+      ) {
         setIsHidden(false);
       }
     };
@@ -54,7 +67,7 @@ export default function ProductCard({ profile, name, email, img, title, descript
         <LocalNavWrap>
           {isHidden ? (
             <LocalNav
-              handleModal={handleModal}
+              handleModal={onClose}
               width="120px"
               lists={[
                 { name: "상품 수정", nav: `/product/${id}` },
@@ -77,14 +90,11 @@ export default function ProductCard({ profile, name, email, img, title, descript
       </Link>
       {showModal && (
         <Modal
-          postId={id}
-          showModal={showModal}
-          setShowModal={setShowModal}
-          handleModal={handleModal}
+          handleModalClick={handleModalClick}
+          onClose={onClose}
           text="상품을 정말 삭제하시겠습니까?"
           buttonText1="상품을 삭제하겠습니다"
           buttonText2="아니요, 삭제하지 않습니다"
-          showCloseButton={false}
         />
       )}
     </CardWrap>

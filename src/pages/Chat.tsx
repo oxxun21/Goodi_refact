@@ -10,7 +10,8 @@ import chatDefImage from "../assets/profile_img_def.svg";
 import userDefImage from "../assets/caht-img-def.svg";
 
 // 컴포넌트
-import { Form, Toast } from "../components/common";
+import { Toast } from "../components/common";
+import ChatForm from "../components/ChatForm";
 import ChatSkeleton from "../style/skeletonUI/skeletonPage/ChatSkeleton";
 
 // API
@@ -119,7 +120,14 @@ export default function Chat({ reduceTop }: ChatProps) {
                 {followingList &&
                   followingList.map((el, i) => {
                     return (
-                      <ChatUser className={isActive === el._id ? "active" : ""} key={el._id} onClick={handleChat} data-dummy-chat={chatDummy[i]?.text} data-id={el._id} data-image={el.image}>
+                      <ChatUser
+                        className={isActive === el._id ? "active" : ""}
+                        key={el._id}
+                        onClick={handleChat}
+                        data-dummy-chat={chatDummy[i]?.text}
+                        data-id={el._id}
+                        data-image={el.image}
+                      >
                         <img src={checkImageUrl(el.image, "profile")} alt="유저 이미지" />
                         <ChatText>
                           <div>
@@ -170,7 +178,7 @@ export default function Chat({ reduceTop }: ChatProps) {
           )}
 
           <Chatting>
-            <Form hasInput={hasInput} setHasInput={setHasInput} handleSubmit={handleSubmit} />
+            <ChatForm hasInput={hasInput} setHasInput={setHasInput} handleSubmit={handleSubmit} />
           </Chatting>
         </ChatWrapRight>
       </ChatWrap>

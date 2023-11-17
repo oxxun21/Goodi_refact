@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
-import { useRecoilValue } from "recoil";
-import { accountname } from "../../recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accountname, checkDeletePost } from "../../recoil";
 
 import { checkImageUrl } from "../../utils";
 
@@ -13,6 +13,7 @@ import ProfileUI from "../ProfileUI";
 import postMenu from "../../assets/post_menu.svg";
 
 import { PostCard_I } from "../../interface";
+import { postDeleteAPI } from "../../api";
 
 const getElapsedTime = (createdAt: string) => {
   const currentTime = new Date();
@@ -43,26 +44,48 @@ const getElapsedTime = (createdAt: string) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: PostCard_I) {
+export default function PostCard({
+  username,
+  profileImage,
+  email,
+  content,
+  image,
+  createdAt,
+  postId,
+  hearted,
+  heartCount,
+}: PostCard_I) {
   const handleClick = useRef<any>(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
   const [isHidden, setIsHidden] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const setCheckDelete = useSetRecoilState(checkDeletePost);
 
   const handleLocalNav = () => {
     setIsHidden((prevIsHidden) => !prevIsHidden);
   };
 
-  const handleModal = () => {
+  const onClose = () => {
     setShowModal(!showModal);
+  };
+
+  const handleModalClick = async () => {
+    const response = await postDeleteAPI(postId);
+    setCheckDelete((prev: boolean) => !prev);
+    return response;
   };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (localNavElement && !localNavElement.contains(e.target as Node) && handleClick.current && !handleClick.current.contains(e.target as Node)) {
+      if (
+        localNavElement &&
+        !localNavElement.contains(e.target as Node) &&
+        handleClick.current &&
+        !handleClick.current.contains(e.target as Node)
+      ) {
         setIsHidden(false);
       }
     };
@@ -79,7 +102,14 @@ export default function PostCard({ username, profileImage, email, content, image
   return (
     <article>
       <PostTop>
-        <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile={false} card={true} account_name={account_name} />
+        <ProfileUI
+          user_profile={checkImageUrl(profileImage, "profile")}
+          user_name={username}
+          user_email={email}
+          mainprofile={false}
+          card={true}
+          account_name={account_name}
+        />
         {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="게시글 삭제 및 신고 메뉴" ref={handleClick} />
@@ -88,7 +118,7 @@ export default function PostCard({ username, profileImage, email, content, image
         <LocalNavWrap>
           {isHidden ? (
             <LocalNav
-              handleModal={handleModal}
+              handleModal={onClose}
               width="120px"
               lists={[
                 { name: "게시글 수정", nav: `/post/${postId}` },
@@ -113,14 +143,11 @@ export default function PostCard({ username, profileImage, email, content, image
       </PostContent>
       {showModal && (
         <Modal
-          postId={postId}
-          showModal={showModal}
-          setShowModal={setShowModal}
-          handleModal={handleModal}
+          handleModalClick={handleModalClick}
+          onClose={onClose}
           text="게시물을 정말 삭제하시겠습니까?"
           buttonText1="삭제하겠습니다"
           buttonText2="아니요, 삭제하지 않습니다"
-          showCloseButton={false}
         />
       )}
     </article>
