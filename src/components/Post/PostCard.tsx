@@ -44,17 +44,7 @@ const getElapsedTime = (createdAt: string) => {
   return elapsedTimeString;
 };
 
-export default function PostCard({
-  username,
-  profileImage,
-  email,
-  content,
-  image,
-  createdAt,
-  postId,
-  hearted,
-  heartCount,
-}: PostCard_I) {
+export default function PostCard({ username, profileImage, email, content, image, createdAt, postId, hearted, heartCount }: PostCard_I) {
   const handleClick = useRef<any>(null);
   const elapsedTimeString = getElapsedTime(createdAt);
   const [heartValue, setHeartValue] = useState(heartCount);
@@ -80,12 +70,7 @@ export default function PostCard({
     const handleClickOutside = (e: MouseEvent) => {
       const localNavElement = document.getElementById("localNavElement");
 
-      if (
-        localNavElement &&
-        !localNavElement.contains(e.target as Node) &&
-        handleClick.current &&
-        !handleClick.current.contains(e.target as Node)
-      ) {
+      if (localNavElement && !localNavElement.contains(e.target as Node) && handleClick.current && !handleClick.current.contains(e.target as Node)) {
         setIsHidden(false);
       }
     };
@@ -102,14 +87,7 @@ export default function PostCard({
   return (
     <article>
       <PostTop>
-        <ProfileUI
-          user_profile={checkImageUrl(profileImage, "profile")}
-          user_name={username}
-          user_email={email}
-          mainprofile={false}
-          card={true}
-          account_name={account_name}
-        />
+        <ProfileUI user_profile={checkImageUrl(profileImage, "profile")} user_name={username} user_email={email} mainprofile={false} card={true} account_name={account_name} />
         {temp.accountname === myaccount_name && (
           <button onClick={handleLocalNav}>
             <img src={postMenu} alt="게시글 삭제 및 신고 메뉴" ref={handleClick} />
@@ -142,13 +120,7 @@ export default function PostCard({
         </div>
       </PostContent>
       {showModal && (
-        <Modal
-          handleModalClick={handleModalClick}
-          onClose={onClose}
-          text="게시물을 정말 삭제하시겠습니까?"
-          buttonText1="삭제하겠습니다"
-          buttonText2="아니요, 삭제하지 않습니다"
-        />
+        <Modal handleModalClick={handleModalClick} onClose={onClose} text="게시물을 정말 삭제하시겠습니까?" buttonText1="삭제하겠습니다" buttonText2="아니요, 삭제하지 않습니다" />
       )}
     </article>
   );

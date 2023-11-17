@@ -61,14 +61,7 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
         </p>
       </ProductPrice>
       <ButtonWrap>
-        <Button
-          text="장바구니 담기"
-          className="cart_button"
-          type="button"
-          bg="white"
-          color="var(--black-color)"
-          onClick={addToCart}
-        />
+        <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
         <Button
           text="구매하고 싶어요"
           className="purchase_button"

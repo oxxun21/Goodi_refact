@@ -45,7 +45,15 @@ export default function ProductUpload() {
 
   return (
     <Layout reduceTop={true}>
-      <UploadTotalUI src={productUpload} subtext="당신의 상품을 업로드 해보세요!" send={handleProduct} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} formRef={formRef} />
+      <UploadTotalUI
+        src={productUpload}
+        subtext="당신의 상품을 업로드 해보세요!"
+        send={handleProduct}
+        errorMSG={errorMSG}
+        imageWrap={imageWrap}
+        setImageWrap={setImageWrap}
+        formRef={formRef}
+      />
     </Layout>
   );
 }
