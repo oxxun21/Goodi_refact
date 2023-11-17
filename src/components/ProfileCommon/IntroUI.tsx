@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // 컴포넌트
-import { ButtonLineIcon, ButtonFollow } from "../common";
+import { ButtonFollow, Button } from "../common";
 
 // 이미지 검사
 import { checkImageUrl } from "../../utils";
@@ -30,10 +30,26 @@ export default function IntroUI({ profileData, handleEditClick }: IntroUIProps) 
       </IntroWrap>
 
       {myAccount === profileData.accountname ? (
-        <ButtonLineIcon text="프로필 수정하기" onClick={handleEditClick} basic="true" />
+        <Button
+          width="150px"
+          onClick={handleEditClick}
+          text="프로필 수정하기"
+          bg="#fff"
+          fontSize="15px"
+          color="#000"
+          borderRadius="30px"
+          hoverAction
+        />
       ) : (
         <BtnWrap>
-          <ButtonLineIcon text="작가랑 채팅하기" basic="true" bg="black" color="white" br="none" onClick={() => navigate("/chat")} />
+          <Button
+            width="150px"
+            onClick={() => navigate("/chat")}
+            text="작가랑 채팅하기"
+            fontSize="15px"
+            borderRadius="30px"
+            hoverAction
+          />
           <ButtonFollow isFollow={profileData.isfollow} accountName={profileData.accountname} padding="true" />
         </BtnWrap>
       )}

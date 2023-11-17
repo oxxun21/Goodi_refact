@@ -7,9 +7,11 @@ interface ButtonProps {
   width?: string;
   padding?: string;
   br?: string;
+  borderRadius?: string;
   color?: string;
   fontSize?: string;
   noCursor?: string;
+  hoverAction?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | "button";
   disabled?: boolean;
@@ -24,7 +26,7 @@ const ButtonDef = styled.button<ButtonProps>`
   background-color: ${(props) => props.bg || "var(--black-color)"};
   width: ${(props) => props.width || "100%"};
   padding: ${(props) => props.padding || "18px 0"};
-  border-radius: 4px;
+  border-radius: ${(props) => props.borderRadius || "4px"};
   border: ${(props) => props.br || "1px solid var(--gray300-color)"};
   color: ${(props) => props.color || "white"};
   font-size: ${(props) => props.fontSize || "18px"};
@@ -47,7 +49,14 @@ const ButtonDef = styled.button<ButtonProps>`
       cursor: default;
     `}
 
-    &:active {
-    transform: scale(0.99);
-  }
+    ${(props) =>
+    props.hoverAction &&
+    css`
+      &:hover {
+        background-color: var(--sub-color);
+        border: none;
+        transition: all 0.3s;
+        color: white;
+      }
+    `}
 `;
