@@ -11,12 +11,14 @@ import Search from "../components/Search/Search";
 
 import { useRecoilValue } from "recoil";
 import { accountname, cartItemsState } from "../recoil";
+import LogoutHandler from "../components/Logout";
 
 function Navigation() {
   const cartItem = useRecoilValue(cartItemsState);
   const navigate = useNavigate();
   const account_name = useRecoilValue(accountname);
   const myProfile = `/profile/${account_name}`;
+  const { handleLogout } = LogoutHandler();
 
   const icons = [
     { name: "Search", nav: "" },
@@ -36,8 +38,12 @@ function Navigation() {
     setIsHidden((prevIsHidden) => !prevIsHidden);
   };
 
-  const handleModal = () => {
+  const onClose = () => {
     setShowModal(!showModal);
+  };
+
+  const handleModalClick = () => {
+    handleLogout();
   };
 
   const handleSearch = () => {
@@ -66,7 +72,7 @@ function Navigation() {
             key={i}
             onClick={() => {
               if (el.name === "Post") handleLocalNav();
-              else if (el.name === "Logout") handleModal();
+              else if (el.name === "Logout") onClose();
               else if (el.name === "Search") handleSearch();
               else navigate(el.nav);
             }}
@@ -95,13 +101,11 @@ function Navigation() {
       )}
       {showModal && (
         <Modal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          handleModal={handleModal}
+          handleModalClick={handleModalClick}
+          onClose={onClose}
           text="구디를 정말 떠나시겠습니까?"
           buttonText1="네, 나중에 또 오겠습니다"
           buttonText2="아니요, 좀 더 있을래요"
-          showCloseButton={false}
         />
       )}
       {showSearch && <Search handleSearch={handleSearch} />}
