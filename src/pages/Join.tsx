@@ -77,7 +77,12 @@ export default function Join() {
             <input name="image" id="fileInput" type="file" style={{ display: "none" }} accept="image/jpeg, image/png, image/svg" onChange={handleImageChange} ref={imageRef} />
             <label htmlFor="fileInput">
               <ProfileImgWrap>
-                <img className="button_img" src={profileSelectedImage ? profileSelectedImage : ProfileImgDef} alt="Upload" style={profileSelectedImage ? { width: "100px" } : undefined} />
+                <img
+                  className="button_img"
+                  src={profileSelectedImage ? profileSelectedImage : ProfileImgDef}
+                  alt="Upload"
+                  style={profileSelectedImage ? { width: "100px" } : undefined}
+                />
                 <img className="add_button_img" src={PlusBtnImg} alt="Upload" style={{ cursor: "pointer" }} />
               </ProfileImgWrap>
             </label>

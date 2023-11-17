@@ -44,7 +44,15 @@ export default function PostUpload() {
 
   return (
     <Layout reduceTop={true}>
-      <UploadTotalUI src={postUproad} subtext="당신의 게시글을 업로드 해보세요!" send={handlePost} errorMSG={errorMSG} imageWrap={imageWrap} setImageWrap={setImageWrap} formRef={formRef} />
+      <UploadTotalUI
+        src={postUproad}
+        subtext="당신의 게시글을 업로드 해보세요!"
+        send={handlePost}
+        errorMSG={errorMSG}
+        imageWrap={imageWrap}
+        setImageWrap={setImageWrap}
+        formRef={formRef}
+      />
     </Layout>
   );
 }

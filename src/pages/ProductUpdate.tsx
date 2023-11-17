@@ -53,7 +53,9 @@ export default function ProductUpdate() {
 
   return (
     <Layout reduceTop={true}>
-      {data && <UpdateTotalUI src={ProductUpload} subtext="상품을 수정해주세요" data={data} send={productUpdateSend} setData={setData} setImageWrap={setImageWrap} imageWrap={imageWrap} />}
+      {data && (
+        <UpdateTotalUI src={ProductUpload} subtext="상품을 수정해주세요" data={data} send={productUpdateSend} setData={setData} setImageWrap={setImageWrap} imageWrap={imageWrap} />
+      )}
     </Layout>
   );
 }

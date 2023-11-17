@@ -4,10 +4,7 @@ import styled from "styled-components";
 
 export default function OrderSummary({ cartItems }: { cartItems: any[] }) {
   const calculateTotalPrice = () => {
-    const priceComma = cartItems.reduce(
-      (total, item) => total + item.productPrice * item.productCount || item.price * item.count,
-      0
-    );
+    const priceComma = cartItems.reduce((total, item) => total + item.productPrice * item.productCount || item.price * item.count, 0);
     return priceDivide(priceComma);
   };
 
@@ -21,10 +18,7 @@ export default function OrderSummary({ cartItems }: { cartItems: any[] }) {
         <CartItemList>
           {cartItems.map((item) => (
             <li key={item.id}>
-              <img
-                src={checkImageUrl(item.productImage || item.itemImage.split(",")[0], "post")}
-                alt={item.productName || item.itemName}
-              />
+              <img src={checkImageUrl(item.productImage || item.itemImage.split(",")[0], "post")} alt={item.productName || item.itemName} />
               <div>
                 <strong>{item.productName || item.itemName}</strong>
                 <p>수량 : {item.productCount || item.count}개</p>
