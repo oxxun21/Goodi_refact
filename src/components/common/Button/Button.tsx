@@ -33,9 +33,7 @@ const ButtonDef = styled.button<ButtonProps>`
   font-family: var(--font--Medium);
   box-sizing: border-box;
   text-align: center;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 
   ${(props) =>
     props.disabled &&

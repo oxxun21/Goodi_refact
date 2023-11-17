@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PaymentInputForm from "./PaymentInputForm";
 import PaymentAgree from "./PaymentAgree";
+import { Button } from "../common";
 
 export default function Payment() {
   return (
@@ -11,20 +12,15 @@ export default function Payment() {
         <PaymentInputForm />
       </PaymentForm>
       <PaymentAgree />
-      <button>결제하기</button>
+      <Button text="결제하기" fontSize="16px" width="130px" padding="0.8rem" />
     </PaymentContain>
   );
 }
 
 const PaymentContain = styled.div`
   & > button {
-    cursor: pointer;
     display: block;
     margin-left: auto;
-    padding: 0.8rem 1.5rem;
-    background: black;
-    color: #fff;
-    border-radius: 3px;
   }
 `;
 
