@@ -7,7 +7,6 @@ import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/common";
 import FallbackUI from "./components/FallbackUI";
 import { getLoginCookie } from "./utils";
-import Purchase from "./pages/Purchase";
 
 function App() {
   const Main = lazy(() => import("./pages/Main"));
@@ -19,6 +18,7 @@ function App() {
   const PostUpdate = lazy(() => import("./pages/PostUpdate"));
   const ProductUpdate = lazy(() => import("./pages/ProductUpdate"));
   const Cart = lazy(() => import("./pages/Cart"));
+  const Purchase = lazy(() => import("./pages/Purchase"));
 
   const PrivateRoutes = () => {
     return getLoginCookie() ? <Outlet /> : <Navigate to="/login" replace />;
