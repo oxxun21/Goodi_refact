@@ -22,7 +22,7 @@ function Footer() {
   );
 }
 
-export default React.memo(Footer);
+export default Footer;
 
 const FooterLayout = styled.footer`
   background-color: var(--gray100-color);
