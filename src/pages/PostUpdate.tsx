@@ -40,7 +40,7 @@ export default function PostUpdate() {
     fetchPost();
   }, []);
 
-  const postUpdateSend = async (e: React.FormEvent) => {
+  const handlePostUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (data) {
       const putData: PostWriting_I = {
@@ -58,7 +58,15 @@ export default function PostUpdate() {
   return (
     <Layout reduceTop={true}>
       {data && (
-        <UpdateTotalUI src={PostingUpload} subtext="게시물을 수정해주세요" send={postUpdateSend} setData={setData} data={data} imageWrap={imageWrap} setImageWrap={setImageWrap} />
+        <UpdateTotalUI
+          src={PostingUpload}
+          subtext="게시물을 수정해주세요"
+          send={handlePostUpdate}
+          setData={setData}
+          data={data}
+          imageWrap={imageWrap}
+          setImageWrap={setImageWrap}
+        />
       )}
     </Layout>
   );
