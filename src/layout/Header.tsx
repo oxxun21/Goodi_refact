@@ -119,4 +119,8 @@ const FollowingIcon = styled.button`
   &:hover {
     transform: scale(1.3);
   }
+
+  &:focus {
+    outline: 1px solid #ff1515;
+  }
 `;
