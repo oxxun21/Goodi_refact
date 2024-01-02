@@ -45,35 +45,33 @@ export default function Main() {
   }, [getFollowings]);
 
   return (
-    <>
+    <Layout>
       {loading ? (
         <MainSkeleton />
       ) : (
-        <Layout>
-          <MainWrap>
-            <MainLeft render={render} />
+        <MainWrap>
+          <MainLeft render={render} />
 
-            <Line />
+          <Line />
 
-            <MainRight>
-              <Title>
-                <img src={popularProducts} alt="popular products" />
-              </Title>
-              <MainRightCard />
-              <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
-            </MainRight>
+          <MainRight>
+            <Title>
+              <img src={popularProducts} alt="popular products" />
+            </Title>
+            <MainRightCard />
+            <ProductLink to="/productUpload">나도 굿즈 판매하기</ProductLink>
+          </MainRight>
 
-            <MainBottom>
-              <Title>
-                <img src={popularAuthor} alt="Popular Author" />
-              </Title>
-              <PopularAuthorView account="popular1" />
-              <PopularAuthorView account="popular2" />
-            </MainBottom>
-          </MainWrap>
-        </Layout>
+          <MainBottom>
+            <Title>
+              <img src={popularAuthor} alt="Popular Author" />
+            </Title>
+            <PopularAuthorView account="popular1" />
+            <PopularAuthorView account="popular2" />
+          </MainBottom>
+        </MainWrap>
       )}
-    </>
+    </Layout>
   );
 }
 
