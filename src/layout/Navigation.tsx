@@ -79,7 +79,7 @@ function Navigation() {
           >
             <IconImage className={el.name} />
             <p className={i === 0 ? "a11y-hidden" : ""}>{el.name}</p>
-            {el.name === "Post" && isHidden && <ActiveBar />}
+            {el.name === "Post" && isHidden}
             {el.name === "Cart" && (
               <div>
                 <span>{cartItem.length}</span>
@@ -253,10 +253,4 @@ const IconImage = styled.div`
   width: 32px;
   height: 32px;
   background-color: red;
-`;
-
-const ActiveBar = styled.div`
-  width: calc(100% - 12px);
-  height: 3px;
-  background-color: var(--main-color);
 `;
