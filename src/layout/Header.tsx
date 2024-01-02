@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import Logo from "../assets/logo_black.svg";
 import { checkImageUrl } from "../utils";
 import { getFollowingQuery } from "../recoil/selector/getFollowingQuery";
-
 import { Following_I } from "../interface";
 
 function Header() {
-  const [followingData, setFollowingData] = useState<Following_I[] | null>(null);
   const getFollowings = useRecoilValue(getFollowingQuery);
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setFollowingData(getFollowings);
-  }, []);
 
   return (
     <HeaderLayout>
@@ -26,11 +19,11 @@ function Header() {
         </LogoLink>
       </h1>
       <FollowingWrap>
-        {!followingData ? (
+        {!getFollowings ? (
           <div></div>
         ) : (
-          followingData
-            .map((data) => {
+          getFollowings
+            .map((data: Following_I) => {
               return (
                 <FollowingIcon
                   key={data._id}
@@ -45,7 +38,7 @@ function Header() {
             })
             .slice(0, 5)
         )}
-        {followingData && followingData.length > 5 && <span>+ more</span>}
+        {getFollowings && getFollowings.length > 5 && <span>+ more</span>}
       </FollowingWrap>
     </HeaderLayout>
   );
