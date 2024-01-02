@@ -9,7 +9,6 @@ import { priceDivide } from "../../utils";
 import { ProductList_I, CartItem_I } from "../../interface";
 
 export default function TotalCountPrice({ productData }: { productData: ProductList_I }) {
-  const [totalPrice, setTotalPrice] = useState(productData.price);
   const [count, setCount] = useState(1);
   const [toast, setToast] = useState(false);
 
@@ -33,9 +32,7 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
 
     if (existingItem) {
       // 이미 장바구니에 있는 상품인 경우
-      const updatedItems = cartItem.map((cartItem: CartItem_I) =>
-        cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem
-      );
+      const updatedItems = cartItem.map((cartItem: CartItem_I) => (cartItem.id === newItem.id ? { ...cartItem, productCount: cartItem.productCount + count } : cartItem));
       setCartItem(updatedItems);
     } else {
       // 장바구니에 없는 상품인 경우
@@ -52,24 +49,17 @@ export default function TotalCountPrice({ productData }: { productData: ProductL
     <>
       {toast && <Toast setToast={setToast} text="장바구니에 상품이 담겼습니다." />}
       <h3 className="product_count_subtitle">수량</h3>
-      <Count productPrice={productData.price} setTotalPrice={setTotalPrice} count={count} setCount={setCount} />
+      <Count count={count} setCount={setCount} />
       <hr />
       <ProductPrice>
         <h3 className="product_price_subtitle">총 결제 금액</h3>
         <p className="product_price">
-          <strong>{priceDivide(totalPrice)}</strong>원
+          <strong>{priceDivide(productData.price * count)}</strong>원
         </p>
       </ProductPrice>
       <ButtonWrap>
         <Button text="장바구니 담기" className="cart_button" type="button" bg="white" color="var(--black-color)" onClick={addToCart} />
-        <Button
-          text="구매하고 싶어요"
-          className="purchase_button"
-          type="button"
-          bg="black"
-          br="none"
-          onClick={() => navigate("/purchase", { state: [purchaseObj] })}
-        />
+        <Button text="구매하고 싶어요" className="purchase_button" type="button" bg="black" br="none" onClick={() => navigate("/purchase", { state: [purchaseObj] })} />
       </ButtonWrap>
     </>
   );

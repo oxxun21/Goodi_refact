@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 //image
@@ -6,36 +6,22 @@ import PlusIcon from "../../assets/icon_plus_black.svg";
 import MinusIcon from "../../assets/icon_minus_black.svg";
 
 interface CountProps {
-  productPrice: number;
-  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   count: number;
 }
 
-export default function Count({ productPrice, setTotalPrice, setCount, count }: CountProps) {
-  const [money, setMoney] = useState(productPrice);
-
-  // 카운트 마다 변하는 가격 함수
-  const getPrice = (money: number) => {
-    setMoney(money);
-  };
+export default function Count({ setCount, count }: CountProps) {
   // 카운트 증가 함수
   const increaseHandler = () => {
     setCount(count + 1);
-    getPrice(money + productPrice);
   };
 
   // 카운트 감소 함수
   const decreaseHandler = () => {
     if (count > 1) {
       setCount(count - 1);
-      getPrice(money - productPrice);
     }
   };
-
-  useEffect(() => {
-    setTotalPrice(money);
-  }, [count]);
 
   return (
     <Countwrap>
